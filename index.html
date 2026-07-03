@@ -433,8 +433,8 @@ function speakDevice(card, thai, voice){
   if(!synth || !voice){ card.classList.add("error"); stopCurrent(); return; }
 
   const chunks = segmentThai(thai);
-  // ms of silence between words — grows as the dial slows, audible from ~0.75× down
-  const gap = Math.max(0, Math.round((0.75 - speed) * 1200));
+  // ms of silence between words — starts at 0.5× and grows as the dial slows (~0.4s at slowest)
+  const gap = speed < 0.5 ? Math.round((0.5 - speed) * 1000) : 0;
   let i = 0;
 
   const speakNext = () => {
