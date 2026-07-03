@@ -407,27 +407,13 @@ function toggle(card, thai, btn){
   else speakDevice(card, thai, thaiVoices[parseInt(choice.split(":")[1], 10)]);
 }
 
-// Keep the last few Google clips as ready Audio elements so replays don't refetch
-// (and a buffered clip can't re-404). LRU, keyed by the Thai text.
-const AUDIO_CACHE_MAX = 3;
-const audioCache = new Map();
-function getGoogleAudio(thai){
-  let a = audioCache.get(thai);
-  if(a){ audioCache.delete(thai); audioCache.set(thai, a); return a; }   // refresh recency
-  a = new Audio(TTS(thai));
-  a.preload = "auto";
-  audioCache.set(thai, a);
-  while(audioCache.size > AUDIO_CACHE_MAX) audioCache.delete(audioCache.keys().next().value);
-  return a;
-}
-
-// Google Translate audio — best quality; on failure, quietly fall back to the device voice
+// Google Translate audio — best quality; on failure, quietly fall back to the device voice.
+// A fresh element each play so replays always restart cleanly (reusing one broke seeking on iOS).
 function playGoogle(card, thai){
-  audio = getGoogleAudio(thai);
-  try { audio.currentTime = 0; } catch(e){}
+  audio = new Audio(TTS(thai));
   audio.playbackRate = speed;              // slows the clip; pitch preserved by default
   audio.onended = () => { if(currentCard === card) stopCurrent(); };
-  audio.onerror = () => { audioCache.delete(thai); speakDevice(card, thai, thaiVoices[0]); };
+  audio.onerror = () => speakDevice(card, thai, thaiVoices[0]);
   const p = audio.play();
   if(p && p.catch) p.catch(() => speakDevice(card, thai, thaiVoices[0]));
 }
