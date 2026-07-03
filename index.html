@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thai Listening Practice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ground:#10302B;
+    --ground-2:#0a221e;
+    --card:#143631;
+    --card-lift:#1a463f;
+    --ink:#F1EBDA;
+    --muted:#9fb0a6;
+    --line:rgba(199,154,62,.16);
+    --gold:#C79A3E;
+    --gold-soft:#E7CE8C;
+    --jade-line:rgba(199,154,62,.28);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:
+      radial-gradient(120% 80% at 50% -10%, #164039 0%, var(--ground) 45%, var(--ground-2) 100%);
+    color:var(--card);
+    font-family:"IBM Plex Sans","IBM Plex Sans Thai",sans-serif;
+    min-height:100vh;
+    padding:0 20px 120px;
+    line-height:1.5;
+  }
+  .wrap{max-width:760px;margin:0 auto}
+
+  /* ---- header ---- */
+  header{padding:52px 4px 26px;position:relative}
+  .eyebrow{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:14px;
+  }
+  h1{
+    font-family:"Fraunces",serif;font-weight:500;
+    font-size:clamp(34px,7vw,54px);line-height:1.02;
+    color:var(--card-lift);letter-spacing:-.01em;
+  }
+  h1 .th{font-family:"IBM Plex Sans Thai",sans-serif;font-weight:500;color:var(--gold-soft)}
+  header p{color:#b9c4bb;max-width:46ch;margin-top:14px;font-size:15.5px}
+  .rule{height:1px;background:linear-gradient(90deg,var(--gold),transparent);margin:26px 4px 0}
+
+  /* ---- control bar ---- */
+  .controls{
+    position:sticky;top:0;z-index:20;
+    margin:0 -20px 30px;padding:16px 20px;
+    background:rgba(10,34,30,.82);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--jade-line);
+  }
+  .controls-inner{max-width:760px;margin:0 auto;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+  .speed{display:flex;align-items:center;gap:14px;flex:1;min-width:240px}
+  .speed label{
+    font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:#9fb0a6;white-space:nowrap;
+  }
+  .readout{
+    font-family:"Fraunces",serif;font-size:22px;color:var(--gold-soft);
+    min-width:62px;text-align:right;font-variant-numeric:tabular-nums;
+  }
+  input[type=range]{
+    -webkit-appearance:none;appearance:none;flex:1;height:3px;border-radius:3px;
+    background:linear-gradient(90deg,var(--gold) var(--fill,50%),#2c4a43 var(--fill,50%));
+    outline:none;cursor:pointer;
+  }
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none;width:20px;height:20px;border-radius:50%;
+    background:var(--gold-soft);border:3px solid var(--ground-2);
+    box-shadow:0 0 0 1px var(--gold);cursor:pointer;transition:transform .12s;
+  }
+  input[type=range]::-webkit-slider-thumb:active{transform:scale(1.18)}
+  input[type=range]::-moz-range-thumb{
+    width:20px;height:20px;border-radius:50%;background:var(--gold-soft);
+    border:3px solid var(--ground-2);box-shadow:0 0 0 1px var(--gold);cursor:pointer;
+  }
+  .reveal-toggle{
+    display:flex;align-items:center;gap:9px;cursor:pointer;user-select:none;
+    font-size:13.5px;color:#cdd6ce;
+  }
+  .switch{
+    width:42px;height:24px;border-radius:20px;background:#2c4a43;position:relative;
+    transition:background .2s;flex:none;
+  }
+  .switch::after{
+    content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;
+    background:var(--card);transition:transform .2s;
+  }
+  .reveal-toggle.on .switch{background:var(--gold)}
+  .reveal-toggle.on .switch::after{transform:translateX(18px)}
+
+  /* ---- cards ---- */
+  .list{display:flex;flex-direction:column;gap:14px}
+  .card{
+    background:var(--card);border-radius:16px;padding:20px 20px 20px 18px;
+    display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;
+    border:1px solid var(--line);position:relative;
+    box-shadow:0 1px 0 rgba(0,0,0,.25);
+    transition:transform .22s cubic-bezier(.2,.7,.3,1),box-shadow .22s,border-color .22s,background .22s;
+    opacity:0;transform:translateY(10px);
+    animation:rise .5s forwards;
+  }
+  @keyframes rise{to{opacity:1;transform:none}}
+  .card.playing{
+    background:var(--card-lift);
+    border-color:var(--gold);
+    box-shadow:0 14px 34px -16px rgba(0,0,0,.7), 0 0 0 3px rgba(199,154,62,.18);
+    transform:translateY(-2px);
+  }
+  .num{
+    position:absolute;top:14px;right:16px;
+    font-family:"IBM Plex Mono",monospace;font-size:11px;color:#8b9b8f;
+    letter-spacing:.05em;
+  }
+
+  /* play button */
+  .play{
+    width:52px;height:52px;border-radius:50%;border:1px solid var(--jade-line);cursor:pointer;
+    background:#0d2925;color:var(--gold-soft);
+    display:grid;place-items:center;flex:none;position:relative;
+    transition:background .2s,transform .1s;
+  }
+  .play:hover{background:#0a201c}
+  .play:active{transform:scale(.94)}
+  .play svg{width:20px;height:20px;transform:translateX(1px)}
+  .card.playing .play{background:var(--gold);color:var(--ground)}
+  .card.playing .play svg{transform:none}
+  .play .ring{
+    position:absolute;inset:-5px;border-radius:50%;border:2px solid var(--gold);
+    opacity:0;
+  }
+  .card.playing .play .ring{animation:pulse 1.4s ease-out infinite}
+  @keyframes pulse{0%{opacity:.6;transform:scale(.85)}100%{opacity:0;transform:scale(1.25)}}
+
+  /* text block */
+  .body{min-width:0}
+  .thai{
+    font-family:"IBM Plex Sans Thai",sans-serif;font-weight:500;
+    font-size:clamp(21px,4.4vw,27px);color:var(--ink);line-height:1.4;
+    letter-spacing:.005em;
+  }
+  .rom{
+    font-family:"IBM Plex Mono",monospace;font-size:13.5px;color:var(--gold-soft);
+    margin-top:9px;letter-spacing:.01em;
+  }
+  .en{
+    font-size:15px;color:#c4cec6;margin-top:7px;
+  }
+  /* hidden state for listening mode */
+  .reading{cursor:pointer;user-select:none;-webkit-user-select:none;padding:6px 0;margin:-6px 0}
+  .card.masked .rom,.card.masked .en{
+    filter:blur(6px);opacity:.5;transition:filter .25s,opacity .25s;
+  }
+  .card.masked .reading:hover .rom,.card.masked .reading:hover .en{opacity:.68}
+
+  .fallback{
+    display:inline-flex;align-items:center;gap:5px;margin-top:12px;
+    font-size:12px;color:#7f8f84;text-decoration:none;
+  }
+  .fallback:hover{color:var(--gold-soft)}
+  .fallback svg{width:12px;height:12px}
+
+  footer{
+    text-align:center;color:#7d8a80;font-size:12.5px;margin-top:40px;
+    font-family:"IBM Plex Mono",monospace;letter-spacing:.03em;
+  }
+  .err{
+    display:none;margin-top:10px;font-size:12.5px;color:#b06a4a;
+    background:rgba(176,106,74,.1);padding:7px 11px;border-radius:8px;
+  }
+  .card.error .err{display:block}
+
+  @media (max-width:520px){
+    body{padding:0 14px 100px}
+    .controls{margin:0 -14px 24px}
+    .card{padding:16px 16px 16px 14px;gap:14px}
+    .play{width:46px;height:46px}
+    .num{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .card{animation:none;opacity:1;transform:none}
+    .card.playing .play .ring{animation:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Listening practice</div>
+    <h1>Slow it down<br>until you catch <span class="th">ทุกคำ</span></h1>
+    <p>Tap a line to hear it. Drag the dial to stretch the audio — the browser slows playback without dropping the pitch too far, so you can pick apart each syllable and tone. Turn on Listening mode to hide the reading until you've had a guess.</p>
+    <div class="rule"></div>
+  </header>
+
+  <div class="controls">
+    <div class="controls-inner">
+      <div class="speed">
+        <label for="rate">Speed</label>
+        <input type="range" id="rate" min="0.4" max="1.1" step="0.05" value="0.7">
+        <div class="readout" id="readout">0.70×</div>
+      </div>
+      <div class="reveal-toggle" id="maskToggle" role="switch" aria-checked="false" tabindex="0">
+        <span class="switch"></span>
+        <span>Listening mode</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="list" id="list"></div>
+
+  <footer>26 sentences · audio via Google Translate TTS · tap 🔊 numbers to replay</footer>
+</div>
+
+<script>
+const SENTENCES = [
+  ["ป้าอ้วนแต่หลานสาวผอม","bpâa ûuan dtàe lăan săao pŏm","Aunt is fat but niece is skinny."],
+  ["ช้างใหญ่กว่าเรือ","cháang yài gwàa reuua","The elephant is bigger than the boat."],
+  ["อย่าเชื่อผู้ขาย","yàa chêuua pôo kăai","Don't believe the seller."],
+  ["กุญแจอยู่ข้างในโรงแรม","gun-jae yòo kâang nai rohng raem","The keys are inside the hotel."],
+  ["นกกินส้มตำของฉัน","nók gin sôm dtam kŏng chăn","The bird ate my papaya salad."],
+  ["ฉันกำลังหาแมวใต้เตียง","chăn gam-lang hăa maew dtâi dtiiang","I'm looking for the cat under the bed."],
+  ["ร้านยาอยู่ด้านหลังธนาคาร","ráan yaa yòo dâan lăng tá-naa-kaan","The pharmacy is behind the bank."],
+  ["หมอขับรถไปวัดทุกวันอาทิตย์","mŏr khàp rót bpai wát túk wan aa-tít","The doctor drives to the temple every Sunday."],
+  ["คนสูงข้ามถนน","kon sŏong kâam tà-nŏn","The tall person crosses the street."],
+  ["หลานชายซื่อสัตย์และใจดี","lăan chaai sʉ̂ʉ-sàt láe jai-dii","Grandson is honest and kind."],
+  ["หลานชายมีผมสั้นบลอนและจมูกเล็ก","lăan chaai mii phǒm sân blɔɔn láe jà-mùuk lék","Nephew has short blonde hair and a small nose."],
+  ["เลี้ยวซ้ายที่วัด โรงพยาบาลอยู่ไกล","líieow sáai têe wát, rohng pá-yaa-baan yòo glai","Turn left at the temple; the hospital is far."],
+  ["ทำไมแมวง่วง เพราะกินเยอะ","tham-mai maew ngûang, phrɔ́ gin yúh","Why is the cat sleepy? Because it ate a lot."],
+  ["ลูกค้าเอาส้อมสองอันและช้อนหนึ่งอัน","lôok káa ao sôm sŏng an láe chón nèung an","The customer wants two forks and one spoon."],
+  ["ภรรยาทำข้าวผัดทุกคืน","pan-rá-yaa tham kâao pàt túk keun","(My) wife makes fried rice every night."],
+  ["หมาอยู่บนโต๊ะอีก อุบาทว์","măa yòo bon dtó èek, ù-bàat","The dog is on the table again — disgusting."],
+  ["ฉันจำนามสกุลของคุณได้","chăn jam naam sà-gun kŏng kun dâai","I remember your family name."],
+  ["ซีอิ๊วอยู่ข้างน้ำปลาไหม","see íw yòo kâang náam bplaa măi","Is the soy sauce next to the fish sauce?"],
+  ["พี่ชายไม่ค่อยออกกำลังกาย","pêe chaai mâi kôi òk gam-lang gaai","Older brother rarely exercises."],
+  ["เปิดหน้าต่าง ห้องนอนร้อน","bpə̀ət nâa-dtàang, hông non rón","Open the window — the bedroom is hot."],
+  ["ชอบฤดูไหน ฉันชอบฤดูหนาว","chôp réu-doo năi, chăn chôp réu-doo năao","Which season do you like? I like winter."],
+  ["สัตว์เลี้ยงของฉันคือนก มันอยู่บนต้นไม้","sàt líiang kŏng chăn keu nók, man yòo bon dtôn mái","My pet is a bird; it's up in the tree."],
+  ["เขาดื่มน้ำสามแก้วเพราะหิวน้ำ","kăo dèum náam săam gâew phrɔ́ hĭw náam","He drank three glasses of water because he was thirsty."],
+  ["ตลาดปิดแล้ว ไปห้างกัน","dtà-làat bpìt láew, bpai hâang gan","The market's closed — let's go to the mall."],
+  ["พี่ชายบินไปญี่ปุ่น น้องสาวขับรถไปบุรีรัมย์","pêe chaai bin bpai yêe-bpùn, nóng săao khàp rót bpai bù-ree-ram","Older brother flew to Japan; younger sister drove to Buriram."],
+  ["ธนาคารอยู่ชั้นบน สำนักงานอยู่ชั้นล่าง","tá-naa-kaan yòo chán bon, săm-nák ngaan yòo chán lâang","The bank is upstairs; the office is downstairs."],
+];
+
+const TTS = t => "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=th&q=" + encodeURIComponent(t);
+
+const PLAY_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+const STOP_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>';
+const EXT_ICON  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>';
+
+
+let speed = 0.7;
+let audio = null;
+let currentCard = null;
+const list = document.getElementById("list");
+
+SENTENCES.forEach(([thai, rom, en], i) => {
+  const card = document.createElement("div");
+  card.className = "card masked";
+  card.style.animationDelay = (i * 35) + "ms";
+  card.innerHTML = `
+    <span class="num">${String(i+1).padStart(2,"0")}</span>
+    <button class="play" aria-label="Play sentence ${i+1}">
+      <span class="ring"></span>${PLAY_ICON}
+    </button>
+    <div class="body">
+      <div class="thai">${thai}</div>
+      <div class="reading">
+        <div class="rom">${rom}</div>
+        <div class="en">${en}</div>
+      </div>
+      <a class="fallback" href="${TTS(thai)}" target="_blank" rel="noopener">${EXT_ICON} open audio in new tab</a>
+      <div class="err">Playback was blocked here. Use "open audio in new tab" instead.</div>
+    </div>`;
+
+  const btn = card.querySelector(".play");
+  btn.addEventListener("click", () => toggle(card, thai, btn));
+
+  // click anywhere in the reading block to reveal, click again to blur
+  card.querySelector(".reading").addEventListener("click", ()=> card.classList.toggle("masked"));
+
+  list.appendChild(card);
+});
+
+function stopCurrent(){
+  if(audio){ audio.pause(); audio = null; }
+  if(currentCard){
+    currentCard.classList.remove("playing");
+    currentCard.querySelector(".play").innerHTML = '<span class="ring"></span>' + PLAY_ICON;
+    currentCard = null;
+  }
+}
+
+function toggle(card, thai, btn){
+  if(currentCard === card){ stopCurrent(); return; }
+  stopCurrent();
+  card.classList.remove("error");
+  audio = new Audio(TTS(thai));
+  audio.playbackRate = speed;
+  currentCard = card;
+  card.classList.add("playing");
+  btn.innerHTML = '<span class="ring"></span>' + STOP_ICON;
+
+  audio.addEventListener("ended", stopCurrent);
+  audio.addEventListener("error", () => {
+    card.classList.add("error");
+    stopCurrent();
+  });
+  const p = audio.play();
+  if(p && p.catch){ p.catch(()=>{ card.classList.add("error"); stopCurrent(); }); }
+}
+
+// speed dial
+const rate = document.getElementById("rate");
+const readout = document.getElementById("readout");
+function paintSlider(){
+  const pct = ((rate.value - rate.min) / (rate.max - rate.min)) * 100;
+  rate.style.setProperty("--fill", pct + "%");
+}
+rate.addEventListener("input", () => {
+  speed = parseFloat(rate.value);
+  readout.textContent = speed.toFixed(2) + "×";
+  paintSlider();
+  if(audio) audio.playbackRate = speed;  // live-adjust the playing clip
+});
+paintSlider();
+
+// listening mode toggle
+const maskToggle = document.getElementById("maskToggle");
+function setMask(on){
+  maskToggle.classList.toggle("on", on);
+  maskToggle.setAttribute("aria-checked", on);
+  document.querySelectorAll(".card").forEach(c => c.classList.toggle("masked", on));
+}
+maskToggle.addEventListener("click", () => setMask(!maskToggle.classList.contains("on")));
+maskToggle.addEventListener("keydown", e => {
+  if(e.key === " " || e.key === "Enter"){ e.preventDefault(); maskToggle.click(); }
+});
+// start with the reading hidden — tap a line to reveal it
+setMask(true);
+
+// spacebar replays the current sentence
+document.addEventListener("keydown", e => {
+  if(e.key === " " && currentCard && e.target === document.body){
+    e.preventDefault();
+    const thai = SENTENCES[[...list.children].indexOf(currentCard)][0];
+    const btn = currentCard.querySelector(".play");
+    const c = currentCard;
+    stopCurrent();
+    toggle(c, thai, btn);
+  }
+});
+</script>
+</body>
+</html>
