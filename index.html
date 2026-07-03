@@ -134,10 +134,24 @@
     transform:translateY(-2px);
   }
   .num{
-    position:absolute;top:14px;right:16px;
+    position:absolute;top:16px;right:48px;
     font-family:"IBM Plex Mono",monospace;font-size:11px;color:#8b9b8f;
     letter-spacing:.05em;
   }
+
+  /* star / save button */
+  .star{
+    position:absolute;top:11px;right:12px;width:30px;height:30px;
+    border:none;background:none;color:#6f8177;cursor:pointer;
+    display:grid;place-items:center;border-radius:50%;
+    transition:color .15s,transform .1s;
+  }
+  .star svg{width:19px;height:19px}
+  .star:hover{color:var(--gold-soft)}
+  .star:active{transform:scale(.82)}
+  .card.starred .star{color:var(--gold)}
+  .card.starred .star svg{fill:var(--gold)}
+  .card.starred{border-color:var(--jade-line)}
 
   /* play button */
   .play{
@@ -305,7 +319,13 @@ if(synth){
 const PLAY_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
 const STOP_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>';
 const EXT_ICON  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>';
+const STAR_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12 3.2l2.65 5.37 5.93.86-4.29 4.18 1.01 5.9L12 16.6 6.7 19.51l1.01-5.9L3.42 9.43l5.93-.86z"/></svg>';
 
+// starred lines persist in localStorage, keyed by the Thai text so reordering is safe
+const STAR_KEY = "thai-practice-starred";
+let starred = new Set();
+try { starred = new Set(JSON.parse(localStorage.getItem(STAR_KEY) || "[]")); } catch(e){}
+function saveStars(){ try { localStorage.setItem(STAR_KEY, JSON.stringify([...starred])); } catch(e){} }
 
 let speed = 0.5;
 let audio = null;
@@ -317,8 +337,10 @@ SENTENCES.forEach(([thai, rom, en], i) => {
   const card = document.createElement("div");
   card.className = "card masked";
   card.style.animationDelay = (i * 35) + "ms";
+  if(starred.has(thai)) card.classList.add("starred");
   card.innerHTML = `
     <span class="num">${String(i+1).padStart(2,"0")}</span>
+    <button class="star" aria-label="Save sentence ${i+1}" aria-pressed="${starred.has(thai)}">${STAR_ICON}</button>
     <button class="play" aria-label="Play sentence ${i+1}">
       <span class="ring"></span>${PLAY_ICON}
     </button>
@@ -334,6 +356,16 @@ SENTENCES.forEach(([thai, rom, en], i) => {
 
   const btn = card.querySelector(".play");
   btn.addEventListener("click", () => toggle(card, thai, btn));
+
+  // star / save — persists across reloads
+  const star = card.querySelector(".star");
+  star.addEventListener("click", e => {
+    e.stopPropagation();
+    const on = card.classList.toggle("starred");
+    if(on) starred.add(thai); else starred.delete(thai);
+    star.setAttribute("aria-pressed", on);
+    saveStars();
+  });
 
   // click anywhere in the reading block to reveal, click again to blur
   card.querySelector(".reading").addEventListener("click", ()=> card.classList.toggle("masked"));
@@ -356,6 +388,9 @@ function toggle(card, thai, btn){
   if(currentCard === card){ stopCurrent(); return; }
   stopCurrent();
   card.classList.remove("error");
+
+  // starting a line re-hides every other reading, so you focus on what you're hearing
+  document.querySelectorAll(".card").forEach(c => { if(c !== card) c.classList.add("masked"); });
 
   currentCard = card;
   currentThai = thai;
