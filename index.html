@@ -295,6 +295,7 @@ const TRANSLATE = t => "https://translate.google.com/?sl=th&tl=en&op=translate&t
 const synth = window.speechSynthesis;
 let thaiVoices = [];
 let choice = "google";               // "google", or "voice:<index>" of a device Thai voice
+let userPicked = false;              // once the user chooses, stop auto-defaulting
 function loadVoices(){
   const vs = synth ? synth.getVoices() : [];
   thaiVoices = vs.filter(v => (v.lang || "").toLowerCase().replace("_","-").startsWith("th"));
@@ -307,6 +308,11 @@ function populateVoicePicker(){
   const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
   sel.innerHTML = '<option value="google">Google Translate (best quality)</option>' +
     thaiVoices.map((v,i) => `<option value="voice:${i}">${esc(v.name)} · device</option>`).join("");
+  // default to the device voice (prefer Kanya) once it's available, unless the user picked
+  if(!userPicked && thaiVoices.length){
+    const k = thaiVoices.findIndex(v => /kanya/i.test(v.name));
+    choice = "voice:" + (k >= 0 ? k : 0);
+  }
   if([...sel.options].some(o => o.value === choice)) sel.value = choice;
   else { choice = "google"; sel.value = "google"; }
   wrap.hidden = thaiVoices.length < 1;   // only worth showing once the device adds its own voice(s)
@@ -401,12 +407,27 @@ function toggle(card, thai, btn){
   else speakDevice(card, thai, thaiVoices[parseInt(choice.split(":")[1], 10)]);
 }
 
+// Keep the last few Google clips as ready Audio elements so replays don't refetch
+// (and a buffered clip can't re-404). LRU, keyed by the Thai text.
+const AUDIO_CACHE_MAX = 3;
+const audioCache = new Map();
+function getGoogleAudio(thai){
+  let a = audioCache.get(thai);
+  if(a){ audioCache.delete(thai); audioCache.set(thai, a); return a; }   // refresh recency
+  a = new Audio(TTS(thai));
+  a.preload = "auto";
+  audioCache.set(thai, a);
+  while(audioCache.size > AUDIO_CACHE_MAX) audioCache.delete(audioCache.keys().next().value);
+  return a;
+}
+
 // Google Translate audio — best quality; on failure, quietly fall back to the device voice
 function playGoogle(card, thai){
-  audio = new Audio(TTS(thai));
+  audio = getGoogleAudio(thai);
+  try { audio.currentTime = 0; } catch(e){}
   audio.playbackRate = speed;              // slows the clip; pitch preserved by default
-  audio.addEventListener("ended", () => { if(currentCard === card) stopCurrent(); });
-  audio.addEventListener("error", () => speakDevice(card, thai, thaiVoices[0]));
+  audio.onended = () => { if(currentCard === card) stopCurrent(); };
+  audio.onerror = () => { audioCache.delete(thai); speakDevice(card, thai, thaiVoices[0]); };
   const p = audio.play();
   if(p && p.catch) p.catch(() => speakDevice(card, thai, thaiVoices[0]));
 }
@@ -476,7 +497,7 @@ paintSlider();
 
 // voice / engine picker
 const voiceSel = document.getElementById("voice");
-if(voiceSel) voiceSel.addEventListener("change", () => { choice = voiceSel.value; });
+if(voiceSel) voiceSel.addEventListener("change", () => { userPicked = true; choice = voiceSel.value; });
 
 // listening mode toggle
 const maskToggle = document.getElementById("maskToggle");
