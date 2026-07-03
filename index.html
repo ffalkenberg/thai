@@ -216,7 +216,7 @@
 
   <div class="list" id="list"></div>
 
-  <footer>26 sentences · audio via Google Translate TTS · tap 🔊 numbers to replay</footer>
+  <footer>26 sentences · spoken by your device's Thai voice · tap a line to reveal the reading</footer>
 </div>
 
 <script>
@@ -249,7 +249,21 @@ const SENTENCES = [
   ["ธนาคารอยู่ชั้นบน สำนักงานอยู่ชั้นล่าง","tá-naa-kaan yòo chán bon, săm-nák ngaan yòo chán lâang","The bank is upstairs; the office is downstairs."],
 ];
 
-const TTS = t => "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=th&q=" + encodeURIComponent(t);
+// Manual fallback: open the phrase in the Google Translate UI (tap the speaker there)
+const TRANSLATE = t => "https://translate.google.com/?sl=th&tl=en&op=translate&text=" + encodeURIComponent(t);
+
+// --- speech engine: your device's Thai voice via the Web Speech API (no network needed) ---
+const synth = window.speechSynthesis;
+let thaiVoice = null;
+function loadVoice(){
+  if(!synth) return;
+  const vs = synth.getVoices();
+  thaiVoice = vs.find(v => (v.lang || "").toLowerCase().replace("_","-").startsWith("th")) || null;
+}
+if(synth){
+  loadVoice();
+  synth.addEventListener("voiceschanged", loadVoice);
+}
 
 const PLAY_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
 const STOP_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>';
@@ -257,8 +271,8 @@ const EXT_ICON  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" st
 
 
 let speed = 0.7;
-let audio = null;
 let currentCard = null;
+let currentThai = null;
 const list = document.getElementById("list");
 
 SENTENCES.forEach(([thai, rom, en], i) => {
@@ -276,8 +290,8 @@ SENTENCES.forEach(([thai, rom, en], i) => {
         <div class="rom">${rom}</div>
         <div class="en">${en}</div>
       </div>
-      <a class="fallback" href="${TTS(thai)}" target="_blank" rel="noopener">${EXT_ICON} open audio in new tab</a>
-      <div class="err">Playback was blocked here. Use "open audio in new tab" instead.</div>
+      <a class="fallback" href="${TRANSLATE(thai)}" target="_blank" rel="noopener">${EXT_ICON} hear it on Google Translate</a>
+      <div class="err">No Thai voice is installed on this device. Add one in your system settings, or use the Google Translate link above.</div>
     </div>`;
 
   const btn = card.querySelector(".play");
@@ -290,11 +304,12 @@ SENTENCES.forEach(([thai, rom, en], i) => {
 });
 
 function stopCurrent(){
-  if(audio){ audio.pause(); audio = null; }
+  if(synth) synth.cancel();
   if(currentCard){
     currentCard.classList.remove("playing");
     currentCard.querySelector(".play").innerHTML = '<span class="ring"></span>' + PLAY_ICON;
     currentCard = null;
+    currentThai = null;
   }
 }
 
@@ -302,19 +317,26 @@ function toggle(card, thai, btn){
   if(currentCard === card){ stopCurrent(); return; }
   stopCurrent();
   card.classList.remove("error");
-  audio = new Audio(TTS(thai));
-  audio.playbackRate = speed;
+
+  if(!synth){ card.classList.add("error"); return; }
+
+  const u = new SpeechSynthesisUtterance(thai);
+  u.lang = "th-TH";
+  if(thaiVoice) u.voice = thaiVoice;
+  u.rate = speed;          // 1.0 = normal; lower stretches each syllable, pitch unchanged
+  u.onend = () => { if(currentCard === card) stopCurrent(); };
+  u.onerror = e => {
+    // "canceled"/"interrupted" fire whenever we stop to start another line — not real errors
+    if(e.error && e.error !== "canceled" && e.error !== "interrupted"){ card.classList.add("error"); }
+    if(currentCard === card) stopCurrent();
+  };
+
   currentCard = card;
+  currentThai = thai;
   card.classList.add("playing");
   btn.innerHTML = '<span class="ring"></span>' + STOP_ICON;
 
-  audio.addEventListener("ended", stopCurrent);
-  audio.addEventListener("error", () => {
-    card.classList.add("error");
-    stopCurrent();
-  });
-  const p = audio.play();
-  if(p && p.catch){ p.catch(()=>{ card.classList.add("error"); stopCurrent(); }); }
+  synth.speak(u);
 }
 
 // speed dial
@@ -328,7 +350,7 @@ rate.addEventListener("input", () => {
   speed = parseFloat(rate.value);
   readout.textContent = speed.toFixed(2) + "×";
   paintSlider();
-  if(audio) audio.playbackRate = speed;  // live-adjust the playing clip
+  // the Web Speech API can't retune a phrase mid-sentence — the new speed applies on the next tap
 });
 paintSlider();
 
@@ -350,9 +372,7 @@ setMask(true);
 document.addEventListener("keydown", e => {
   if(e.key === " " && currentCard && e.target === document.body){
     e.preventDefault();
-    const thai = SENTENCES[[...list.children].indexOf(currentCard)][0];
-    const btn = currentCard.querySelector(".play");
-    const c = currentCard;
+    const c = currentCard, thai = currentThai, btn = currentCard.querySelector(".play");
     stopCurrent();
     toggle(c, thai, btn);
   }
