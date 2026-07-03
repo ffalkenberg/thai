@@ -411,6 +411,19 @@ function playGoogle(card, thai){
   if(p && p.catch) p.catch(() => speakDevice(card, thai, thaiVoices[0]));
 }
 
+// Break Thai into words even when the text has no spaces (Thai rarely spaces words).
+// Intl.Segmenter (Safari 14.1+) finds word boundaries; fall back to splitting on spaces.
+function segmentThai(text){
+  if(typeof Intl !== "undefined" && Intl.Segmenter){
+    try{
+      const seg = new Intl.Segmenter("th", { granularity: "word" });
+      const words = [...seg.segment(text)].map(s => s.segment).filter(w => w.trim());
+      if(words.length) return words;
+    }catch(e){}
+  }
+  return text.split(/\s+/).filter(Boolean);
+}
+
 // Device Thai voice via the Web Speech API.
 // The API clamps rate at 0.1, so at the slow end we also insert pauses between
 // words to stretch the device voice further (Google needs none of this).
@@ -419,9 +432,9 @@ function speakDevice(card, thai, voice){
   if(currentCard !== card) return;         // user moved on while Google was failing over
   if(!synth || !voice){ card.classList.add("error"); stopCurrent(); return; }
 
-  const chunks = thai.split(/\s+/).filter(Boolean);
-  // ms of silence between words — grows as the dial goes slower, off above ~0.35×
-  const gap = speed <= 0.35 ? Math.round((0.4 - speed) * 900) : 0;
+  const chunks = segmentThai(thai);
+  // ms of silence between words — grows as the dial slows, audible from ~0.75× down
+  const gap = Math.max(0, Math.round((0.75 - speed) * 1200));
   let i = 0;
 
   const speakNext = () => {
