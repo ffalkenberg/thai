@@ -411,22 +411,39 @@ function playGoogle(card, thai){
   if(p && p.catch) p.catch(() => speakDevice(card, thai, thaiVoices[0]));
 }
 
-// Device Thai voice via the Web Speech API
+// Device Thai voice via the Web Speech API.
+// The API clamps rate at 0.1, so at the slow end we also insert pauses between
+// words to stretch the device voice further (Google needs none of this).
 function speakDevice(card, thai, voice){
   if(audio){ audio.pause(); audio = null; }
   if(currentCard !== card) return;         // user moved on while Google was failing over
   if(!synth || !voice){ card.classList.add("error"); stopCurrent(); return; }
-  const u = new SpeechSynthesisUtterance(thai);
-  u.lang = voice.lang || "th-TH";
-  u.voice = voice;
-  u.rate = speed;                          // 1.0 = normal; lower stretches each syllable
-  u.onend = () => { if(currentCard === card) stopCurrent(); };
-  u.onerror = e => {
-    // "canceled"/"interrupted" fire whenever we stop to start another line — not real errors
-    if(e.error && e.error !== "canceled" && e.error !== "interrupted") card.classList.add("error");
-    if(currentCard === card) stopCurrent();
+
+  const chunks = thai.split(/\s+/).filter(Boolean);
+  // ms of silence between words — grows as the dial goes slower, off above ~0.35×
+  const gap = speed <= 0.35 ? Math.round((0.4 - speed) * 900) : 0;
+  let i = 0;
+
+  const speakNext = () => {
+    if(currentCard !== card) return;        // stopped or replaced
+    if(i >= chunks.length){ stopCurrent(); return; }
+    const u = new SpeechSynthesisUtterance(chunks[i++]);
+    u.lang = voice.lang || "th-TH";
+    u.voice = voice;
+    u.rate = speed;
+    u.onend = () => {
+      if(currentCard !== card) return;
+      if(gap && i < chunks.length) setTimeout(speakNext, gap);
+      else speakNext();
+    };
+    u.onerror = e => {
+      // "canceled"/"interrupted" fire whenever we stop to start another line — not real errors
+      if(e.error && e.error !== "canceled" && e.error !== "interrupted") card.classList.add("error");
+      if(currentCard === card) stopCurrent();
+    };
+    synth.speak(u);
   };
-  synth.speak(u);
+  speakNext();
 }
 
 // speed dial
