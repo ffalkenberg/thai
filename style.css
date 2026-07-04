@@ -171,6 +171,17 @@ input[type=range]::-moz-range-thumb{
 
 /* text block */
 .body{min-width:0}
+.thai-line{display:flex;align-items:flex-start;gap:10px}
+.thai-line .thai{flex:1;min-width:0}
+.copy{
+  flex:none;margin-top:2px;width:30px;height:30px;border-radius:8px;
+  border:1px solid var(--line);background:#0d2925;color:#8fa096;cursor:pointer;
+  display:grid;place-items:center;transition:color .15s,border-color .15s,background .15s,transform .1s;
+}
+.copy svg{width:16px;height:16px}
+.copy:hover{color:var(--gold-soft);border-color:var(--jade-line)}
+.copy:active{transform:scale(.9)}
+.copy.copied{color:var(--gold);border-color:var(--gold)}
 .thai{
   font-family:"IBM Plex Sans Thai",sans-serif;font-weight:500;
   font-size:clamp(21px,4.4vw,27px);color:var(--ink);line-height:1.4;

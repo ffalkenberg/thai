@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google Translate's TTS endpoint 404s when a Referer is present; send none so hosted behaves like a local file -->
+<meta name="referrer" content="no-referrer">
+<title>Thai Listening Practice — Set 5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <nav class="nav">
+      <a href="index.html">Set 1 · Sentences</a>
+      <a href="vocab.html">Set 2 · Vocab remix</a>
+      <a href="food.html">Set 3 · Food</a>
+      <a href="places.html">Set 4 · Getting around</a>
+      <a href="daily.html" class="active">Set 5 · Daily life</a>
+    </nav>
+    <div class="eyebrow">Daily life</div>
+    <h1>A day in <span class="th">ภาษาไทย</span></h1>
+    <p>New sentences about routines, family and time — built from your studied vocabulary plus a few very simple everyday words. Tap to listen, slow the dial down, spacebar to pause, Listening mode to hide the reading.</p>
+    <div class="rule"></div>
+  </header>
+
+  <div class="controls">
+    <div class="controls-inner">
+      <div class="speed">
+        <label for="rate">Speed</label>
+        <input type="range" id="rate" min="0.1" max="1" step="0.05" value="0.5">
+        <div class="readout" id="readout">0.50×</div>
+      </div>
+      <div class="voice-pick" id="voiceWrap" hidden>
+        <label for="voice">Voice</label>
+        <select id="voice"></select>
+      </div>
+      <div class="reveal-toggle" id="maskToggle" role="switch" aria-checked="false" tabindex="0">
+        <span class="switch"></span>
+        <span>Listening mode</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="list" id="list"></div>
+
+  <footer>30 new sentences · daily life · space to pause</footer>
+</div>
+
+<script>
+const SENTENCES = [
+  ["ผมตื่นเช้าทุกวัน","pŏm dtèun cháo túk wan","I wake up early every day."],
+  ["เมื่อวานผมทำงานหนัก","mêuua-waan pŏm tam ngaan nàk","Yesterday I worked hard."],
+  ["แม่ทำอาหารเย็นทุกวัน","mâe tam aa-hăan yen túk wan","Mom makes dinner every day."],
+  ["ผมรักครอบครัวของผม","pŏm rák krôp kruua kŏng pŏm","I love my family."],
+  ["พี่สาวของฉันเรียนที่โรงเรียน","pêe săao kŏng chăn riian têe rohng riian","My older sister studies at school."],
+  ["คุณตื่นกี่โมงทุกวัน","kun dtèun gèe mohng túk wan","What time do you wake up every day?"],
+  ["ตอนเย็นผมชอบฟังเพลง","dton yen pŏm chôp fang pleng","In the evening I like to listen to music."],
+  ["น้องชายของผมอายุสิบปี","nóng chaai kŏng pŏm aa-yú sìp bpii","My younger brother is ten years old."],
+  ["วันนี้ผมยุ่งมาก","wan-née pŏm yûng mâak","Today I'm very busy."],
+  ["พ่อดูหนังทุกคืน","pôr doo năng túk keun","Dad watches a movie every night."],
+  ["ผมคิดถึงเพื่อน","pŏm kít tʉ̌ng pêuuan","I miss my friend."],
+  ["เธอสวยและใจดี","thəə sŭuay láe jai-dii","She is beautiful and kind."],
+  ["ผมอาบน้ำตอนเช้า","pŏm àap náam dton cháo","I shower in the morning."],
+  ["พรุ่งนี้เพื่อนจะมาบ้าน","prûng-née pêuuan jà maa bâan","Tomorrow my friend will come over."],
+  ["เขาชื่ออะไร","kăo chêu à-rai","What is his name?"],
+  ["ผมนอนดึกทุกคืน","pŏm non dʉ̀k túk keun","I sleep late every night."],
+  ["แม่ของฉันทำงานที่ธนาคาร","mâe kŏng chăn tam ngaan têe tá-naa-kaan","My mom works at the bank."],
+  ["คุณมีพี่น้องกี่คน","kun mii pêe nóng gèe kon","How many siblings do you have?"],
+  ["เขาเหนื่อยเพราะทำงานเยอะ","kăo nʉ̀ai phrɔ́ tam ngaan yúh","He's tired because he works a lot."],
+  ["วันนี้อากาศดี","wan-née aa-gàat dii","The weather is nice today."],
+  ["ผมชอบอ่านหนังสือตอนกลางคืน","pŏm chôp àan nǎng-sʉ̌ʉ dton glaang keun","I like reading books at night."],
+  ["เพื่อนของผมใจดีมาก","pêuuan kŏng pŏm jai-dii mâak","My friend is very kind."],
+  ["พี่สาวทำงานทุกวัน","pêe săao tam ngaan túk wan","Older sister works every day."],
+  ["คุณทำอะไรตอนเย็น","kun tam à-rai dton yen","What do you do in the evening?"],
+  ["ผมออกกำลังกายทุกเช้า","pŏm òk gam-lang gaai túk cháo","I exercise every morning."],
+  ["เธอเรียนภาษาไทย","thəə riian paa-săa tai","She studies Thai."],
+  ["ครอบครัวของผมอยู่กรุงเทพ","krôp kruua kŏng pŏm yòo grung-têep","My family lives in Bangkok."],
+  ["พ่อกับแม่รักผม","pôr gàp mâe rák pŏm","Dad and mom love me."],
+  ["วันนี้ผมมีความสุข","wan-née pŏm mii kwaam sùk","Today I'm happy."],
+  ["คืนนี้ผมจะนอนเร็ว","keun née pŏm jà non reo","Tonight I'll sleep early."],
+];
+</script>
+<script src="app.js"></script>
+</body>
+</html>

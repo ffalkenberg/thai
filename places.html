@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google Translate's TTS endpoint 404s when a Referer is present; send none so hosted behaves like a local file -->
+<meta name="referrer" content="no-referrer">
+<title>Thai Listening Practice — Set 4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <nav class="nav">
+      <a href="index.html">Set 1 · Sentences</a>
+      <a href="vocab.html">Set 2 · Vocab remix</a>
+      <a href="food.html">Set 3 · Food</a>
+      <a href="places.html" class="active">Set 4 · Getting around</a>
+      <a href="daily.html">Set 5 · Daily life</a>
+    </nav>
+    <div class="eyebrow">Getting around</div>
+    <h1>Find your way<br>around the <span class="th">เมือง</span></h1>
+    <p>New sentences about places, directions and transport — built from your studied vocabulary plus a few very simple everyday travel words. Tap to listen, slow the dial down, spacebar to pause, Listening mode to hide the reading.</p>
+    <div class="rule"></div>
+  </header>
+
+  <div class="controls">
+    <div class="controls-inner">
+      <div class="speed">
+        <label for="rate">Speed</label>
+        <input type="range" id="rate" min="0.1" max="1" step="0.05" value="0.5">
+        <div class="readout" id="readout">0.50×</div>
+      </div>
+      <div class="voice-pick" id="voiceWrap" hidden>
+        <label for="voice">Voice</label>
+        <select id="voice"></select>
+      </div>
+      <div class="reveal-toggle" id="maskToggle" role="switch" aria-checked="false" tabindex="0">
+        <span class="switch"></span>
+        <span>Listening mode</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="list" id="list"></div>
+
+  <footer>30 new sentences · getting around · space to pause</footer>
+</div>
+
+<script>
+const SENTENCES = [
+  ["โรงแรมอยู่ที่ไหน","rohng raem yòo têe năi","Where is the hotel?"],
+  ["เลี้ยวขวาที่ธนาคาร","líieow kwăa têe tá-naa-kaan","Turn right at the bank."],
+  ["สถานีรถไฟอยู่ไกลไหม","sà-tăa-nee rót fai yòo glai măi","Is the train station far?"],
+  ["ผมไปโรงเรียนด้วยจักรยาน","pŏm bpai rohng riian dûuay jàk-grà-yaan","I go to school by bicycle."],
+  ["ตรงไปแล้วเลี้ยวซ้าย","dtrong bpai láew líieow sáai","Go straight then turn left."],
+  ["โรงพยาบาลอยู่ใกล้ตลาด","rohng pá-yaa-baan yòo glâi dtà-làat","The hospital is near the market."],
+  ["คุณจะไปสนามบินยังไง","kun jà bpai sà-năam bin yang ngai","How will you get to the airport?"],
+  ["ขึ้นรถเมล์ที่นี่","kʉ̂n rót may têe nêe","Take the bus here."],
+  ["บ้านผมอยู่ข้างวัด","bâan pŏm yòo kâang wát","My house is next to the temple."],
+  ["เรานั่งเรือไปเที่ยว","rao nâng reuua bpai tîieow","We take a boat to go traveling."],
+  ["แท็กซี่แพงกว่ารถเมล์","táek-sêe phaeng gwàa rót may","The taxi is more expensive than the bus."],
+  ["ห้างอยู่ตรงไหน","hâang yòo dtrong năi","Where exactly is the mall?"],
+  ["ผมเดินไปตลาดทุกเช้า","pŏm dəən bpai dtà-làat túk cháo","I walk to the market every morning."],
+  ["รถไฟมากี่โมง","rót fai maa gèe mohng","What time does the train come?"],
+  ["เลี้ยวซ้ายที่โรงเรียน","líieow sáai têe rohng riian","Turn left at the school."],
+  ["สนามบินอยู่ไกลจากเมือง","sà-năam bin yòo glai jàak mʉang","The airport is far from the city."],
+  ["คุณมาที่นี่ยังไง","kun maa têe nêe yang ngai","How did you get here?"],
+  ["ธนาคารอยู่ตรงข้ามโรงแรม","tá-naa-kaan yòo dtrong kâam rohng raem","The bank is across from the hotel."],
+  ["ผมขับรถไปทะเล","pŏm khàp rót bpai tá-lee","I drive to the sea."],
+  ["ที่นี่มีรถไฟไหม","têe nêe mii rót fai măi","Is there a train here?"],
+  ["เดินตรงไปห้านาที","dəən dtrong bpai hâa naa-tee","Walk straight for five minutes."],
+  ["วัดอยู่หลังตลาด","wát yòo lăng dtà-làat","The temple is behind the market."],
+  ["ผมหลงทาง","pŏm lŏng taang","I'm lost."],
+  ["ขอตั๋วรถไฟสองใบ","kŏr dtŭua rót fai sŏng bai","Two train tickets, please."],
+  ["โรงแรมอยู่ใกล้สถานี","rohng raem yòo glâi sà-tăa-nee","The hotel is near the station."],
+  ["คุณจะไปไหน","kun jà bpai năi","Where are you going?"],
+  ["รถเมล์คันนี้ไปห้าง","rót may kan née bpai hâang","This bus goes to the mall."],
+  ["เลี้ยวขวาแล้วตรงไป","líieow kwăa láew dtrong bpai","Turn right then go straight."],
+  ["ผมชอบเดินเล่นในสวน","pŏm chôp dəən lên nai sŭuan","I like to stroll in the park."],
+  ["บ้านคุณอยู่ไกลไหม","bâan kun yòo glai măi","Is your house far?"],
+];
+</script>
+<script src="app.js"></script>
+</body>
+</html>

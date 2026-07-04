@@ -42,6 +42,22 @@ const PLAY_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14
 const STOP_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>';
 const EXT_ICON  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>';
 const STAR_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12 3.2l2.65 5.37 5.93.86-4.29 4.18 1.01 5.9L12 16.6 6.7 19.51l1.01-5.9L3.42 9.43l5.93-.86z"/></svg>';
+const COPY_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>';
+const CHECK_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>';
+
+async function copyText(t){
+  try { await navigator.clipboard.writeText(t); return true; }
+  catch(e){
+    try{
+      const ta = document.createElement("textarea");
+      ta.value = t; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.focus(); ta.select();
+      const ok = document.execCommand("copy");
+      document.body.removeChild(ta);
+      return ok;
+    }catch(e2){ return false; }
+  }
+}
 
 // starred lines persist in localStorage, keyed by the Thai text so reordering is safe
 const STAR_KEY = "thai-practice-starred";
@@ -67,7 +83,10 @@ SENTENCES.forEach(([thai, rom, en], i) => {
       <span class="ring"></span>${PLAY_ICON}
     </button>
     <div class="body">
-      <div class="thai">${thai}</div>
+      <div class="thai-line">
+        <div class="thai">${thai}</div>
+        <button class="copy" aria-label="Copy the Thai text">${COPY_ICON}</button>
+      </div>
       <div class="reading">
         <div class="rom">${rom}</div>
         <div class="en">${en}</div>
@@ -87,6 +106,16 @@ SENTENCES.forEach(([thai, rom, en], i) => {
     if(on) starred.add(thai); else starred.delete(thai);
     star.setAttribute("aria-pressed", on);
     saveStars();
+  });
+
+  // copy the Thai text to the clipboard
+  const copyBtn = card.querySelector(".copy");
+  copyBtn.addEventListener("click", async e => {
+    e.stopPropagation();
+    await copyText(thai);
+    copyBtn.innerHTML = CHECK_ICON;
+    copyBtn.classList.add("copied");
+    setTimeout(() => { copyBtn.innerHTML = COPY_ICON; copyBtn.classList.remove("copied"); }, 1200);
   });
 
   // click anywhere in the reading block to reveal, click again to blur
