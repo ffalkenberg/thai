@@ -418,39 +418,18 @@ function playGoogle(card, thai){
   if(p && p.catch) p.catch(() => speakDevice(card, thai, thaiVoices[0]));
 }
 
-// Break Thai into words even when the text has no spaces (Thai rarely spaces words).
-// Intl.Segmenter (Safari 14.1+) finds word boundaries; fall back to splitting on spaces.
-function segmentThai(text){
-  if(typeof Intl !== "undefined" && Intl.Segmenter){
-    try{
-      const seg = new Intl.Segmenter("th", { granularity: "word" });
-      const words = [...seg.segment(text)].map(s => s.segment).filter(w => w.trim());
-      if(words.length) return words;
-    }catch(e){}
-  }
-  return text.split(/\s+/).filter(Boolean);
-}
-
-// Device Thai voice via the Web Speech API.
-// The API clamps rate at 0.1, so below 0.5× we also insert brief comma pauses
-// between words to stretch it further. Kept as ONE utterance (not split into
-// separate ones) so the pauses ramp in gently instead of a hard jump at 0.5×.
+// Device Thai voice via the Web Speech API — pure slow speech, no pauses.
+// The dial's rate is curved so the low/mid range speaks noticeably slower while
+// 1.0× stays natural. (API clamps rate at 0.1.)
 function speakDevice(card, thai, voice){
   if(audio){ audio.pause(); audio = null; }
   if(currentCard !== card) return;         // user moved on while Google was failing over
   if(!synth || !voice){ card.classList.add("error"); stopCurrent(); return; }
 
-  let text = thai;
-  if(speed < 0.5){
-    const p = (0.5 - speed) / 0.4;                 // 0 just under 0.5×, 1 at the slowest (0.1×)
-    const commas = Math.round(p * 2);              // 0–2 commas between words → gentle ramp
-    if(commas > 0) text = segmentThai(thai).join(" " + ",".repeat(commas) + " ");
-  }
-
-  const u = new SpeechSynthesisUtterance(text);
+  const u = new SpeechSynthesisUtterance(thai);
   u.lang = voice.lang || "th-TH";
   u.voice = voice;
-  u.rate = speed;
+  u.rate = Math.max(0.1, Math.pow(speed, 1.5));   // e.g. 0.5×→~0.35, 0.7×→~0.59, 1×→1.0
   u.onend = () => { if(currentCard === card) stopCurrent(); };
   u.onerror = e => {
     // "canceled"/"interrupted" fire whenever we stop to start another line — not real errors
