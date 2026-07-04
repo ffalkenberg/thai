@@ -443,7 +443,7 @@ function speakDevice(card, thai, voice){
   // Below 0.5×, split into words and add a small pause between them to stretch it.
   const chunked = speed < 0.5;
   const chunks = chunked ? segmentThai(thai) : [thai];
-  const gap = chunked ? Math.round((0.5 - speed) * 500) : 0;   // ~0.2s between words at the slowest
+  const gap = chunked ? Math.round((0.5 - speed) * 250) : 0;   // ~0.1s between words at the slowest
   let i = 0;
 
   const speakNext = () => {
@@ -510,6 +510,11 @@ document.addEventListener("keydown", e => {
     toggle(c, thai, btn);
   }
 });
+
+// cache Google TTS audio for instant replays (purely additive — playback works without it)
+if("serviceWorker" in navigator){
+  window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(()=>{}));
+}
 </script>
 </body>
 </html>
