@@ -83,10 +83,7 @@ SENTENCES.forEach(([thai, rom, en], i) => {
       <span class="ring"></span>${PLAY_ICON}
     </button>
     <div class="body">
-      <div class="thai-line">
-        <div class="thai">${thai}</div>
-        <button class="copy" aria-label="Copy the Thai text">${COPY_ICON}</button>
-      </div>
+      <div class="thai">${thai}<button class="copy" aria-label="Copy the Thai text">${COPY_ICON}</button></div>
       <div class="reading">
         <div class="rom">${rom}</div>
         <div class="en">${en}</div>
