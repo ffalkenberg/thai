@@ -439,9 +439,11 @@ function speakDevice(card, thai, voice){
   if(currentCard !== card) return;         // user moved on while Google was failing over
   if(!synth || !voice){ card.classList.add("error"); stopCurrent(); return; }
 
-  const chunks = segmentThai(thai);
-  // ms of silence between words — starts at 0.5× and grows as the dial slows (~0.4s at slowest)
-  const gap = speed < 0.5 ? Math.round((0.5 - speed) * 1000) : 0;
+  // At 0.5× and up, speak the whole line as one smooth utterance (no word breaks).
+  // Below 0.5×, split into words and add a small pause between them to stretch it.
+  const chunked = speed < 0.5;
+  const chunks = chunked ? segmentThai(thai) : [thai];
+  const gap = chunked ? Math.round((0.5 - speed) * 500) : 0;   // ~0.2s between words at the slowest
   let i = 0;
 
   const speakNext = () => {
