@@ -558,6 +558,152 @@ const DEFAULT_SETS = [
         "en": "Tonight I'll sleep early."
       }
     ]
+  },
+  {
+    "id": "set6",
+    "title": "Set 6 · Mix",
+    "lines": [
+      {
+        "th": "วันเกิดของผมคือวันศุกร์",
+        "rom": "wan-gə̀ət kŏng pŏm keu wan sùk",
+        "en": "My birthday is on Friday."
+      },
+      {
+        "th": "ผมป่วย วันนี้อยู่บ้าน",
+        "rom": "pŏm bpùai, wan-née yòo bâan",
+        "en": "I'm sick, so I'm home today."
+      },
+      {
+        "th": "กระเป๋าของฉันหนักมาก",
+        "rom": "grà-bpăo kŏng chăn nàk mâak",
+        "en": "My bag is very heavy."
+      },
+      {
+        "th": "คุณเป็นนักศึกษาใช่ไหม",
+        "rom": "kun bpen nák-sèuk-săa châi măi",
+        "en": "You're a student, right?"
+      },
+      {
+        "th": "เที่ยงนี้ผมกินอาหารกลางวันกับเพื่อน",
+        "rom": "tîiang née pŏm gin aa-hăan glaang wan gàp pêuuan",
+        "en": "At noon I have lunch with a friend."
+      },
+      {
+        "th": "ผมชอบชาไทยเย็น",
+        "rom": "pŏm chôp chaa tai yen",
+        "en": "I like Thai iced tea."
+      },
+      {
+        "th": "แกงเขียวหวานเผ็ดไหม",
+        "rom": "gaeng kĭieow wăan phèt măi",
+        "en": "Is the green curry spicy?"
+      },
+      {
+        "th": "เมื่อวานผมไปชายหาดกับแฟน",
+        "rom": "mêuua-waan pŏm bpai chaai-hàat gàp faen",
+        "en": "Yesterday I went to the beach with my partner."
+      },
+      {
+        "th": "ผมเกิดที่กรุงเทพ",
+        "rom": "pŏm gə̀ət têe grung-têep",
+        "en": "I was born in Bangkok."
+      },
+      {
+        "th": "ผู้ชายคนนั้นหยิ่งมาก",
+        "rom": "phûu-chaai kon nán yìng mâak",
+        "en": "That man is very arrogant."
+      },
+      {
+        "th": "ตาของเธอสีน้ำตาล",
+        "rom": "dtaa kŏng thəə sĕe náam-dtaan",
+        "en": "Her eyes are brown."
+      },
+      {
+        "th": "เขาสูบบุหรี่หน้าร้าน",
+        "rom": "kăo sòop bù-rèe nâa ráan",
+        "en": "He smokes in front of the shop."
+      },
+      {
+        "th": "อย่าร้องไห้ ทุกอย่างเรียบร้อย",
+        "rom": "yàa róng-hâi, túk yàang rîiap-rói",
+        "en": "Don't cry, everything's fine."
+      },
+      {
+        "th": "ผมแพ้นม",
+        "rom": "pŏm páe nom",
+        "en": "I'm allergic to milk."
+      },
+      {
+        "th": "รองเท้าคู่นี้แพงมาก",
+        "rom": "rong-táo kôo née phaeng mâak",
+        "en": "This pair of shoes is very expensive."
+      },
+      {
+        "th": "ผมซื้อเสื้อผ้าใหม่",
+        "rom": "pŏm séu sêuua-pâa mài",
+        "en": "I bought new clothes."
+      },
+      {
+        "th": "คุณอยากได้อะไร",
+        "rom": "kun yàak dâai à-rai",
+        "en": "What do you want to get?"
+      },
+      {
+        "th": "เขาโทรหาผมเมื่อคืน",
+        "rom": "kăo toh hăa pŏm mêuua keun",
+        "en": "He called me last night."
+      },
+      {
+        "th": "คุณเคยไปญี่ปุ่นไหม",
+        "rom": "kun koiie bpai yêe-bpùn măi",
+        "en": "Have you ever been to Japan?"
+      },
+      {
+        "th": "เมื่อคืนผมนอนไม่หลับ",
+        "rom": "mêuua keun pŏm non mâi làp",
+        "en": "Last night I couldn't sleep."
+      },
+      {
+        "th": "พี่สาวของผมเป็นหมอ",
+        "rom": "pêe săao kŏng pŏm bpen mŏr",
+        "en": "My older sister is a doctor."
+      },
+      {
+        "th": "พรุ่งนี้เป็นวันหยุด",
+        "rom": "prûng-née bpen wan-yùt",
+        "en": "Tomorrow is a day off."
+      },
+      {
+        "th": "ขอโทษ ถามอะไรหน่อยได้ไหม",
+        "rom": "kŏr-tôht, tăam à-rai nòi dâai măi",
+        "en": "Excuse me, can I ask something?"
+      },
+      {
+        "th": "ยินดีที่ได้รู้จัก",
+        "rom": "yin-dii têe dâai róo-jàk",
+        "en": "Nice to meet you."
+      },
+      {
+        "th": "ฝันดีนะ",
+        "rom": "făn dii ná",
+        "en": "Sweet dreams."
+      },
+      {
+        "th": "หัวหินอยู่ไกลจากกรุงเทพ",
+        "rom": "hŭua-hĭn yòo glai jàak grung-têep",
+        "en": "Hua Hin is far from Bangkok."
+      },
+      {
+        "th": "ญาติของผมอยู่ญี่ปุ่น",
+        "rom": "yâat kŏng pŏm yòo yêe-bpùn",
+        "en": "My relatives live in Japan."
+      },
+      {
+        "th": "สามีของเธอเป็นตำรวจ",
+        "rom": "săa-mee kŏng thəə bpen dtam-rùat",
+        "en": "Her husband is a policeman."
+      }
+    ]
   }
 ];
 
