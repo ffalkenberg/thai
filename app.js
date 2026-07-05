@@ -65,10 +65,26 @@ let starred = new Set();
 try { starred = new Set(JSON.parse(localStorage.getItem(STAR_KEY) || "[]")); } catch(e){}
 function saveStars(){ try { localStorage.setItem(STAR_KEY, JSON.stringify([...starred])); } catch(e){} }
 
+// build a corpus (thai -> [rom, en]) across every page visited, so the Saved page
+// can reconstruct starred lines gathered from any set
+const CORPUS_KEY = "thai-practice-corpus";
+(function mergeCorpus(){
+  if(!Array.isArray(SENTENCES) || !SENTENCES.length) return;
+  let corpus = {};
+  try { corpus = JSON.parse(localStorage.getItem(CORPUS_KEY) || "{}"); } catch(e){}
+  let changed = false;
+  SENTENCES.forEach(([thai, rom, en]) => {
+    const cur = corpus[thai];
+    if(!cur || cur[0] !== rom || cur[1] !== en){ corpus[thai] = [rom, en]; changed = true; }
+  });
+  if(changed){ try { localStorage.setItem(CORPUS_KEY, JSON.stringify(corpus)); } catch(e){} }
+})();
+
 let speed = 0.5;
 let audio = null;
-let currentCard = null;
+let currentCard = null;      // the line whose audio is playing / paused
 let currentThai = null;
+let selectedCard = null;     // the line with the persistent yellow frame (stays until another plays)
 const list = document.getElementById("list");
 
 SENTENCES.forEach(([thai, rom, en], i) => {
@@ -121,6 +137,21 @@ SENTENCES.forEach(([thai, rom, en], i) => {
   list.appendChild(card);
 });
 
+// empty state (used by the Saved page when nothing is starred yet)
+if(list && !SENTENCES.length){
+  const note = document.createElement("p");
+  note.className = "empty";
+  note.textContent = "No saved lines yet — tap the ☆ on any card in the other sets to save it here.";
+  list.appendChild(note);
+}
+
+// the yellow frame follows the last line you played, and stays put until another plays
+function selectCard(card){
+  if(selectedCard && selectedCard !== card) selectedCard.classList.remove("selected");
+  selectedCard = card;
+  if(card) card.classList.add("selected");
+}
+
 function stopCurrent(){
   if(audio){ audio.pause(); audio = null; }
   if(synth) synth.cancel();
@@ -133,9 +164,10 @@ function stopCurrent(){
 }
 
 function toggle(card, thai, btn){
-  if(currentCard === card){ stopCurrent(); return; }
+  if(currentCard === card){ stopCurrent(); return; }   // tapping the active line stops it; frame stays
   stopCurrent();
   card.classList.remove("error");
+  selectCard(card);                                    // move the persistent yellow frame here
 
   // starting a line re-hides every other reading, so you focus on what you're hearing
   document.querySelectorAll(".card").forEach(c => { if(c !== card) c.classList.add("masked"); });
@@ -293,3 +325,20 @@ document.addEventListener("keydown", e => {
 if("serviceWorker" in navigator){
   window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(()=>{}));
 }
+
+// shared top nav — filled here so every page stays in sync (each page ships an empty .nav)
+const NAV = [
+  ["index.html","Set 1 · Sentences"],
+  ["vocab.html","Set 2 · Mix"],
+  ["set3.html","Set 3 · Mix"],
+  ["set4.html","Set 4 · Mix"],
+  ["set5.html","Set 5 · Mix"],
+  ["liked.html","★ Saved"],
+];
+(function buildNav(){
+  const navEl = document.querySelector ? document.querySelector(".nav") : null;
+  if(!navEl) return;
+  let here = "index.html";
+  try { here = location.pathname.split("/").pop() || "index.html"; } catch(e){}
+  navEl.innerHTML = NAV.map(([h,l]) => `<a href="${h}"${h===here?' class="active"':''}>${l}</a>`).join("");
+})();
