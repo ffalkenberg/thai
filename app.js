@@ -81,6 +81,7 @@ let audio = null;
 let currentCard = null;      // the line whose audio is playing / paused
 let currentThai = null;
 let highlightCard = null;    // the line showing the play highlight; persists until another line plays
+let watchdog = null;         // polls for playback end (iOS's end events are unreliable)
 const list = document.getElementById("list");
 
 SENTENCES.forEach(([thai, rom, en], i) => {
@@ -151,6 +152,7 @@ function moveHighlight(card){
 }
 
 function clearAudio(){   // stop audio/speech — reset the play button to its off look; keep the card frame
+  stopWatchdog();
   if(audio){ audio.pause(); audio = null; }
   if(synth) synth.cancel();
   if(currentCard){
@@ -159,6 +161,21 @@ function clearAudio(){   // stop audio/speech — reset the play button to its o
   }
   currentCard = null;
   currentThai = null;
+}
+
+// Detect when playback has actually finished by polling engine state — the audio
+// 'ended' / speech 'end' events can silently fail to fire (notably on iOS).
+function stopWatchdog(){ if(watchdog){ clearInterval(watchdog); watchdog = null; } }
+function startWatchdog(card){
+  stopWatchdog();
+  watchdog = setInterval(() => {
+    if(currentCard !== card){ stopWatchdog(); return; }
+    if(audio){
+      if(audio.ended) clearAudio();
+    } else if(synth && !synth.paused && !synth.speaking && !synth.pending){
+      clearAudio();
+    }
+  }, 300);
 }
 
 function toggle(card, thai, btn){
@@ -192,6 +209,7 @@ function playGoogle(card, thai){
   audio.onerror = () => speakDevice(card, thai, thaiVoices[0]);
   const p = audio.play();
   if(p && p.catch) p.catch(() => speakDevice(card, thai, thaiVoices[0]));
+  startWatchdog(card);
 }
 
 // Break Thai into words even when the text has no spaces (Thai rarely spaces words).
@@ -243,23 +261,20 @@ function speakDevice(card, thai, voice){
     chunks = groupWords(words, pieces);
   }
 
-  let i = 0;
-  const speakNext = () => {
-    if(currentCard !== card) return;        // stopped or replaced
-    if(i >= chunks.length){ clearAudio(); return; }
-    const u = new SpeechSynthesisUtterance(chunks[i++]);
+  synth.cancel();                                    // clear any leftover queue
+  chunks.forEach(text => {
+    const u = new SpeechSynthesisUtterance(text);
     u.lang = voice.lang || "th-TH";
     u.voice = voice;
     u.rate = rate;
-    u.onend = () => { if(currentCard === card) speakNext(); };   // no added delay = shortest gap
     u.onerror = e => {
       // "canceled"/"interrupted" fire whenever we stop to start another line — not real errors
       if(e.error && e.error !== "canceled" && e.error !== "interrupted") card.classList.add("error");
-      if(currentCard === card) clearAudio();
     };
-    synth.speak(u);
-  };
-  speakNext();
+    synth.speak(u);                                   // queued back-to-back; engine plays them in order
+  });
+  // iOS's per-utterance 'end' event is unreliable, so poll for completion instead
+  setTimeout(() => { if(currentCard === card) startWatchdog(card); }, 400);
 }
 
 // speed dial
