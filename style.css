@@ -159,8 +159,8 @@ input[type=range]::-moz-range-thumb{
 .play:hover{background:#0a201c}
 .play:active{transform:scale(.94)}
 .play svg{width:20px;height:20px;transform:translateX(1px)}
-.card.playing .play{background:var(--gold);color:var(--ground)}
-.card.playing .play svg{transform:none}
+.card.live .play{background:var(--gold);color:var(--ground)}
+.card.live .play svg{transform:none}
 .play .ring{
   position:absolute;inset:-5px;border-radius:50%;border:2px solid var(--gold);
   opacity:0;

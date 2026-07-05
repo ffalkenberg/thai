@@ -150,10 +150,13 @@ function moveHighlight(card){
   highlightCard = card;
 }
 
-function clearAudio(){   // stop audio/speech only — the highlight is left in place
+function clearAudio(){   // stop audio/speech — reset the play button to its off look; keep the card frame
   if(audio){ audio.pause(); audio = null; }
   if(synth) synth.cancel();
-  if(currentCard) currentCard.classList.remove("live");   // stop the ring pulse, keep the colours
+  if(currentCard){
+    currentCard.classList.remove("live");                 // stop pulse + gold button
+    currentCard.querySelector(".play").innerHTML = '<span class="ring"></span>' + PLAY_ICON;
+  }
   currentCard = null;
   currentThai = null;
 }
