@@ -84,7 +84,7 @@ let speed = 0.5;
 let audio = null;
 let currentCard = null;      // the line whose audio is playing / paused
 let currentThai = null;
-let selectedCard = null;     // the line with the persistent yellow frame (stays until another plays)
+let highlightCard = null;    // the line showing the play highlight; persists until another line plays
 const list = document.getElementById("list");
 
 SENTENCES.forEach(([thai, rom, en], i) => {
@@ -145,29 +145,27 @@ if(list && !SENTENCES.length){
   list.appendChild(note);
 }
 
-// the yellow frame follows the last line you played, and stays put until another plays
-function selectCard(card){
-  if(selectedCard && selectedCard !== card) selectedCard.classList.remove("selected");
-  selectedCard = card;
-  if(card) card.classList.add("selected");
+// the play highlight follows the last line you played and stays until another line plays
+function moveHighlight(card){
+  if(highlightCard && highlightCard !== card){
+    highlightCard.classList.remove("playing","paused");
+    highlightCard.querySelector(".play").innerHTML = '<span class="ring"></span>' + PLAY_ICON;
+  }
+  highlightCard = card;
 }
 
-function stopCurrent(){
+function clearAudio(){   // stop audio/speech only — the highlight is left in place
   if(audio){ audio.pause(); audio = null; }
   if(synth) synth.cancel();
-  if(currentCard){
-    currentCard.classList.remove("playing","paused");
-    currentCard.querySelector(".play").innerHTML = '<span class="ring"></span>' + PLAY_ICON;
-    currentCard = null;
-    currentThai = null;
-  }
+  currentCard = null;
+  currentThai = null;
 }
 
 function toggle(card, thai, btn){
-  if(currentCard === card){ stopCurrent(); return; }   // tapping the active line stops it; frame stays
-  stopCurrent();
+  if(currentCard === card){ clearAudio(); return; }    // tapping the playing line stops audio; the box stays highlighted
+  clearAudio();
   card.classList.remove("error");
-  selectCard(card);                                    // move the persistent yellow frame here
+  moveHighlight(card);                                 // move the highlight to this line
 
   // starting a line re-hides every other reading, so you focus on what you're hearing
   document.querySelectorAll(".card").forEach(c => { if(c !== card) c.classList.add("masked"); });
@@ -190,7 +188,7 @@ function googleRate(s){ return 0.55 + 0.45 * s; }
 function playGoogle(card, thai){
   audio = new Audio(TTS(thai));
   audio.playbackRate = googleRate(speed);
-  audio.onended = () => { if(currentCard === card) stopCurrent(); };
+  audio.onended = () => { if(currentCard === card) clearAudio(); };
   audio.onerror = () => speakDevice(card, thai, thaiVoices[0]);
   const p = audio.play();
   if(p && p.catch) p.catch(() => speakDevice(card, thai, thaiVoices[0]));
@@ -231,7 +229,7 @@ const RATE_FLOOR = 0.1;   // the slowest the Web Speech API will actually speak
 function speakDevice(card, thai, voice){
   if(audio){ audio.pause(); audio = null; }
   if(currentCard !== card) return;         // user moved on while Google was failing over
-  if(!synth || !voice){ card.classList.add("error"); stopCurrent(); return; }
+  if(!synth || !voice){ card.classList.add("error"); clearAudio(); return; }
 
   let rate, chunks;
   if(speed >= 0.5){
@@ -248,7 +246,7 @@ function speakDevice(card, thai, voice){
   let i = 0;
   const speakNext = () => {
     if(currentCard !== card) return;        // stopped or replaced
-    if(i >= chunks.length){ stopCurrent(); return; }
+    if(i >= chunks.length){ clearAudio(); return; }
     const u = new SpeechSynthesisUtterance(chunks[i++]);
     u.lang = voice.lang || "th-TH";
     u.voice = voice;
@@ -257,7 +255,7 @@ function speakDevice(card, thai, voice){
     u.onerror = e => {
       // "canceled"/"interrupted" fire whenever we stop to start another line — not real errors
       if(e.error && e.error !== "canceled" && e.error !== "interrupted") card.classList.add("error");
-      if(currentCard === card) stopCurrent();
+      if(currentCard === card) clearAudio();
     };
     synth.speak(u);
   };
