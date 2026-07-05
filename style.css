@@ -268,3 +268,7 @@ footer{
   .card{animation:none;opacity:1;transform:none}
   .card.playing .play .ring{animation:none}
 }
+
+/* grey / blank mode — toggle with the "x" key: greyscale everything and hide the Thai text */
+body.greymode{filter:grayscale(1)}
+body.greymode .thai{color:transparent}

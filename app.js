@@ -351,6 +351,17 @@ document.addEventListener("keydown", e => {
   pauseResume();
 });
 
+// "x" toggles grey/blank mode — greyscale the whole theme and hide the Thai text (audio only)
+const GREY_KEY = "thai-practice-grey";
+try { if(localStorage.getItem(GREY_KEY) === "1") document.body.classList.add("greymode"); } catch(e){}
+document.addEventListener("keydown", e => {
+  if(e.key !== "x" && e.key !== "X") return;
+  const t = e.target;
+  if(t.tagName === "SELECT" || t.tagName === "INPUT" || t.tagName === "TEXTAREA") return;
+  const on = document.body.classList.toggle("greymode");
+  try { localStorage.setItem(GREY_KEY, on ? "1" : "0"); } catch(e2){}
+});
+
 // cache Google TTS audio for instant replays (purely additive — playback works without it)
 if("serviceWorker" in navigator){
   window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(()=>{}));
