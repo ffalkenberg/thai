@@ -704,6 +704,152 @@ const DEFAULT_SETS = [
         "en": "Her husband is a policeman."
       }
     ]
+  },
+  {
+    "id": "set7",
+    "title": "Set 7 · Numbers",
+    "lines": [
+      {
+        "th": "ตอนนี้กี่โมงแล้ว",
+        "rom": "dtɔɔn-níi gèe mohng láew",
+        "en": "What time is it now?"
+      },
+      {
+        "th": "ตอนนี้บ่ายสามโมง",
+        "rom": "dtɔɔn-níi bàai săam mohng",
+        "en": "It's three in the afternoon."
+      },
+      {
+        "th": "ผมตื่นตอนหกโมงเช้า",
+        "rom": "pŏm dtèun dton hòk mohng cháo",
+        "en": "I wake up at six in the morning."
+      },
+      {
+        "th": "ผมกินข้าวเที่ยงตอนเที่ยงวัน",
+        "rom": "pŏm gin kâao tîiang dton tîiang wan",
+        "en": "I have lunch at noon."
+      },
+      {
+        "th": "ร้านปิดตอนห้าทุ่ม",
+        "rom": "ráan bpìt dton hâa thûm",
+        "en": "The shop closes at 11pm."
+      },
+      {
+        "th": "ตอนนี้เที่ยงคืนแล้ว",
+        "rom": "dtɔɔn-níi tîiang-keun láew",
+        "en": "It's midnight now."
+      },
+      {
+        "th": "วันนี้วันที่เท่าไหร่",
+        "rom": "wan-née wan-tîi thâo-rài",
+        "en": "What's the date today?"
+      },
+      {
+        "th": "วันเกิดของผมคือวันที่สิบแปด",
+        "rom": "wan-gə̀ət kŏng pŏm keu wan-tîi sìp-bpàet",
+        "en": "My birthday is on the 18th."
+      },
+      {
+        "th": "เดือนหน้าผมจะไปเที่ยว",
+        "rom": "dʉan nâa pŏm jà bpai tîieow",
+        "en": "Next month I'll go traveling."
+      },
+      {
+        "th": "สงกรานต์อยู่ในเดือนเมษายน",
+        "rom": "sŏng-graan yòo nai dʉan mee-săa-yon",
+        "en": "Songkran is in April."
+      },
+      {
+        "th": "ผมเกิดเดือนมีนา",
+        "rom": "pŏm gə̀ət dʉan mii-naa",
+        "en": "I was born in March."
+      },
+      {
+        "th": "คุณอายุเท่าไหร่",
+        "rom": "kun aa-yú thâo-rài",
+        "en": "How old are you?"
+      },
+      {
+        "th": "ผมอายุสามสิบปี",
+        "rom": "pŏm aa-yú săam-sìp bpii",
+        "en": "I'm thirty years old."
+      },
+      {
+        "th": "น้องสาวของผมอายุยี่สิบสาม",
+        "rom": "nóng-săao kŏng pŏm aa-yú yêe-sìp-săam",
+        "en": "My younger sister is twenty-three."
+      },
+      {
+        "th": "ปีนี้ปีสองพันยี่สิบหก",
+        "rom": "bpii née bpii sŏng-pan yêe-sìp-hòk",
+        "en": "This year is 2026."
+      },
+      {
+        "th": "อันนี้เท่าไหร่",
+        "rom": "an-née thâo-rài",
+        "en": "How much is this one?"
+      },
+      {
+        "th": "ทั้งหมดสองร้อยบาท",
+        "rom": "táng-mòt sŏng-rói bàat",
+        "en": "Two hundred baht in total."
+      },
+      {
+        "th": "ชาไทยแก้วละสี่สิบบาท",
+        "rom": "chaa tai gâew lá sèe-sìp bàat",
+        "en": "Thai tea is forty baht a glass."
+      },
+      {
+        "th": "ผมมีเงินห้าร้อยบาท",
+        "rom": "pŏm mii ngern hâa-rói bàat",
+        "en": "I have five hundred baht."
+      },
+      {
+        "th": "วันเสาร์กับวันอาทิตย์เป็นวันหยุด",
+        "rom": "wan-săo gàp wan-aa-tít bpen wan-yùt",
+        "en": "Saturday and Sunday are days off."
+      },
+      {
+        "th": "ผมทำงานตั้งแต่วันจันทร์ถึงวันศุกร์",
+        "rom": "pŏm tam-ngaan dtâng-dtàe wan-jan tʉ̌ng wan-sùk",
+        "en": "I work from Monday to Friday."
+      },
+      {
+        "th": "ฤดูร้อนอากาศร้อนมาก",
+        "rom": "réu-doo rón aa-gàat rón mâak",
+        "en": "In summer the weather is very hot."
+      },
+      {
+        "th": "ผมชอบฤดูฝนมากกว่าฤดูร้อน",
+        "rom": "pŏm chôp réu-doo fŏn mâak gwàa réu-doo rón",
+        "en": "I like the rainy season more than summer."
+      },
+      {
+        "th": "ผลไม้ที่ผมชอบคือมะม่วง",
+        "rom": "pŏn-lá-mái tîi pŏm chôp keu má-mûuang",
+        "en": "The fruit I like is mango."
+      },
+      {
+        "th": "ร้านนี้ขายมะละกอและกล้วย",
+        "rom": "ráan née kăai má-lá-gor láe glûuay",
+        "en": "This shop sells papaya and bananas."
+      },
+      {
+        "th": "ขอมะนาวสองลูก",
+        "rom": "kŏr má-naao sŏng lôok",
+        "en": "Two limes, please."
+      },
+      {
+        "th": "มะเขือเทศไม่ใช่ผลไม้",
+        "rom": "má-kĕuua-têt mâi châi pŏn-lá-mái",
+        "en": "A tomato is not a fruit."
+      },
+      {
+        "th": "ส้มลูกนี้หวานมาก",
+        "rom": "sôm lôok née wăan mâak",
+        "en": "This orange is very sweet."
+      }
+    ]
   }
 ];
 
