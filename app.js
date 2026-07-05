@@ -76,7 +76,9 @@ const CORPUS_KEY = "thai-practice-corpus";
   if(changed){ try { localStorage.setItem(CORPUS_KEY, JSON.stringify(corpus)); } catch(e){} }
 })();
 
+const SPEED_KEY = "thai-practice-speed";
 let speed = 0.5;
+try { const s = parseFloat(localStorage.getItem(SPEED_KEY) || ""); if(s >= 0.1 && s <= 1) speed = s; } catch(e){}  // remembered speed
 let audio = null;
 let currentCard = null;      // the line whose audio is playing / paused
 let currentThai = null;
@@ -138,7 +140,7 @@ SENTENCES.forEach(([thai, rom, en], i) => {
 if(list && !SENTENCES.length){
   const note = document.createElement("p");
   note.className = "empty";
-  note.textContent = "No saved lines yet — tap the ☆ on any card in the other sets to save it here.";
+  note.textContent = (typeof EMPTY_MSG !== "undefined" && EMPTY_MSG) ? EMPTY_MSG : "Nothing here yet.";
   list.appendChild(note);
 }
 
@@ -284,10 +286,13 @@ function paintSlider(){
   const pct = ((rate.value - rate.min) / (rate.max - rate.min)) * 100;
   rate.style.setProperty("--fill", pct + "%");
 }
+rate.value = speed;                                    // restore the remembered speed
+readout.textContent = speed.toFixed(2) + "×";
 rate.addEventListener("input", () => {
   speed = parseFloat(rate.value);
   readout.textContent = speed.toFixed(2) + "×";
   paintSlider();
+  try { localStorage.setItem(SPEED_KEY, String(speed)); } catch(e){}   // remember it across sessions
   if(audio) audio.playbackRate = googleRate(speed);   // live-adjust the Google clip
 });
 paintSlider();
@@ -347,6 +352,8 @@ const NAV = [
   ["set4.html","Set 4 · Mix"],
   ["set5.html","Set 5 · Mix"],
   ["liked.html","★ Saved"],
+  ["custom.html","My deck"],
+  ["data.html","Data"],
 ];
 (function buildNav(){
   const navEl = document.querySelector ? document.querySelector(".nav") : null;

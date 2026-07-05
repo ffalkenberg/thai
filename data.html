@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<title>Thai Listening Practice — Data</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=3">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <nav class="nav">
+      <a href="index.html">Set 1 · Sentences</a>
+      <a href="vocab.html">Set 2 · Mix</a>
+      <a href="set3.html">Set 3 · Mix</a>
+      <a href="set4.html">Set 4 · Mix</a>
+      <a href="set5.html">Set 5 · Mix</a>
+      <a href="liked.html">★ Saved</a>
+      <a href="custom.html">My deck</a>
+      <a href="data.html" class="active">Data</a>
+    </nav>
+    <div class="eyebrow">Data · manifest</div>
+    <h1>The deck as <span class="th">JSON</span></h1>
+    <p>The whole vocabulary as an editable JSON manifest. Copy or download it to back it up, or paste your own and <strong>Save to deck</strong> — it then plays on the <a href="custom.html" style="color:var(--gold-soft)">My deck</a> page. Each item is <code>{ "th", "rom", "en" }</code>; only <code>th</code> is required.</p>
+    <div class="rule"></div>
+  </header>
+
+  <div class="toolbar">
+    <button class="btn primary" id="save">Save to deck</button>
+    <button class="btn" id="copy">Copy</button>
+    <button class="btn" id="download">Download .json</button>
+    <button class="btn" id="builtin">Load built-in set</button>
+    <button class="btn" id="mydeck">Load my deck</button>
+  </div>
+
+  <textarea class="editor" id="json" spellcheck="false" autocapitalize="off" autocorrect="off"></textarea>
+  <div class="status" id="status"></div>
+
+  <footer style="margin-top:26px">edits are stored in this browser only · nothing leaves your device</footer>
+</div>
+
+<script src="data.js?v=3"></script>
+<script>
+const DECK_KEY = "thai-practice-deck";
+const ta = document.getElementById("json");
+const statusEl = document.getElementById("status");
+
+const toObjects = arr => arr.map(x => Array.isArray(x) ? { th:x[0], rom:x[1]||"", en:x[2]||"" } : x);
+function show(arr){ ta.value = JSON.stringify(toObjects(arr), null, 2); }
+function setStatus(msg, ok){ statusEl.textContent = msg; statusEl.className = "status " + (ok ? "ok" : "bad"); }
+
+function savedDeck(){
+  try { const d = JSON.parse(localStorage.getItem(DECK_KEY) || "null"); if(Array.isArray(d) && d.length) return d; } catch(e){}
+  return null;
+}
+function builtin(){ return (typeof ALL_SENTENCES !== "undefined") ? ALL_SENTENCES : []; }
+
+// on load: show the saved deck if there is one, otherwise the built-in set as a starting point
+show(savedDeck() || builtin());
+
+// normalise arbitrary input into [th, rom, en] rows
+function normalise(data){
+  if(!Array.isArray(data)) return null;
+  const out = [];
+  for(const it of data){
+    if(Array.isArray(it)){ if(it[0]) out.push([String(it[0]), String(it[1]||""), String(it[2]||"")]); }
+    else if(it && typeof it === "object"){
+      const th = it.th || it.thai;
+      if(th) out.push([String(th), String(it.rom || it.romanization || ""), String(it.en || it.english || "")]);
+    }
+  }
+  return out;
+}
+
+document.getElementById("save").addEventListener("click", () => {
+  let data;
+  try { data = JSON.parse(ta.value); }
+  catch(e){ setStatus("Invalid JSON — " + e.message, false); return; }
+  const rows = normalise(data);
+  if(!rows) { setStatus("Expected a JSON array of items.", false); return; }
+  if(!rows.length){ setStatus('No valid lines — each item needs a "th" field.', false); return; }
+  try {
+    localStorage.setItem(DECK_KEY, JSON.stringify(toObjects(rows)));
+    show(rows);
+    setStatus("Saved " + rows.length + " lines. Open ‘My deck’ to practise them.", true);
+  } catch(e){ setStatus("Could not save: " + e.message, false); }
+});
+
+document.getElementById("copy").addEventListener("click", async () => {
+  try { await navigator.clipboard.writeText(ta.value); setStatus("Copied to clipboard.", true); }
+  catch(e){
+    ta.focus(); ta.select();
+    try { document.execCommand("copy"); setStatus("Copied to clipboard.", true); }
+    catch(e2){ setStatus("Copy failed — select the text and copy manually.", false); }
+  }
+});
+
+document.getElementById("download").addEventListener("click", () => {
+  const blob = new Blob([ta.value], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = "thai-deck.json";
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  setStatus("Downloaded thai-deck.json", true);
+});
+
+document.getElementById("builtin").addEventListener("click", () => {
+  show(builtin());
+  setStatus("Loaded the built-in set (" + builtin().length + " lines) — not saved yet. Edit, then Save to deck.", true);
+});
+
+document.getElementById("mydeck").addEventListener("click", () => {
+  const d = savedDeck();
+  if(!d){ setStatus("No saved deck yet.", false); return; }
+  show(d);
+  setStatus("Loaded your saved deck (" + d.length + " lines).", true);
+});
+</script>
+</body>
+</html>
