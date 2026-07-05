@@ -111,13 +111,12 @@ LINES.forEach(([thai, rom, en], i) => {
       <span class="ring"></span>${PLAY_ICON}
     </button>
     <div class="body">
-      <div class="thai">${thai}<button class="copy" aria-label="Copy the Thai text">${COPY_ICON}</button></div>
+      <div class="thai" title="Open in Google Translate">${thai}<button class="copy" aria-label="Copy the Thai text">${COPY_ICON}</button></div>
       <div class="reading">
         <div class="rom">${rom}</div>
         <div class="en">${en}</div>
       </div>
-      <a class="fallback" href="${TRANSLATE(thai)}" target="_blank" rel="noopener">${EXT_ICON} hear it on Google Translate</a>
-      <div class="err">Couldn't play the audio here. Tap "hear it on Google Translate" above.</div>
+      <div class="err">Couldn't play the audio here. Tap the Thai to open it in Google Translate.</div>
     </div>`;
 
   const btn = card.querySelector(".play");
@@ -130,6 +129,11 @@ LINES.forEach(([thai, rom, en], i) => {
     const on = card.classList.toggle("starred");
     setStar(thai, on);
     star.setAttribute("aria-pressed", on);
+  });
+
+  // tapping the Thai text opens it in the Google Translate UI (in a new tab)
+  card.querySelector(".thai").addEventListener("click", () => {
+    window.open(TRANSLATE(thai), "_blank", "noopener");
   });
 
   // copy the Thai text to the clipboard

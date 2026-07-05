@@ -185,7 +185,7 @@ input[type=range]::-moz-range-thumb{
 .thai{
   font-family:"IBM Plex Sans Thai",sans-serif;font-weight:500;
   font-size:clamp(21px,4.4vw,27px);color:var(--ink);line-height:1.4;
-  letter-spacing:.005em;
+  letter-spacing:.005em;cursor:pointer;
 }
 .rom{
   font-family:"IBM Plex Mono",monospace;font-size:13.5px;color:var(--gold-soft);
