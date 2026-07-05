@@ -72,6 +72,86 @@ const DEFAULT_SETS = [
         "th": "ธนาคารอยู่ชั้นบน สำนักงานอยู่ชั้นล่าง",
         "rom": "tá-naa-kaan yòo chán bon, săm-nák ngaan yòo chán lâang",
         "en": "The bank is upstairs; the office is downstairs."
+      },
+      {
+        "th": "ผมชอบกินแอปเปิ้ล",
+        "rom": "pŏm chôp gin àep-bpêrn",
+        "en": "I like eating apples."
+      },
+      {
+        "th": "ท้องฟ้าสีฟ้า",
+        "rom": "tóng-fáa sĕe fáa",
+        "en": "The sky is blue."
+      },
+      {
+        "th": "วันนี้ฝนตก",
+        "rom": "wan-née fŏn dtòk",
+        "en": "It's raining today."
+      },
+      {
+        "th": "หัวของผมเจ็บ",
+        "rom": "hŭua kŏng pŏm jèp",
+        "en": "My head hurts."
+      },
+      {
+        "th": "ผมเบื่อ",
+        "rom": "pŏm bʉ̀a",
+        "en": "I'm bored."
+      },
+      {
+        "th": "ผมแปรงฟันทุกเช้า",
+        "rom": "pŏm bpraeng fan túk cháo",
+        "en": "I brush my teeth every morning."
+      },
+      {
+        "th": "ผมดื่มนมทุกเช้า",
+        "rom": "pŏm dèum nom túk cháo",
+        "en": "I drink milk every morning."
+      },
+      {
+        "th": "องุ่นลูกนี้หวานมาก",
+        "rom": "à-ngùn lôok née wăan mâak",
+        "en": "These grapes are very sweet."
+      },
+      {
+        "th": "ผมชอบสีแดง",
+        "rom": "pŏm chôp sĕe daeng",
+        "en": "I like the colour red."
+      },
+      {
+        "th": "วันนี้แดดแรง",
+        "rom": "wan-née dàet raeng",
+        "en": "The sun is strong today."
+      },
+      {
+        "th": "ผมล้างมือก่อนกินข้าว",
+        "rom": "pŏm láang meu gɔ̀ɔn gin kâao",
+        "en": "I wash my hands before eating."
+      },
+      {
+        "th": "ผมกลัวหมา",
+        "rom": "pŏm gluua măa",
+        "en": "I'm afraid of dogs."
+      },
+      {
+        "th": "ผมล้างจานหลังกินข้าว",
+        "rom": "pŏm láang jaan lăng gin kâao",
+        "en": "I wash the dishes after eating."
+      },
+      {
+        "th": "ผมชอบกาแฟดำ",
+        "rom": "pŏm chôp gaa-fae dam",
+        "en": "I like black coffee."
+      },
+      {
+        "th": "น้ำมะพร้าวอร่อย",
+        "rom": "náam má-práao à-ròi",
+        "en": "Coconut water is tasty."
+      },
+      {
+        "th": "รถของผมสีขาว",
+        "rom": "rót kŏng pŏm sĕe kăao",
+        "en": "My car is white."
       }
     ]
   },
@@ -173,6 +253,61 @@ const DEFAULT_SETS = [
         "th": "พ่อกับแม่อยู่บ้าน",
         "rom": "pôr gàp mâe yòo bâan",
         "en": "Dad and mom are at home."
+      },
+      {
+        "th": "ข้างนอกลมแรง",
+        "rom": "kâang-nôk lom raeng",
+        "en": "It's windy outside."
+      },
+      {
+        "th": "ผมปวดท้อง",
+        "rom": "pŏm bpùuat tóng",
+        "en": "I have a stomachache."
+      },
+      {
+        "th": "ผมดีใจที่เจอคุณ",
+        "rom": "pŏm dii-jai têe jer kun",
+        "en": "I'm glad to see you."
+      },
+      {
+        "th": "แม่กวาดบ้าน",
+        "rom": "mâe gwàat bâan",
+        "en": "Mom sweeps the house."
+      },
+      {
+        "th": "ผมหิวข้าวมาก",
+        "rom": "pŏm hĭw kâao mâak",
+        "en": "I'm very hungry."
+      },
+      {
+        "th": "ผมไม่ชอบทุเรียน",
+        "rom": "pŏm mâi chôp tú-riian",
+        "en": "I don't like durian."
+      },
+      {
+        "th": "ดอกไม้สีเหลืองสวย",
+        "rom": "dòk-mái sĕe lʉ̌aang sŭuay",
+        "en": "The yellow flowers are pretty."
+      },
+      {
+        "th": "ฝนตกหนักเมื่อคืน",
+        "rom": "fŏn dtòk nàk mêuua keun",
+        "en": "It rained hard last night."
+      },
+      {
+        "th": "ฟันของผมเจ็บ",
+        "rom": "fan kŏng pŏm jèp",
+        "en": "My tooth hurts."
+      },
+      {
+        "th": "ผมโกรธน้องชาย",
+        "rom": "pŏm gròht nóng-chaai",
+        "en": "I'm angry at my younger brother."
+      },
+      {
+        "th": "ผมเปิดทีวีตอนเย็น",
+        "rom": "pŏm bpèrt tii-wii dton yen",
+        "en": "I turn on the TV in the evening."
       }
     ]
   },
@@ -289,6 +424,46 @@ const DEFAULT_SETS = [
         "th": "เรานั่งเรือไปเที่ยว",
         "rom": "rao nâng reuua bpai tîieow",
         "en": "We take a boat to go traveling."
+      },
+      {
+        "th": "ผมกินขนมปังตอนเช้า",
+        "rom": "pŏm gin kà-nŏm-bpang dton cháo",
+        "en": "I eat bread in the morning."
+      },
+      {
+        "th": "แครอทเป็นผักสีส้ม",
+        "rom": "kae-rɔ̀t bpen pàk sĕe sôm",
+        "en": "A carrot is an orange vegetable."
+      },
+      {
+        "th": "กระเป๋าของฉันสีน้ำเงิน",
+        "rom": "grà-bpăo kŏng chăn sĕe náam-ngern",
+        "en": "My bag is blue."
+      },
+      {
+        "th": "หมาของผมชอบวิ่ง",
+        "rom": "măa kŏng pŏm chôp wîng",
+        "en": "My dog likes to run."
+      },
+      {
+        "th": "น้ำแข็งเย็นมาก",
+        "rom": "náam-kăeng yen mâak",
+        "en": "Ice is very cold."
+      },
+      {
+        "th": "ข้าวโพดหวานอร่อย",
+        "rom": "kâao-pôht wăan à-ròi",
+        "en": "Sweet corn is delicious."
+      },
+      {
+        "th": "รองเท้าของผมสีดำ",
+        "rom": "rong-táo kŏng pŏm sĕe dam",
+        "en": "My shoes are black."
+      },
+      {
+        "th": "เด็กๆเล่นในสวน",
+        "rom": "dèk-dèk lên nai sŭuan",
+        "en": "The kids play in the park."
       }
     ]
   },
@@ -405,6 +580,46 @@ const DEFAULT_SETS = [
         "th": "วันนี้อากาศดี",
         "rom": "wan-née aa-gàat dii",
         "en": "The weather is nice today."
+      },
+      {
+        "th": "ต้นไม้ต้นนี้สูง",
+        "rom": "dtôn-mái dtôn née sŏong",
+        "en": "This tree is tall."
+      },
+      {
+        "th": "ผมกินสลัดผัก",
+        "rom": "pŏm gin sà-làt pàk",
+        "en": "I eat vegetable salad."
+      },
+      {
+        "th": "เสื้อของเธอสีชมพู",
+        "rom": "sêuua kŏng thəə sĕe chom-poo",
+        "en": "Her shirt is pink."
+      },
+      {
+        "th": "ผมว่ายน้ำเก่ง",
+        "rom": "pŏm wâai-náam gèng",
+        "en": "I'm good at swimming."
+      },
+      {
+        "th": "แตงกวาสีเขียว",
+        "rom": "dtaeng-guua sĕe kĭieow",
+        "en": "Cucumbers are green."
+      },
+      {
+        "th": "นกร้องเพลงตอนเช้า",
+        "rom": "nók róng-pleng dton cháo",
+        "en": "The bird sings in the morning."
+      },
+      {
+        "th": "ผมไม่ชอบหัวหอม",
+        "rom": "pŏm mâi chôp hŭua-hɔ̌ɔm",
+        "en": "I don't like onions."
+      },
+      {
+        "th": "ผมซักเสื้อผ้าวันอาทิตย์",
+        "rom": "pŏm sák sêuua-pâa wan-aa-tít",
+        "en": "I do laundry on Sunday."
       }
     ]
   },
@@ -556,6 +771,11 @@ const DEFAULT_SETS = [
         "th": "คืนนี้ผมจะนอนเร็ว",
         "rom": "keun née pŏm jà non reo",
         "en": "Tonight I'll sleep early."
+      },
+      {
+        "th": "พริกเผ็ดมาก",
+        "rom": "prík phèt mâak",
+        "en": "Chili is very spicy."
       }
     ]
   },
@@ -702,6 +922,16 @@ const DEFAULT_SETS = [
         "th": "สามีของเธอเป็นตำรวจ",
         "rom": "săa-mee kŏng thəə bpen dtam-rùat",
         "en": "Her husband is a policeman."
+      },
+      {
+        "th": "ผมกินไข่ต้มตอนเช้า",
+        "rom": "pŏm gin kài dtôm dton cháo",
+        "en": "I eat a boiled egg in the morning."
+      },
+      {
+        "th": "ผมชอบข้าวเหนียว",
+        "rom": "pŏm chôp kâao-nĭieow",
+        "en": "I like sticky rice."
       }
     ]
   },
@@ -710,59 +940,59 @@ const DEFAULT_SETS = [
     "title": "Set 7 · Numbers",
     "lines": [
       {
-        "th": "ตอนนี้กี่โมงแล้ว",
-        "rom": "dtɔɔn-níi gèe mohng láew",
-        "en": "What time is it now?"
+        "th": "ตอนนี้แปดโมงเช้า",
+        "rom": "dtɔɔn-níi bpàet mohng cháo",
+        "en": "It's eight in the morning."
       },
       {
-        "th": "ตอนนี้บ่ายสามโมง",
-        "rom": "dtɔɔn-níi bàai săam mohng",
-        "en": "It's three in the afternoon."
+        "th": "ผมตื่นเจ็ดโมงครึ่ง",
+        "rom": "pŏm dtèun jèt mohng krêung",
+        "en": "I wake up at 7:30."
       },
       {
-        "th": "ผมตื่นตอนหกโมงเช้า",
-        "rom": "pŏm dtèun dton hòk mohng cháo",
-        "en": "I wake up at six in the morning."
+        "th": "ร้านเปิดบ่ายสองโมง",
+        "rom": "ráan bpèrt bàai sŏng mohng",
+        "en": "The shop opens at 2pm."
       },
       {
-        "th": "ผมกินข้าวเที่ยงตอนเที่ยงวัน",
-        "rom": "pŏm gin kâao tîiang dton tîiang wan",
-        "en": "I have lunch at noon."
+        "th": "หนังเริ่มสามทุ่ม",
+        "rom": "năng rêrm săam thûm",
+        "en": "The movie starts at 9pm."
       },
       {
-        "th": "ร้านปิดตอนห้าทุ่ม",
-        "rom": "ráan bpìt dton hâa thûm",
-        "en": "The shop closes at 11pm."
+        "th": "ผมกินข้าวเย็นหกโมงเย็น",
+        "rom": "pŏm gin kâao yen hòk mohng yen",
+        "en": "I eat dinner at 6pm."
       },
       {
-        "th": "ตอนนี้เที่ยงคืนแล้ว",
-        "rom": "dtɔɔn-níi tîiang-keun láew",
-        "en": "It's midnight now."
+        "th": "รถไฟมาตีห้า",
+        "rom": "rót-fai maa dtii hâa",
+        "en": "The train comes at 5am."
       },
       {
-        "th": "วันนี้วันที่เท่าไหร่",
-        "rom": "wan-née wan-tîi thâo-rài",
-        "en": "What's the date today?"
+        "th": "วันนี้วันที่สาม",
+        "rom": "wan-née wan-tîi săam",
+        "en": "Today is the 3rd."
       },
       {
-        "th": "วันเกิดของผมคือวันที่สิบแปด",
-        "rom": "wan-gə̀ət kŏng pŏm keu wan-tîi sìp-bpàet",
-        "en": "My birthday is on the 18th."
+        "th": "วันเกิดของผมวันที่ยี่สิบเจ็ด",
+        "rom": "wan-gə̀ət kŏng pŏm wan-tîi yêe-sìp-jèt",
+        "en": "My birthday is on the 27th."
       },
       {
-        "th": "เดือนหน้าผมจะไปเที่ยว",
-        "rom": "dʉan nâa pŏm jà bpai tîieow",
-        "en": "Next month I'll go traveling."
+        "th": "เดือนหน้าคือเดือนตุลาคม",
+        "rom": "dʉan nâa keu dʉan dtù-laa-kom",
+        "en": "Next month is October."
       },
       {
-        "th": "สงกรานต์อยู่ในเดือนเมษายน",
-        "rom": "sŏng-graan yòo nai dʉan mee-săa-yon",
-        "en": "Songkran is in April."
+        "th": "ผมจะไปเที่ยวเดือนธันวาคม",
+        "rom": "pŏm jà bpai tîieow dʉan tan-waa-kom",
+        "en": "I'll travel in December."
       },
       {
-        "th": "ผมเกิดเดือนมีนา",
-        "rom": "pŏm gə̀ət dʉan mii-naa",
-        "en": "I was born in March."
+        "th": "ปีใหม่อยู่ในเดือนมกราคม",
+        "rom": "bpii mài yòo nai dʉan má-gà-raa-kom",
+        "en": "New Year is in January."
       },
       {
         "th": "คุณอายุเท่าไหร่",
@@ -770,91 +1000,101 @@ const DEFAULT_SETS = [
         "en": "How old are you?"
       },
       {
-        "th": "ผมอายุสามสิบปี",
-        "rom": "pŏm aa-yú săam-sìp bpii",
-        "en": "I'm thirty years old."
+        "th": "ผมอายุยี่สิบห้าปี",
+        "rom": "pŏm aa-yú yêe-sìp-hâa bpii",
+        "en": "I'm twenty-five years old."
       },
       {
-        "th": "น้องสาวของผมอายุยี่สิบสาม",
-        "rom": "nóng-săao kŏng pŏm aa-yú yêe-sìp-săam",
-        "en": "My younger sister is twenty-three."
+        "th": "พ่อของผมอายุหกสิบปี",
+        "rom": "pôr kŏng pŏm aa-yú hòk-sìp bpii",
+        "en": "My dad is sixty."
       },
       {
-        "th": "ปีนี้ปีสองพันยี่สิบหก",
-        "rom": "bpii née bpii sŏng-pan yêe-sìp-hòk",
-        "en": "This year is 2026."
+        "th": "น้องชายเกิดปีสองพันสิบ",
+        "rom": "nóng-chaai gə̀ət bpii sŏng-pan-sìp",
+        "en": "My younger brother was born in 2010."
       },
       {
-        "th": "อันนี้เท่าไหร่",
-        "rom": "an-née thâo-rài",
-        "en": "How much is this one?"
+        "th": "อันนี้กี่บาท",
+        "rom": "an-née gèe bàat",
+        "en": "How many baht is this?"
       },
       {
-        "th": "ทั้งหมดสองร้อยบาท",
-        "rom": "táng-mòt sŏng-rói bàat",
-        "en": "Two hundred baht in total."
+        "th": "ทั้งหมดสามร้อยห้าสิบบาท",
+        "rom": "táng-mòt săam-rói-hâa-sìp bàat",
+        "en": "Three hundred fifty baht in total."
       },
       {
-        "th": "ชาไทยแก้วละสี่สิบบาท",
-        "rom": "chaa tai gâew lá sèe-sìp bàat",
-        "en": "Thai tea is forty baht a glass."
+        "th": "กาแฟแก้วละเจ็ดสิบห้าบาท",
+        "rom": "gaa-fae gâew lá jèt-sìp-hâa bàat",
+        "en": "Coffee is seventy-five baht a cup."
       },
       {
-        "th": "ผมมีเงินห้าร้อยบาท",
-        "rom": "pŏm mii ngern hâa-rói bàat",
-        "en": "I have five hundred baht."
+        "th": "ผมมีเงินหนึ่งพันบาท",
+        "rom": "pŏm mii ngern nèung-pan bàat",
+        "en": "I have a thousand baht."
       },
       {
-        "th": "วันเสาร์กับวันอาทิตย์เป็นวันหยุด",
-        "rom": "wan-săo gàp wan-aa-tít bpen wan-yùt",
-        "en": "Saturday and Sunday are days off."
+        "th": "ขอข้าวผัดสองจาน",
+        "rom": "kŏr kâao-pàt sŏng jaan",
+        "en": "Two plates of fried rice, please."
       },
       {
-        "th": "ผมทำงานตั้งแต่วันจันทร์ถึงวันศุกร์",
-        "rom": "pŏm tam-ngaan dtâng-dtàe wan-jan tʉ̌ng wan-sùk",
-        "en": "I work from Monday to Friday."
+        "th": "วันพฤหัสผมไม่ว่าง",
+        "rom": "wan pá-réu-hàt pŏm mâi wâang",
+        "en": "On Thursday I'm not free."
       },
       {
-        "th": "ฤดูร้อนอากาศร้อนมาก",
-        "rom": "réu-doo rón aa-gàat rón mâak",
-        "en": "In summer the weather is very hot."
+        "th": "ร้านปิดวันจันทร์",
+        "rom": "ráan bpìt wan-jan",
+        "en": "The shop is closed on Monday."
       },
       {
-        "th": "ผมชอบฤดูฝนมากกว่าฤดูร้อน",
-        "rom": "pŏm chôp réu-doo fŏn mâak gwàa réu-doo rón",
-        "en": "I like the rainy season more than summer."
+        "th": "ฤดูหนาวอากาศเย็น",
+        "rom": "réu-doo năao aa-gàat yen",
+        "en": "In winter the weather is cool."
       },
       {
-        "th": "ผลไม้ที่ผมชอบคือมะม่วง",
-        "rom": "pŏn-lá-mái tîi pŏm chôp keu má-mûuang",
-        "en": "The fruit I like is mango."
+        "th": "ฝนตกบ่อยในฤดูฝน",
+        "rom": "fŏn dtòk bòi nai réu-doo fŏn",
+        "en": "It rains often in the rainy season."
       },
       {
-        "th": "ร้านนี้ขายมะละกอและกล้วย",
-        "rom": "ráan née kăai má-lá-gor láe glûuay",
-        "en": "This shop sells papaya and bananas."
+        "th": "ผมชอบกินสับปะรด",
+        "rom": "pŏm chôp gin sàp-bpà-rót",
+        "en": "I like eating pineapple."
       },
       {
-        "th": "ขอมะนาวสองลูก",
-        "rom": "kŏr má-naao sŏng lôok",
-        "en": "Two limes, please."
+        "th": "แตงโมหวานและเย็น",
+        "rom": "dtaeng-moh wăan láe yen",
+        "en": "Watermelon is sweet and cold."
       },
       {
-        "th": "มะเขือเทศไม่ใช่ผลไม้",
-        "rom": "má-kĕuua-têt mâi châi pŏn-lá-mái",
-        "en": "A tomato is not a fruit."
+        "th": "ผมชอบกินผักสด",
+        "rom": "pŏm chôp gin pàk sòt",
+        "en": "I like eating fresh vegetables."
       },
       {
-        "th": "ส้มลูกนี้หวานมาก",
-        "rom": "sôm lôok née wăan mâak",
-        "en": "This orange is very sweet."
+        "th": "มะเขือเทศเป็นผัก",
+        "rom": "má-kĕuua-têt bpen pàk",
+        "en": "A tomato is a vegetable."
+      },
+      {
+        "th": "ส้มเปรี้ยวกว่ากล้วย",
+        "rom": "sôm bprîieow gwàa glûuay",
+        "en": "Oranges are more sour than bananas."
+      },
+      {
+        "th": "ผมทำงานแปดชั่วโมงทุกวัน",
+        "rom": "pŏm tam-ngaan bpàet chûua-mohng túk wan",
+        "en": "I work eight hours every day."
       }
     ]
   }
 ];
 
 const MANIFEST_KEY = "thai-practice-manifest";
-const MANIFEST_VERSION = 2;   // bump when DEFAULT_SETS content changes -> reseed (stars preserved)
+const MANIFEST_VERSION = 3;   // bump when DEFAULT_SETS content changes -> reseed (stars preserved)
 
 function cloneSets(sets){
   return sets.map(s => ({
