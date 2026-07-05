@@ -1,149 +1,787 @@
-// Auto-generated: the full built-in sentence set (union of all pages), used by the Data page.
-const ALL_SENTENCES = [
-  ["ป้าอ้วนแต่หลานสาวผอม","bpâa ûuan dtàe lăan săao pŏm","Aunt is fat but niece is skinny."],
-  ["ช้างใหญ่กว่าเรือ","cháang yài gwàa reuua","The elephant is bigger than the boat."],
-  ["อย่าเชื่อผู้ขาย","yàa chêuua pôo kăai","Don't believe the seller."],
-  ["กุญแจอยู่ข้างในโรงแรม","gun-jae yòo kâang nai rohng raem","The keys are inside the hotel."],
-  ["นกกินส้มตำของฉัน","nók gin sôm dtam kŏng chăn","The bird ate my papaya salad."],
-  ["ฉันกำลังหาแมวใต้เตียง","chăn gam-lang hăa maew dtâi dtiiang","I'm looking for the cat under the bed."],
-  ["ร้านยาอยู่ด้านหลังธนาคาร","ráan yaa yòo dâan lăng tá-naa-kaan","The pharmacy is behind the bank."],
-  ["หมอขับรถไปวัดทุกวันอาทิตย์","mŏr khàp rót bpai wát túk wan aa-tít","The doctor drives to the temple every Sunday."],
-  ["คนสูงข้ามถนน","kon sŏong kâam tà-nŏn","The tall person crosses the street."],
-  ["หลานชายซื่อสัตย์และใจดี","lăan chaai sʉ̂ʉ-sàt láe jai-dii","Grandson is honest and kind."],
-  ["หลานชายมีผมสั้นบลอนและจมูกเล็ก","lăan chaai mii phǒm sân blɔɔn láe jà-mùuk lék","Nephew has short blonde hair and a small nose."],
-  ["เลี้ยวซ้ายที่วัด โรงพยาบาลอยู่ไกล","líieow sáai têe wát, rohng pá-yaa-baan yòo glai","Turn left at the temple; the hospital is far."],
-  ["ทำไมแมวง่วง เพราะกินเยอะ","tham-mai maew ngûang, phrɔ́ gin yúh","Why is the cat sleepy? Because it ate a lot."],
-  ["ลูกค้าเอาส้อมสองอันและช้อนหนึ่งอัน","lôok káa ao sôm sŏng an láe chón nèung an","The customer wants two forks and one spoon."],
-  ["ภรรยาทำข้าวผัดทุกคืน","pan-rá-yaa tham kâao pàt túk keun","(My) wife makes fried rice every night."],
-  ["หมาอยู่บนโต๊ะอีก อุบาทว์","măa yòo bon dtó èek, ù-bàat","The dog is on the table again — disgusting."],
-  ["ฉันจำนามสกุลของคุณได้","chăn jam naam sà-gun kŏng kun dâai","I remember your family name."],
-  ["ซีอิ๊วอยู่ข้างน้ำปลาไหม","see íw yòo kâang náam bplaa măi","Is the soy sauce next to the fish sauce?"],
-  ["พี่ชายไม่ค่อยออกกำลังกาย","pêe chaai mâi kôi òk gam-lang gaai","Older brother rarely exercises."],
-  ["เปิดหน้าต่าง ห้องนอนร้อน","bpə̀ət nâa-dtàang, hông non rón","Open the window — the bedroom is hot."],
-  ["ชอบฤดูไหน ฉันชอบฤดูหนาว","chôp réu-doo năi, chăn chôp réu-doo năao","Which season do you like? I like winter."],
-  ["สัตว์เลี้ยงของฉันคือนก มันอยู่บนต้นไม้","sàt líiang kŏng chăn keu nók, man yòo bon dtôn mái","My pet is a bird; it's up in the tree."],
-  ["เขาดื่มน้ำสามแก้วเพราะหิวน้ำ","kăo dèum náam săam gâew phrɔ́ hĭw náam","He drank three glasses of water because he was thirsty."],
-  ["ตลาดปิดแล้ว ไปห้างกัน","dtà-làat bpìt láew, bpai hâang gan","The market's closed — let's go to the mall."],
-  ["พี่ชายบินไปญี่ปุ่น น้องสาวขับรถไปบุรีรัมย์","pêe chaai bin bpai yêe-bpùn, nóng săao khàp rót bpai bù-ree-ram","Older brother flew to Japan; younger sister drove to Buriram."],
-  ["ธนาคารอยู่ชั้นบน สำนักงานอยู่ชั้นล่าง","tá-naa-kaan yòo chán bon, săm-nák ngaan yòo chán lâang","The bank is upstairs; the office is downstairs."],
-  ["แมวของฉันหิวน้ำ","maew kŏng chăn hĭw náam","My cat is thirsty."],
-  ["พรุ่งนี้ฉันจะไปตลาดกับเพื่อน","prûng-née chăn jà bpai dtà-làat gàp pêuuan","Tomorrow I'll go to the market with a friend."],
-  ["หมออยู่ที่โรงพยาบาลทุกวัน","mŏr yòo têe rohng pá-yaa-baan túk wan","The doctor is at the hospital every day."],
-  ["เขาชอบดื่มกาแฟตอนเช้า","kăo chôp dèum gaa-fae dton-cháo","He likes to drink coffee in the morning."],
-  ["นกตัวนี้สวยมาก","nók dtuua née sŭuay mâak","This bird is very beautiful."],
-  ["ทำไมคุณเหนื่อย","tham-mai kun nʉ̀ai","Why are you tired?"],
-  ["ร้านกาแฟอยู่ใกล้ธนาคาร","ráan gaa-fae yòo glâi tá-naa-kaan","The coffee shop is near the bank."],
-  ["พี่ชายของฉันขับรถไปโรงเรียน","pêe chaai kŏng chăn khàp rót bpai rohng riian","My older brother drives to school."],
-  ["เมื่อคืนเรากินข้าวที่ร้าน","mêuua keun rao gin kâao têe ráan","Last night we ate at the restaurant."],
-  ["หมาของเขานอนบนเตียง","măa kŏng kăo non bon dtiiang","His dog sleeps on the bed."],
-  ["ฉันอยากซื้อดอกไม้ให้แฟน","chăn yàak séu dòk mái hâi faen","I want to buy flowers for my partner."],
-  ["วันนี้ร้อนมาก","wan-née rón mâak","Today is very hot."],
-  ["ช้างใหญ่กว่าหมา","cháang yài gwàa măa","The elephant is bigger than the dog."],
-  ["คุณจะไปโรงเรียนเมื่อไหร่","kun jà bpai rohng riian mêuua-rài","When will you go to school?"],
-  ["เพื่อนของฉันเป็นคนใจดี","pêuuan kŏng chăn bpen kon jai-dii","My friend is a kind person."],
-  ["ผมกำลังหาแมวอยู่","pŏm gam-lang hăa maew yòo","I'm looking for the cat."],
-  ["น้องสาวชอบกินมะม่วง","nóng săao chôp gin má-mûuang","(My) younger sister likes to eat mango."],
-  ["ที่วัดมีต้นไม้เยอะ","têe wát mii dtôn mái yúh","There are lots of trees at the temple."],
-  ["เขาพูดภาษาไทยได้","kăo pôot paa-săa tai dâai","He can speak Thai."],
-  ["ฉันไม่ชอบเบียร์","chăn mâi chôp biia","I don't like beer."],
-  ["รถเมล์อยู่ด้านหน้าโรงแรม","rót may yòo dâan nâa rohng raem","The bus is in front of the hotel."],
-  ["คุณอยากดื่มอะไร","kun yàak dèum à-rai","What do you want to drink?"],
-  ["เขาดูหนังทุกคืน","kăo doo năng túk keun","He watches a movie every night."],
-  ["ส้มตำร้านนี้อร่อยมาก","sôm dtam ráan née à-ròi mâak","The papaya salad here is very delicious."],
-  ["คุณจะกินข้าวที่ไหน","kun jà gin kâao têe năi","Where are you going to eat?"],
-  ["หลานสาวของฉันสูงและสวย","lăan săao kŏng chăn sŏong láe sŭuay","My niece is tall and beautiful."],
-  ["ตำรวจข้ามถนน","dtam-rùat kâam tà-nŏn","The policeman crosses the street."],
-  ["ฉันจำชื่อคุณได้","chăn jam chêu kun dâai","I remember your name."],
-  ["คุณตื่นกี่โมง","kun dtèun gèe mohng","What time do you wake up?"],
-  ["พ่อกับแม่อยู่บ้าน","pôr gàp mâe yòo bâan","Dad and mom are at home."],
-  ["ผมหิวมาก อยากกินข้าว","pŏm hĭw mâak, yàak gin kâao","I'm very hungry; I want to eat."],
-  ["โรงแรมอยู่ที่ไหน","rohng raem yòo têe năi","Where is the hotel?"],
-  ["ผมตื่นเช้าทุกวัน","pŏm dtèun cháo túk wan","I wake up early every day."],
-  ["ส้มตำเผ็ดมาก","sôm dtam phèt mâak","The papaya salad is very spicy."],
-  ["เลี้ยวขวาที่ธนาคาร","líieow kwăa têe tá-naa-kaan","Turn right at the bank."],
-  ["เมื่อวานผมทำงานหนัก","mêuua-waan pŏm tam ngaan nàk","Yesterday I worked hard."],
-  ["ขอน้ำส้มหนึ่งแก้ว","kŏr náam sôm nèung gâew","One glass of orange juice, please."],
-  ["สถานีรถไฟอยู่ไกลไหม","sà-tăa-nee rót fai yòo glai măi","Is the train station far?"],
-  ["แม่ทำอาหารเย็นทุกวัน","mâe tam aa-hăan yen túk wan","Mom makes dinner every day."],
-  ["ร้านอาหารนี้แพง","ráan aa-hăan née phaeng","This restaurant is expensive."],
-  ["ผมไปโรงเรียนด้วยจักรยาน","pŏm bpai rohng riian dûuay jàk-grà-yaan","I go to school by bicycle."],
-  ["ผมรักครอบครัวของผม","pŏm rák krôp kruua kŏng pŏm","I love my family."],
-  ["คุณอยากกินอะไร","kun yàak gin à-rai","What do you want to eat?"],
-  ["ตรงไปแล้วเลี้ยวซ้าย","dtrong bpai láew líieow sáai","Go straight then turn left."],
-  ["พี่สาวของฉันเรียนที่โรงเรียน","pêe săao kŏng chăn riian têe rohng riian","My older sister studies at school."],
-  ["ผมชอบกินไก่มากกว่าหมู","pŏm chôp gin gài mâak gwàa mŏo","I like eating chicken more than pork."],
-  ["โรงพยาบาลอยู่ใกล้ตลาด","rohng pá-yaa-baan yòo glâi dtà-làat","The hospital is near the market."],
-  ["คุณตื่นกี่โมงทุกวัน","kun dtèun gèe mohng túk wan","What time do you wake up every day?"],
-  ["อาหารร้อนแล้ว","aa-hăan rón láew","The food is hot now."],
-  ["คุณจะไปสนามบินยังไง","kun jà bpai sà-năam bin yang ngai","How will you get to the airport?"],
-  ["ตอนเย็นผมชอบฟังเพลง","dton yen pŏm chôp fang pleng","In the evening I like to listen to music."],
-  ["ขอเมนูหน่อย","kŏr mee-noo nòi","May I have the menu?"],
-  ["ขึ้นรถเมล์ที่นี่","kʉ̂n rót may têe nêe","Take the bus here."],
-  ["น้องชายของผมอายุสิบปี","nóng chaai kŏng pŏm aa-yú sìp bpii","My younger brother is ten years old."],
-  ["ข้าวผัดจานนี้อร่อยมาก","kâao pàt jaan née à-ròi mâak","This plate of fried rice is delicious."],
-  ["บ้านผมอยู่ข้างวัด","bâan pŏm yòo kâang wát","My house is next to the temple."],
-  ["วันนี้ผมยุ่งมาก","wan-née pŏm yûng mâak","Today I'm very busy."],
-  ["ผมอิ่มแล้ว","pŏm ìm láew","I'm full now."],
-  ["เรานั่งเรือไปเที่ยว","rao nâng reuua bpai tîieow","We take a boat to go traveling."],
-  ["พ่อดูหนังทุกคืน","pôr doo năng túk keun","Dad watches a movie every night."],
-  ["น้ำเปล่าเย็นไหม","náam bplào yen măi","Is the water cold?"],
-  ["แท็กซี่แพงกว่ารถเมล์","táek-sêe phaeng gwàa rót may","The taxi is more expensive than the bus."],
-  ["ผมคิดถึงเพื่อน","pŏm kít tʉ̌ng pêuuan","I miss my friend."],
-  ["เอากาแฟเย็นหนึ่งที่","ao gaa-fae yen nèung têe","One iced coffee, please."],
-  ["ห้างอยู่ตรงไหน","hâang yòo dtrong năi","Where exactly is the mall?"],
-  ["เธอสวยและใจดี","thəə sŭuay láe jai-dii","She is beautiful and kind."],
-  ["ร้านนี้ขายผลไม้","ráan née kăai pŏn-lá-mái","This shop sells fruit."],
-  ["ผมเดินไปตลาดทุกเช้า","pŏm dəən bpai dtà-làat túk cháo","I walk to the market every morning."],
-  ["ผมอาบน้ำตอนเช้า","pŏm àap náam dton cháo","I shower in the morning."],
-  ["กล้วยหวานมาก","glûuay wăan mâak","The banana is very sweet."],
-  ["รถไฟมากี่โมง","rót fai maa gèe mohng","What time does the train come?"],
-  ["พรุ่งนี้เพื่อนจะมาบ้าน","prûng-née pêuuan jà maa bâan","Tomorrow my friend will come over."],
-  ["คิดเงินเท่าไหร่","kít ngern thâo-rài","How much is it?"],
-  ["เลี้ยวซ้ายที่โรงเรียน","líieow sáai têe rohng riian","Turn left at the school."],
-  ["เขาชื่ออะไร","kăo chêu à-rai","What is his name?"],
-  ["ตลาดขายปลาสด","dtà-làat kăai bplaa sòt","The market sells fresh fish."],
-  ["สนามบินอยู่ไกลจากเมือง","sà-năam bin yòo glai jàak mʉang","The airport is far from the city."],
-  ["ผมนอนดึกทุกคืน","pŏm non dʉ̀k túk keun","I sleep late every night."],
-  ["ผมไม่กินเผ็ด","pŏm mâi gin phèt","I don't eat spicy food."],
-  ["คุณมาที่นี่ยังไง","kun maa têe nêe yang ngai","How did you get here?"],
-  ["แม่ของฉันทำงานที่ธนาคาร","mâe kŏng chăn tam ngaan têe tá-naa-kaan","My mom works at the bank."],
-  ["ขอข้าวสองจาน","kŏr kâao sŏng jaan","Two plates of rice, please."],
-  ["ธนาคารอยู่ตรงข้ามโรงแรม","tá-naa-kaan yòo dtrong kâam rohng raem","The bank is across from the hotel."],
-  ["คุณมีพี่น้องกี่คน","kun mii pêe nóng gèe kon","How many siblings do you have?"],
-  ["อาหารไทยอร่อยกว่าอาหารญี่ปุ่น","aa-hăan tai à-ròi gwàa aa-hăan yêe-bpùn","Thai food is more delicious than Japanese food."],
-  ["ผมขับรถไปทะเล","pŏm khàp rót bpai tá-lee","I drive to the sea."],
-  ["เขาเหนื่อยเพราะทำงานเยอะ","kăo nʉ̀ai phrɔ́ tam ngaan yúh","He's tired because he works a lot."],
-  ["คุณดื่มเบียร์ไหม","kun dèum biia măi","Do you drink beer?"],
-  ["ที่นี่มีรถไฟไหม","têe nêe mii rót fai măi","Is there a train here?"],
-  ["วันนี้อากาศดี","wan-née aa-gàat dii","The weather is nice today."],
-  ["ขนมนี้หวานมาก","kà-nŏm née wăan mâak","This snack is very sweet."],
-  ["เดินตรงไปห้านาที","dəən dtrong bpai hâa naa-tee","Walk straight for five minutes."],
-  ["ผมชอบอ่านหนังสือตอนกลางคืน","pŏm chôp àan nǎng-sʉ̌ʉ dton glaang keun","I like reading books at night."],
-  ["เอาส้มตำไม่เผ็ด","ao sôm dtam mâi phèt","I'll have papaya salad, not spicy."],
-  ["วัดอยู่หลังตลาด","wát yòo lăng dtà-làat","The temple is behind the market."],
-  ["เพื่อนของผมใจดีมาก","pêuuan kŏng pŏm jai-dii mâak","My friend is very kind."],
-  ["ร้านกาแฟเปิดกี่โมง","ráan gaa-fae bpèrt gèe mohng","What time does the coffee shop open?"],
-  ["ผมหลงทาง","pŏm lŏng taang","I'm lost."],
-  ["พี่สาวทำงานทุกวัน","pêe săao tam ngaan túk wan","Older sister works every day."],
-  ["น้ำส้มแก้วนี้เท่าไหร่","náam sôm gâew née thâo-rài","How much is this glass of orange juice?"],
-  ["ขอตั๋วรถไฟสองใบ","kŏr dtŭua rót fai sŏng bai","Two train tickets, please."],
-  ["คุณทำอะไรตอนเย็น","kun tam à-rai dton yen","What do you do in the evening?"],
-  ["ผมอยากกินก๋วยเตี๋ยว","pŏm yàak gin gŭay-dtĭieow","I want to eat noodles."],
-  ["โรงแรมอยู่ใกล้สถานี","rohng raem yòo glâi sà-tăa-nee","The hotel is near the station."],
-  ["ผมออกกำลังกายทุกเช้า","pŏm òk gam-lang gaai túk cháo","I exercise every morning."],
-  ["ไข่กับข้าวอร่อย","kài gàp kâao à-ròi","Egg with rice is tasty."],
-  ["คุณจะไปไหน","kun jà bpai năi","Where are you going?"],
-  ["เธอเรียนภาษาไทย","thəə riian paa-săa tai","She studies Thai."],
-  ["คุณชอบอาหารเผ็ดไหม","kun chôp aa-hăan phèt măi","Do you like spicy food?"],
-  ["รถเมล์คันนี้ไปห้าง","rót may kan née bpai hâang","This bus goes to the mall."],
-  ["ครอบครัวของผมอยู่กรุงเทพ","krôp kruua kŏng pŏm yòo grung-têep","My family lives in Bangkok."],
-  ["ขอช้อนกับส้อม","kŏr chón gàp sôm","Spoon and fork, please."],
-  ["เลี้ยวขวาแล้วตรงไป","líieow kwăa láew dtrong bpai","Turn right then go straight."],
-  ["พ่อกับแม่รักผม","pôr gàp mâe rák pŏm","Dad and mom love me."],
-  ["ร้านนี้ถูกและอร่อย","ráan née tòok láe à-ròi","This shop is cheap and tasty."],
-  ["ผมชอบเดินเล่นในสวน","pŏm chôp dəən lên nai sŭuan","I like to stroll in the park."],
-  ["วันนี้ผมมีความสุข","wan-née pŏm mii kwaam sùk","Today I'm happy."],
-  ["ผมกินข้าวเช้าทุกวัน","pŏm gin kâao cháo túk wan","I eat breakfast every day."],
-  ["บ้านคุณอยู่ไกลไหม","bâan kun yòo glai măi","Is your house far?"],
-  ["คืนนี้ผมจะนอนเร็ว","keun née pŏm jà non reo","Tonight I'll sleep early."],
+const DEFAULT_SETS = [
+  {
+    "id": "set1",
+    "title": "Set 1 · Sentences",
+    "lines": [
+      {
+        "th": "ป้าอ้วนแต่หลานสาวผอม",
+        "rom": "bpâa ûuan dtàe lăan săao pŏm",
+        "en": "Aunt is fat but niece is skinny."
+      },
+      {
+        "th": "ช้างใหญ่กว่าเรือ",
+        "rom": "cháang yài gwàa reuua",
+        "en": "The elephant is bigger than the boat."
+      },
+      {
+        "th": "อย่าเชื่อผู้ขาย",
+        "rom": "yàa chêuua pôo kăai",
+        "en": "Don't believe the seller."
+      },
+      {
+        "th": "กุญแจอยู่ข้างในโรงแรม",
+        "rom": "gun-jae yòo kâang nai rohng raem",
+        "en": "The keys are inside the hotel."
+      },
+      {
+        "th": "นกกินส้มตำของฉัน",
+        "rom": "nók gin sôm dtam kŏng chăn",
+        "en": "The bird ate my papaya salad."
+      },
+      {
+        "th": "ฉันกำลังหาแมวใต้เตียง",
+        "rom": "chăn gam-lang hăa maew dtâi dtiiang",
+        "en": "I'm looking for the cat under the bed."
+      },
+      {
+        "th": "ร้านยาอยู่ด้านหลังธนาคาร",
+        "rom": "ráan yaa yòo dâan lăng tá-naa-kaan",
+        "en": "The pharmacy is behind the bank."
+      },
+      {
+        "th": "หมอขับรถไปวัดทุกวันอาทิตย์",
+        "rom": "mŏr khàp rót bpai wát túk wan aa-tít",
+        "en": "The doctor drives to the temple every Sunday."
+      },
+      {
+        "th": "คนสูงข้ามถนน",
+        "rom": "kon sŏong kâam tà-nŏn",
+        "en": "The tall person crosses the street."
+      },
+      {
+        "th": "หลานชายซื่อสัตย์และใจดี",
+        "rom": "lăan chaai sʉ̂ʉ-sàt láe jai-dii",
+        "en": "Grandson is honest and kind."
+      },
+      {
+        "th": "หลานชายมีผมสั้นบลอนและจมูกเล็ก",
+        "rom": "lăan chaai mii phǒm sân blɔɔn láe jà-mùuk lék",
+        "en": "Nephew has short blonde hair and a small nose."
+      },
+      {
+        "th": "เลี้ยวซ้ายที่วัด โรงพยาบาลอยู่ไกล",
+        "rom": "líieow sáai têe wát, rohng pá-yaa-baan yòo glai",
+        "en": "Turn left at the temple; the hospital is far."
+      },
+      {
+        "th": "ทำไมแมวง่วง เพราะกินเยอะ",
+        "rom": "tham-mai maew ngûang, phrɔ́ gin yúh",
+        "en": "Why is the cat sleepy? Because it ate a lot."
+      },
+      {
+        "th": "ลูกค้าเอาส้อมสองอันและช้อนหนึ่งอัน",
+        "rom": "lôok káa ao sôm sŏng an láe chón nèung an",
+        "en": "The customer wants two forks and one spoon."
+      },
+      {
+        "th": "ภรรยาทำข้าวผัดทุกคืน",
+        "rom": "pan-rá-yaa tham kâao pàt túk keun",
+        "en": "(My) wife makes fried rice every night."
+      },
+      {
+        "th": "หมาอยู่บนโต๊ะอีก อุบาทว์",
+        "rom": "măa yòo bon dtó èek, ù-bàat",
+        "en": "The dog is on the table again — disgusting."
+      },
+      {
+        "th": "ฉันจำนามสกุลของคุณได้",
+        "rom": "chăn jam naam sà-gun kŏng kun dâai",
+        "en": "I remember your family name."
+      },
+      {
+        "th": "ซีอิ๊วอยู่ข้างน้ำปลาไหม",
+        "rom": "see íw yòo kâang náam bplaa măi",
+        "en": "Is the soy sauce next to the fish sauce?"
+      },
+      {
+        "th": "พี่ชายไม่ค่อยออกกำลังกาย",
+        "rom": "pêe chaai mâi kôi òk gam-lang gaai",
+        "en": "Older brother rarely exercises."
+      },
+      {
+        "th": "เปิดหน้าต่าง ห้องนอนร้อน",
+        "rom": "bpə̀ət nâa-dtàang, hông non rón",
+        "en": "Open the window — the bedroom is hot."
+      },
+      {
+        "th": "ชอบฤดูไหน ฉันชอบฤดูหนาว",
+        "rom": "chôp réu-doo năi, chăn chôp réu-doo năao",
+        "en": "Which season do you like? I like winter."
+      },
+      {
+        "th": "สัตว์เลี้ยงของฉันคือนก มันอยู่บนต้นไม้",
+        "rom": "sàt líiang kŏng chăn keu nók, man yòo bon dtôn mái",
+        "en": "My pet is a bird; it's up in the tree."
+      },
+      {
+        "th": "เขาดื่มน้ำสามแก้วเพราะหิวน้ำ",
+        "rom": "kăo dèum náam săam gâew phrɔ́ hĭw náam",
+        "en": "He drank three glasses of water because he was thirsty."
+      },
+      {
+        "th": "ตลาดปิดแล้ว ไปห้างกัน",
+        "rom": "dtà-làat bpìt láew, bpai hâang gan",
+        "en": "The market's closed — let's go to the mall."
+      },
+      {
+        "th": "พี่ชายบินไปญี่ปุ่น น้องสาวขับรถไปบุรีรัมย์",
+        "rom": "pêe chaai bin bpai yêe-bpùn, nóng săao khàp rót bpai bù-ree-ram",
+        "en": "Older brother flew to Japan; younger sister drove to Buriram."
+      },
+      {
+        "th": "ธนาคารอยู่ชั้นบน สำนักงานอยู่ชั้นล่าง",
+        "rom": "tá-naa-kaan yòo chán bon, săm-nák ngaan yòo chán lâang",
+        "en": "The bank is upstairs; the office is downstairs."
+      }
+    ]
+  },
+  {
+    "id": "set2",
+    "title": "Set 2 · Mix",
+    "lines": [
+      {
+        "th": "แมวของฉันหิวน้ำ",
+        "rom": "maew kŏng chăn hĭw náam",
+        "en": "My cat is thirsty."
+      },
+      {
+        "th": "พรุ่งนี้ฉันจะไปตลาดกับเพื่อน",
+        "rom": "prûng-née chăn jà bpai dtà-làat gàp pêuuan",
+        "en": "Tomorrow I'll go to the market with a friend."
+      },
+      {
+        "th": "หมออยู่ที่โรงพยาบาลทุกวัน",
+        "rom": "mŏr yòo têe rohng pá-yaa-baan túk wan",
+        "en": "The doctor is at the hospital every day."
+      },
+      {
+        "th": "เขาชอบดื่มกาแฟตอนเช้า",
+        "rom": "kăo chôp dèum gaa-fae dton-cháo",
+        "en": "He likes to drink coffee in the morning."
+      },
+      {
+        "th": "นกตัวนี้สวยมาก",
+        "rom": "nók dtuua née sŭuay mâak",
+        "en": "This bird is very beautiful."
+      },
+      {
+        "th": "ทำไมคุณเหนื่อย",
+        "rom": "tham-mai kun nʉ̀ai",
+        "en": "Why are you tired?"
+      },
+      {
+        "th": "ร้านกาแฟอยู่ใกล้ธนาคาร",
+        "rom": "ráan gaa-fae yòo glâi tá-naa-kaan",
+        "en": "The coffee shop is near the bank."
+      },
+      {
+        "th": "พี่ชายของฉันขับรถไปโรงเรียน",
+        "rom": "pêe chaai kŏng chăn khàp rót bpai rohng riian",
+        "en": "My older brother drives to school."
+      },
+      {
+        "th": "เมื่อคืนเรากินข้าวที่ร้าน",
+        "rom": "mêuua keun rao gin kâao têe ráan",
+        "en": "Last night we ate at the restaurant."
+      },
+      {
+        "th": "หมาของเขานอนบนเตียง",
+        "rom": "măa kŏng kăo non bon dtiiang",
+        "en": "His dog sleeps on the bed."
+      },
+      {
+        "th": "ฉันอยากซื้อดอกไม้ให้แฟน",
+        "rom": "chăn yàak séu dòk mái hâi faen",
+        "en": "I want to buy flowers for my partner."
+      },
+      {
+        "th": "วันนี้ร้อนมาก",
+        "rom": "wan-née rón mâak",
+        "en": "Today is very hot."
+      },
+      {
+        "th": "ช้างใหญ่กว่าหมา",
+        "rom": "cháang yài gwàa măa",
+        "en": "The elephant is bigger than the dog."
+      },
+      {
+        "th": "คุณจะไปโรงเรียนเมื่อไหร่",
+        "rom": "kun jà bpai rohng riian mêuua-rài",
+        "en": "When will you go to school?"
+      },
+      {
+        "th": "เพื่อนของฉันเป็นคนใจดี",
+        "rom": "pêuuan kŏng chăn bpen kon jai-dii",
+        "en": "My friend is a kind person."
+      },
+      {
+        "th": "ผมกำลังหาแมวอยู่",
+        "rom": "pŏm gam-lang hăa maew yòo",
+        "en": "I'm looking for the cat."
+      },
+      {
+        "th": "น้องสาวชอบกินมะม่วง",
+        "rom": "nóng săao chôp gin má-mûuang",
+        "en": "(My) younger sister likes to eat mango."
+      },
+      {
+        "th": "ที่วัดมีต้นไม้เยอะ",
+        "rom": "têe wát mii dtôn mái yúh",
+        "en": "There are lots of trees at the temple."
+      },
+      {
+        "th": "เขาพูดภาษาไทยได้",
+        "rom": "kăo pôot paa-săa tai dâai",
+        "en": "He can speak Thai."
+      },
+      {
+        "th": "ฉันไม่ชอบเบียร์",
+        "rom": "chăn mâi chôp biia",
+        "en": "I don't like beer."
+      },
+      {
+        "th": "รถเมล์อยู่ด้านหน้าโรงแรม",
+        "rom": "rót may yòo dâan nâa rohng raem",
+        "en": "The bus is in front of the hotel."
+      },
+      {
+        "th": "คุณอยากดื่มอะไร",
+        "rom": "kun yàak dèum à-rai",
+        "en": "What do you want to drink?"
+      },
+      {
+        "th": "เขาดูหนังทุกคืน",
+        "rom": "kăo doo năng túk keun",
+        "en": "He watches a movie every night."
+      },
+      {
+        "th": "ส้มตำร้านนี้อร่อยมาก",
+        "rom": "sôm dtam ráan née à-ròi mâak",
+        "en": "The papaya salad here is very delicious."
+      },
+      {
+        "th": "คุณจะกินข้าวที่ไหน",
+        "rom": "kun jà gin kâao têe năi",
+        "en": "Where are you going to eat?"
+      },
+      {
+        "th": "หลานสาวของฉันสูงและสวย",
+        "rom": "lăan săao kŏng chăn sŏong láe sŭuay",
+        "en": "My niece is tall and beautiful."
+      },
+      {
+        "th": "ตำรวจข้ามถนน",
+        "rom": "dtam-rùat kâam tà-nŏn",
+        "en": "The policeman crosses the street."
+      },
+      {
+        "th": "ฉันจำชื่อคุณได้",
+        "rom": "chăn jam chêu kun dâai",
+        "en": "I remember your name."
+      },
+      {
+        "th": "คุณตื่นกี่โมง",
+        "rom": "kun dtèun gèe mohng",
+        "en": "What time do you wake up?"
+      },
+      {
+        "th": "พ่อกับแม่อยู่บ้าน",
+        "rom": "pôr gàp mâe yòo bâan",
+        "en": "Dad and mom are at home."
+      }
+    ]
+  },
+  {
+    "id": "set3",
+    "title": "Set 3 · Mix",
+    "lines": [
+      {
+        "th": "ผมหิวมาก อยากกินข้าว",
+        "rom": "pŏm hĭw mâak, yàak gin kâao",
+        "en": "I'm very hungry; I want to eat."
+      },
+      {
+        "th": "โรงแรมอยู่ที่ไหน",
+        "rom": "rohng raem yòo têe năi",
+        "en": "Where is the hotel?"
+      },
+      {
+        "th": "ผมตื่นเช้าทุกวัน",
+        "rom": "pŏm dtèun cháo túk wan",
+        "en": "I wake up early every day."
+      },
+      {
+        "th": "ส้มตำเผ็ดมาก",
+        "rom": "sôm dtam phèt mâak",
+        "en": "The papaya salad is very spicy."
+      },
+      {
+        "th": "เลี้ยวขวาที่ธนาคาร",
+        "rom": "líieow kwăa têe tá-naa-kaan",
+        "en": "Turn right at the bank."
+      },
+      {
+        "th": "เมื่อวานผมทำงานหนัก",
+        "rom": "mêuua-waan pŏm tam ngaan nàk",
+        "en": "Yesterday I worked hard."
+      },
+      {
+        "th": "ขอน้ำส้มหนึ่งแก้ว",
+        "rom": "kŏr náam sôm nèung gâew",
+        "en": "One glass of orange juice, please."
+      },
+      {
+        "th": "สถานีรถไฟอยู่ไกลไหม",
+        "rom": "sà-tăa-nee rót fai yòo glai măi",
+        "en": "Is the train station far?"
+      },
+      {
+        "th": "แม่ทำอาหารเย็นทุกวัน",
+        "rom": "mâe tam aa-hăan yen túk wan",
+        "en": "Mom makes dinner every day."
+      },
+      {
+        "th": "ร้านอาหารนี้แพง",
+        "rom": "ráan aa-hăan née phaeng",
+        "en": "This restaurant is expensive."
+      },
+      {
+        "th": "ผมไปโรงเรียนด้วยจักรยาน",
+        "rom": "pŏm bpai rohng riian dûuay jàk-grà-yaan",
+        "en": "I go to school by bicycle."
+      },
+      {
+        "th": "ผมรักครอบครัวของผม",
+        "rom": "pŏm rák krôp kruua kŏng pŏm",
+        "en": "I love my family."
+      },
+      {
+        "th": "คุณอยากกินอะไร",
+        "rom": "kun yàak gin à-rai",
+        "en": "What do you want to eat?"
+      },
+      {
+        "th": "ตรงไปแล้วเลี้ยวซ้าย",
+        "rom": "dtrong bpai láew líieow sáai",
+        "en": "Go straight then turn left."
+      },
+      {
+        "th": "พี่สาวของฉันเรียนที่โรงเรียน",
+        "rom": "pêe săao kŏng chăn riian têe rohng riian",
+        "en": "My older sister studies at school."
+      },
+      {
+        "th": "ผมชอบกินไก่มากกว่าหมู",
+        "rom": "pŏm chôp gin gài mâak gwàa mŏo",
+        "en": "I like eating chicken more than pork."
+      },
+      {
+        "th": "โรงพยาบาลอยู่ใกล้ตลาด",
+        "rom": "rohng pá-yaa-baan yòo glâi dtà-làat",
+        "en": "The hospital is near the market."
+      },
+      {
+        "th": "คุณตื่นกี่โมงทุกวัน",
+        "rom": "kun dtèun gèe mohng túk wan",
+        "en": "What time do you wake up every day?"
+      },
+      {
+        "th": "อาหารร้อนแล้ว",
+        "rom": "aa-hăan rón láew",
+        "en": "The food is hot now."
+      },
+      {
+        "th": "คุณจะไปสนามบินยังไง",
+        "rom": "kun jà bpai sà-năam bin yang ngai",
+        "en": "How will you get to the airport?"
+      },
+      {
+        "th": "ตอนเย็นผมชอบฟังเพลง",
+        "rom": "dton yen pŏm chôp fang pleng",
+        "en": "In the evening I like to listen to music."
+      },
+      {
+        "th": "ขอเมนูหน่อย",
+        "rom": "kŏr mee-noo nòi",
+        "en": "May I have the menu?"
+      },
+      {
+        "th": "ขึ้นรถเมล์ที่นี่",
+        "rom": "kʉ̂n rót may têe nêe",
+        "en": "Take the bus here."
+      },
+      {
+        "th": "น้องชายของผมอายุสิบปี",
+        "rom": "nóng chaai kŏng pŏm aa-yú sìp bpii",
+        "en": "My younger brother is ten years old."
+      },
+      {
+        "th": "ข้าวผัดจานนี้อร่อยมาก",
+        "rom": "kâao pàt jaan née à-ròi mâak",
+        "en": "This plate of fried rice is delicious."
+      },
+      {
+        "th": "บ้านผมอยู่ข้างวัด",
+        "rom": "bâan pŏm yòo kâang wát",
+        "en": "My house is next to the temple."
+      },
+      {
+        "th": "วันนี้ผมยุ่งมาก",
+        "rom": "wan-née pŏm yûng mâak",
+        "en": "Today I'm very busy."
+      },
+      {
+        "th": "ผมอิ่มแล้ว",
+        "rom": "pŏm ìm láew",
+        "en": "I'm full now."
+      },
+      {
+        "th": "เรานั่งเรือไปเที่ยว",
+        "rom": "rao nâng reuua bpai tîieow",
+        "en": "We take a boat to go traveling."
+      },
+      {
+        "th": "พ่อดูหนังทุกคืน",
+        "rom": "pôr doo năng túk keun",
+        "en": "Dad watches a movie every night."
+      }
+    ]
+  },
+  {
+    "id": "set4",
+    "title": "Set 4 · Mix",
+    "lines": [
+      {
+        "th": "น้ำเปล่าเย็นไหม",
+        "rom": "náam bplào yen măi",
+        "en": "Is the water cold?"
+      },
+      {
+        "th": "แท็กซี่แพงกว่ารถเมล์",
+        "rom": "táek-sêe phaeng gwàa rót may",
+        "en": "The taxi is more expensive than the bus."
+      },
+      {
+        "th": "ผมคิดถึงเพื่อน",
+        "rom": "pŏm kít tʉ̌ng pêuuan",
+        "en": "I miss my friend."
+      },
+      {
+        "th": "เอากาแฟเย็นหนึ่งที่",
+        "rom": "ao gaa-fae yen nèung têe",
+        "en": "One iced coffee, please."
+      },
+      {
+        "th": "ห้างอยู่ตรงไหน",
+        "rom": "hâang yòo dtrong năi",
+        "en": "Where exactly is the mall?"
+      },
+      {
+        "th": "เธอสวยและใจดี",
+        "rom": "thəə sŭuay láe jai-dii",
+        "en": "She is beautiful and kind."
+      },
+      {
+        "th": "ร้านนี้ขายผลไม้",
+        "rom": "ráan née kăai pŏn-lá-mái",
+        "en": "This shop sells fruit."
+      },
+      {
+        "th": "ผมเดินไปตลาดทุกเช้า",
+        "rom": "pŏm dəən bpai dtà-làat túk cháo",
+        "en": "I walk to the market every morning."
+      },
+      {
+        "th": "ผมอาบน้ำตอนเช้า",
+        "rom": "pŏm àap náam dton cháo",
+        "en": "I shower in the morning."
+      },
+      {
+        "th": "กล้วยหวานมาก",
+        "rom": "glûuay wăan mâak",
+        "en": "The banana is very sweet."
+      },
+      {
+        "th": "รถไฟมากี่โมง",
+        "rom": "rót fai maa gèe mohng",
+        "en": "What time does the train come?"
+      },
+      {
+        "th": "พรุ่งนี้เพื่อนจะมาบ้าน",
+        "rom": "prûng-née pêuuan jà maa bâan",
+        "en": "Tomorrow my friend will come over."
+      },
+      {
+        "th": "คิดเงินเท่าไหร่",
+        "rom": "kít ngern thâo-rài",
+        "en": "How much is it?"
+      },
+      {
+        "th": "เลี้ยวซ้ายที่โรงเรียน",
+        "rom": "líieow sáai têe rohng riian",
+        "en": "Turn left at the school."
+      },
+      {
+        "th": "เขาชื่ออะไร",
+        "rom": "kăo chêu à-rai",
+        "en": "What is his name?"
+      },
+      {
+        "th": "ตลาดขายปลาสด",
+        "rom": "dtà-làat kăai bplaa sòt",
+        "en": "The market sells fresh fish."
+      },
+      {
+        "th": "สนามบินอยู่ไกลจากเมือง",
+        "rom": "sà-năam bin yòo glai jàak mʉang",
+        "en": "The airport is far from the city."
+      },
+      {
+        "th": "ผมนอนดึกทุกคืน",
+        "rom": "pŏm non dʉ̀k túk keun",
+        "en": "I sleep late every night."
+      },
+      {
+        "th": "ผมไม่กินเผ็ด",
+        "rom": "pŏm mâi gin phèt",
+        "en": "I don't eat spicy food."
+      },
+      {
+        "th": "คุณมาที่นี่ยังไง",
+        "rom": "kun maa têe nêe yang ngai",
+        "en": "How did you get here?"
+      },
+      {
+        "th": "แม่ของฉันทำงานที่ธนาคาร",
+        "rom": "mâe kŏng chăn tam ngaan têe tá-naa-kaan",
+        "en": "My mom works at the bank."
+      },
+      {
+        "th": "ขอข้าวสองจาน",
+        "rom": "kŏr kâao sŏng jaan",
+        "en": "Two plates of rice, please."
+      },
+      {
+        "th": "ธนาคารอยู่ตรงข้ามโรงแรม",
+        "rom": "tá-naa-kaan yòo dtrong kâam rohng raem",
+        "en": "The bank is across from the hotel."
+      },
+      {
+        "th": "คุณมีพี่น้องกี่คน",
+        "rom": "kun mii pêe nóng gèe kon",
+        "en": "How many siblings do you have?"
+      },
+      {
+        "th": "อาหารไทยอร่อยกว่าอาหารญี่ปุ่น",
+        "rom": "aa-hăan tai à-ròi gwàa aa-hăan yêe-bpùn",
+        "en": "Thai food is more delicious than Japanese food."
+      },
+      {
+        "th": "ผมขับรถไปทะเล",
+        "rom": "pŏm khàp rót bpai tá-lee",
+        "en": "I drive to the sea."
+      },
+      {
+        "th": "เขาเหนื่อยเพราะทำงานเยอะ",
+        "rom": "kăo nʉ̀ai phrɔ́ tam ngaan yúh",
+        "en": "He's tired because he works a lot."
+      },
+      {
+        "th": "คุณดื่มเบียร์ไหม",
+        "rom": "kun dèum biia măi",
+        "en": "Do you drink beer?"
+      },
+      {
+        "th": "ที่นี่มีรถไฟไหม",
+        "rom": "têe nêe mii rót fai măi",
+        "en": "Is there a train here?"
+      },
+      {
+        "th": "วันนี้อากาศดี",
+        "rom": "wan-née aa-gàat dii",
+        "en": "The weather is nice today."
+      }
+    ]
+  },
+  {
+    "id": "set5",
+    "title": "Set 5 · Mix",
+    "lines": [
+      {
+        "th": "ขนมนี้หวานมาก",
+        "rom": "kà-nŏm née wăan mâak",
+        "en": "This snack is very sweet."
+      },
+      {
+        "th": "เดินตรงไปห้านาที",
+        "rom": "dəən dtrong bpai hâa naa-tee",
+        "en": "Walk straight for five minutes."
+      },
+      {
+        "th": "ผมชอบอ่านหนังสือตอนกลางคืน",
+        "rom": "pŏm chôp àan nǎng-sʉ̌ʉ dton glaang keun",
+        "en": "I like reading books at night."
+      },
+      {
+        "th": "เอาส้มตำไม่เผ็ด",
+        "rom": "ao sôm dtam mâi phèt",
+        "en": "I'll have papaya salad, not spicy."
+      },
+      {
+        "th": "วัดอยู่หลังตลาด",
+        "rom": "wát yòo lăng dtà-làat",
+        "en": "The temple is behind the market."
+      },
+      {
+        "th": "เพื่อนของผมใจดีมาก",
+        "rom": "pêuuan kŏng pŏm jai-dii mâak",
+        "en": "My friend is very kind."
+      },
+      {
+        "th": "ร้านกาแฟเปิดกี่โมง",
+        "rom": "ráan gaa-fae bpèrt gèe mohng",
+        "en": "What time does the coffee shop open?"
+      },
+      {
+        "th": "ผมหลงทาง",
+        "rom": "pŏm lŏng taang",
+        "en": "I'm lost."
+      },
+      {
+        "th": "พี่สาวทำงานทุกวัน",
+        "rom": "pêe săao tam ngaan túk wan",
+        "en": "Older sister works every day."
+      },
+      {
+        "th": "น้ำส้มแก้วนี้เท่าไหร่",
+        "rom": "náam sôm gâew née thâo-rài",
+        "en": "How much is this glass of orange juice?"
+      },
+      {
+        "th": "ขอตั๋วรถไฟสองใบ",
+        "rom": "kŏr dtŭua rót fai sŏng bai",
+        "en": "Two train tickets, please."
+      },
+      {
+        "th": "คุณทำอะไรตอนเย็น",
+        "rom": "kun tam à-rai dton yen",
+        "en": "What do you do in the evening?"
+      },
+      {
+        "th": "ผมอยากกินก๋วยเตี๋ยว",
+        "rom": "pŏm yàak gin gŭay-dtĭieow",
+        "en": "I want to eat noodles."
+      },
+      {
+        "th": "โรงแรมอยู่ใกล้สถานี",
+        "rom": "rohng raem yòo glâi sà-tăa-nee",
+        "en": "The hotel is near the station."
+      },
+      {
+        "th": "ผมออกกำลังกายทุกเช้า",
+        "rom": "pŏm òk gam-lang gaai túk cháo",
+        "en": "I exercise every morning."
+      },
+      {
+        "th": "ไข่กับข้าวอร่อย",
+        "rom": "kài gàp kâao à-ròi",
+        "en": "Egg with rice is tasty."
+      },
+      {
+        "th": "คุณจะไปไหน",
+        "rom": "kun jà bpai năi",
+        "en": "Where are you going?"
+      },
+      {
+        "th": "เธอเรียนภาษาไทย",
+        "rom": "thəə riian paa-săa tai",
+        "en": "She studies Thai."
+      },
+      {
+        "th": "คุณชอบอาหารเผ็ดไหม",
+        "rom": "kun chôp aa-hăan phèt măi",
+        "en": "Do you like spicy food?"
+      },
+      {
+        "th": "รถเมล์คันนี้ไปห้าง",
+        "rom": "rót may kan née bpai hâang",
+        "en": "This bus goes to the mall."
+      },
+      {
+        "th": "ครอบครัวของผมอยู่กรุงเทพ",
+        "rom": "krôp kruua kŏng pŏm yòo grung-têep",
+        "en": "My family lives in Bangkok."
+      },
+      {
+        "th": "ขอช้อนกับส้อม",
+        "rom": "kŏr chón gàp sôm",
+        "en": "Spoon and fork, please."
+      },
+      {
+        "th": "เลี้ยวขวาแล้วตรงไป",
+        "rom": "líieow kwăa láew dtrong bpai",
+        "en": "Turn right then go straight."
+      },
+      {
+        "th": "พ่อกับแม่รักผม",
+        "rom": "pôr gàp mâe rák pŏm",
+        "en": "Dad and mom love me."
+      },
+      {
+        "th": "ร้านนี้ถูกและอร่อย",
+        "rom": "ráan née tòok láe à-ròi",
+        "en": "This shop is cheap and tasty."
+      },
+      {
+        "th": "ผมชอบเดินเล่นในสวน",
+        "rom": "pŏm chôp dəən lên nai sŭuan",
+        "en": "I like to stroll in the park."
+      },
+      {
+        "th": "วันนี้ผมมีความสุข",
+        "rom": "wan-née pŏm mii kwaam sùk",
+        "en": "Today I'm happy."
+      },
+      {
+        "th": "ผมกินข้าวเช้าทุกวัน",
+        "rom": "pŏm gin kâao cháo túk wan",
+        "en": "I eat breakfast every day."
+      },
+      {
+        "th": "บ้านคุณอยู่ไกลไหม",
+        "rom": "bâan kun yòo glai măi",
+        "en": "Is your house far?"
+      },
+      {
+        "th": "คืนนี้ผมจะนอนเร็ว",
+        "rom": "keun née pŏm jà non reo",
+        "en": "Tonight I'll sleep early."
+      }
+    ]
+  }
 ];
+
+const MANIFEST_KEY = "thai-practice-manifest";
+
+// deep copy of the built-in sets (used to seed the manifest and to "Reset to built-in")
+function cloneSets(sets){
+  return sets.map(s => ({
+    id: s.id, title: s.title,
+    lines: (s.lines || []).map(l => ({ th: l.th, rom: l.rom || "", en: l.en || "" })),
+  }));
+}
+
+// the live, user-editable manifest — stored in localStorage, seeded from the defaults.
+// Missing built-in sets are seeded in so newly-added sets appear without wiping edits.
+function loadManifest(){
+  let m = null;
+  try { m = JSON.parse(localStorage.getItem(MANIFEST_KEY) || "null"); } catch(e){}
+  if(!Array.isArray(m)) m = [];
+  let changed = false;
+  for(const def of DEFAULT_SETS){
+    if(!m.find(s => s && s.id === def.id)){ m.push(cloneSets([def])[0]); changed = true; }
+  }
+  if(changed){ try { localStorage.setItem(MANIFEST_KEY, JSON.stringify(m)); } catch(e){} }
+  return m;
+}
+function saveManifest(m){ try { localStorage.setItem(MANIFEST_KEY, JSON.stringify(m)); return true; } catch(e){ return false; } }

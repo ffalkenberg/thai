@@ -61,15 +61,30 @@ let starred = new Set();
 try { starred = new Set(JSON.parse(localStorage.getItem(STAR_KEY) || "[]")); } catch(e){}
 function saveStars(){ try { localStorage.setItem(STAR_KEY, JSON.stringify([...starred])); } catch(e){} }
 
+// Resolve the lines to render. A page either supplies SENTENCES directly (e.g. the
+// Saved page), or names a SET_ID whose lines come from the editable manifest (data.js).
+function lineToArr(l){
+  return Array.isArray(l)
+    ? [l[0], l[1] || "", l[2] || ""]
+    : [ (l && (l.th || l.thai)) || "", (l && (l.rom || l.romanization)) || "", (l && (l.en || l.english)) || "" ];
+}
+let LINES = [];
+if(typeof SENTENCES !== "undefined" && Array.isArray(SENTENCES)){
+  LINES = SENTENCES;
+} else if(typeof SET_ID !== "undefined" && typeof loadManifest === "function"){
+  const set = loadManifest().find(s => s && s.id === SET_ID);
+  LINES = (set && Array.isArray(set.lines) ? set.lines : []).map(lineToArr).filter(a => a[0]);
+}
+
 // build a corpus (thai -> [rom, en]) across every page visited, so the Saved page
 // can reconstruct starred lines gathered from any set
 const CORPUS_KEY = "thai-practice-corpus";
 (function mergeCorpus(){
-  if(!Array.isArray(SENTENCES) || !SENTENCES.length) return;
+  if(!LINES.length) return;
   let corpus = {};
   try { corpus = JSON.parse(localStorage.getItem(CORPUS_KEY) || "{}"); } catch(e){}
   let changed = false;
-  SENTENCES.forEach(([thai, rom, en]) => {
+  LINES.forEach(([thai, rom, en]) => {
     const cur = corpus[thai];
     if(!cur || cur[0] !== rom || cur[1] !== en){ corpus[thai] = [rom, en]; changed = true; }
   });
@@ -86,7 +101,7 @@ let highlightCard = null;    // the line showing the play highlight; persists un
 let watchdog = null;         // polls for playback end (iOS's end events are unreliable)
 const list = document.getElementById("list");
 
-SENTENCES.forEach(([thai, rom, en], i) => {
+LINES.forEach(([thai, rom, en], i) => {
   const card = document.createElement("div");
   card.className = "card masked";
   card.style.animationDelay = (i * 35) + "ms";
@@ -137,7 +152,7 @@ SENTENCES.forEach(([thai, rom, en], i) => {
 });
 
 // empty state (used by the Saved page when nothing is starred yet)
-if(list && !SENTENCES.length){
+if(list && !LINES.length){
   const note = document.createElement("p");
   note.className = "empty";
   note.textContent = (typeof EMPTY_MSG !== "undefined" && EMPTY_MSG) ? EMPTY_MSG : "Nothing here yet.";
@@ -352,8 +367,7 @@ const NAV = [
   ["set4.html","Set 4 · Mix"],
   ["set5.html","Set 5 · Mix"],
   ["liked.html","★ Saved"],
-  ["custom.html","My deck"],
-  ["data.html","Data"],
+  ["data.html","Data · edit"],
 ];
 (function buildNav(){
   const navEl = document.querySelector ? document.querySelector(".nav") : null;

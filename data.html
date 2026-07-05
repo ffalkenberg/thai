@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 <div class="wrap">
@@ -20,21 +20,19 @@
       <a href="set4.html">Set 4 · Mix</a>
       <a href="set5.html">Set 5 · Mix</a>
       <a href="liked.html">★ Saved</a>
-      <a href="custom.html">My deck</a>
-      <a href="data.html" class="active">Data</a>
+      <a href="data.html" class="active">Data · edit</a>
     </nav>
     <div class="eyebrow">Data · manifest</div>
-    <h1>The deck as <span class="th">JSON</span></h1>
-    <p>The whole vocabulary as an editable JSON manifest. Copy or download it to back it up, or paste your own and <strong>Save to deck</strong> — it then plays on the <a href="custom.html" style="color:var(--gold-soft)">My deck</a> page. Each item is <code>{ "th", "rom", "en" }</code>; only <code>th</code> is required.</p>
+    <h1>Everything as <span class="th">JSON</span></h1>
+    <p>This is the live content of every set, as one editable JSON manifest. Edit any line — or add/remove lines and whole sets — then <strong>Save</strong>, and the sets themselves update. Each set is <code>{ "id", "title", "lines": [ {"th","rom","en"} ] }</code>; only <code>th</code> is required. <strong>Copy</strong> / <strong>Download</strong> to back it up; paste a saved manifest to import.</p>
     <div class="rule"></div>
   </header>
 
   <div class="toolbar">
-    <button class="btn primary" id="save">Save to deck</button>
+    <button class="btn primary" id="save">Save</button>
     <button class="btn" id="copy">Copy</button>
     <button class="btn" id="download">Download .json</button>
-    <button class="btn" id="builtin">Load built-in set</button>
-    <button class="btn" id="mydeck">Load my deck</button>
+    <button class="btn" id="reset">Reset to built-in</button>
   </div>
 
   <textarea class="editor" id="json" spellcheck="false" autocapitalize="off" autocorrect="off"></textarea>
@@ -43,51 +41,48 @@
   <footer style="margin-top:26px">edits are stored in this browser only · nothing leaves your device</footer>
 </div>
 
-<script src="data.js?v=3"></script>
+<script src="data.js?v=4"></script>
 <script>
-const DECK_KEY = "thai-practice-deck";
 const ta = document.getElementById("json");
 const statusEl = document.getElementById("status");
-
-const toObjects = arr => arr.map(x => Array.isArray(x) ? { th:x[0], rom:x[1]||"", en:x[2]||"" } : x);
-function show(arr){ ta.value = JSON.stringify(toObjects(arr), null, 2); }
 function setStatus(msg, ok){ statusEl.textContent = msg; statusEl.className = "status " + (ok ? "ok" : "bad"); }
+function show(m){ ta.value = JSON.stringify(m, null, 2); }
 
-function savedDeck(){
-  try { const d = JSON.parse(localStorage.getItem(DECK_KEY) || "null"); if(Array.isArray(d) && d.length) return d; } catch(e){}
-  return null;
-}
-function builtin(){ return (typeof ALL_SENTENCES !== "undefined") ? ALL_SENTENCES : []; }
-
-// on load: show the saved deck if there is one, otherwise the built-in set as a starting point
-show(savedDeck() || builtin());
-
-// normalise arbitrary input into [th, rom, en] rows
+// normalise an edited manifest back into the canonical shape (tolerant of arrays / missing fields)
 function normalise(data){
   if(!Array.isArray(data)) return null;
   const out = [];
-  for(const it of data){
-    if(Array.isArray(it)){ if(it[0]) out.push([String(it[0]), String(it[1]||""), String(it[2]||"")]); }
-    else if(it && typeof it === "object"){
-      const th = it.th || it.thai;
-      if(th) out.push([String(th), String(it.rom || it.romanization || ""), String(it.en || it.english || "")]);
+  for(const set of data){
+    if(!set || typeof set !== "object" || Array.isArray(set)) continue;
+    const id = String(set.id || "").trim();
+    if(!id) continue;
+    const lines = Array.isArray(set.lines) ? set.lines : [];
+    const norm = [];
+    for(const l of lines){
+      let th, rom, en;
+      if(Array.isArray(l)){ th = l[0]; rom = l[1]; en = l[2]; }
+      else if(l && typeof l === "object"){ th = l.th || l.thai; rom = l.rom || l.romanization; en = l.en || l.english; }
+      if(th) norm.push({ th: String(th), rom: String(rom || ""), en: String(en || "") });
     }
+    out.push({ id, title: String(set.title || id), lines: norm });
   }
   return out;
 }
+
+show(loadManifest());
 
 document.getElementById("save").addEventListener("click", () => {
   let data;
   try { data = JSON.parse(ta.value); }
   catch(e){ setStatus("Invalid JSON — " + e.message, false); return; }
-  const rows = normalise(data);
-  if(!rows) { setStatus("Expected a JSON array of items.", false); return; }
-  if(!rows.length){ setStatus('No valid lines — each item needs a "th" field.', false); return; }
-  try {
-    localStorage.setItem(DECK_KEY, JSON.stringify(toObjects(rows)));
-    show(rows);
-    setStatus("Saved " + rows.length + " lines. Open ‘My deck’ to practise them.", true);
-  } catch(e){ setStatus("Could not save: " + e.message, false); }
+  const m = normalise(data);
+  if(!m){ setStatus("Expected a JSON array of sets.", false); return; }
+  if(!m.length){ setStatus('No valid sets — each needs an "id" and a "lines" array.', false); return; }
+  if(saveManifest(m)){
+    show(m);
+    const total = m.reduce((n, s) => n + s.lines.length, 0);
+    setStatus("Saved " + m.length + " sets (" + total + " lines). Open or reload a set to see the changes.", true);
+  } else setStatus("Could not save — storage is blocked in this browser.", false);
 });
 
 document.getElementById("copy").addEventListener("click", async () => {
@@ -103,22 +98,16 @@ document.getElementById("download").addEventListener("click", () => {
   const blob = new Blob([ta.value], { type: "application/json" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
-  a.href = url; a.download = "thai-deck.json";
+  a.href = url; a.download = "thai-manifest.json";
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
   URL.revokeObjectURL(url);
-  setStatus("Downloaded thai-deck.json", true);
+  setStatus("Downloaded thai-manifest.json", true);
 });
 
-document.getElementById("builtin").addEventListener("click", () => {
-  show(builtin());
-  setStatus("Loaded the built-in set (" + builtin().length + " lines) — not saved yet. Edit, then Save to deck.", true);
-});
-
-document.getElementById("mydeck").addEventListener("click", () => {
-  const d = savedDeck();
-  if(!d){ setStatus("No saved deck yet.", false); return; }
-  show(d);
-  setStatus("Loaded your saved deck (" + d.length + " lines).", true);
+document.getElementById("reset").addEventListener("click", () => {
+  const m = cloneSets(DEFAULT_SETS);
+  if(saveManifest(m)){ show(m); setStatus("Reset to the built-in sets.", true); }
+  else setStatus("Could not save — storage is blocked in this browser.", false);
 });
 </script>
 </body>
