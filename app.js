@@ -55,11 +55,24 @@ async function copyText(t){
   }
 }
 
-// starred lines persist in localStorage, keyed by the Thai text so reordering is safe
-const STAR_KEY = "thai-practice-starred";
-let starred = new Set();
-try { starred = new Set(JSON.parse(localStorage.getItem(STAR_KEY) || "[]")); } catch(e){}
-function saveStars(){ try { localStorage.setItem(STAR_KEY, JSON.stringify([...starred])); } catch(e){} }
+// The manifest is the single source of truth (content AND stars). Load it once.
+let _manifest = null;
+function manifest(){
+  if(_manifest) return _manifest;
+  _manifest = (typeof loadManifest === "function") ? loadManifest() : [];
+  return _manifest;
+}
+// stars live on manifest lines as `star: true`, keyed by the Thai text
+function isStarred(thai){
+  for(const s of manifest()){ for(const l of (s.lines || [])){ if(l.th === thai && l.star) return true; } }
+  return false;
+}
+function setStar(thai, on){
+  if(typeof saveManifest !== "function") return;
+  const m = manifest(); let changed = false;
+  for(const s of m){ for(const l of (s.lines || [])){ if(l.th === thai && !!l.star !== on){ l.star = on; changed = true; } } }
+  if(changed) saveManifest(m);
+}
 
 // Resolve the lines to render. A page either supplies SENTENCES directly (e.g. the
 // Saved page), or names a SET_ID whose lines come from the editable manifest (data.js).
@@ -71,25 +84,10 @@ function lineToArr(l){
 let LINES = [];
 if(typeof SENTENCES !== "undefined" && Array.isArray(SENTENCES)){
   LINES = SENTENCES;
-} else if(typeof SET_ID !== "undefined" && typeof loadManifest === "function"){
-  const set = loadManifest().find(s => s && s.id === SET_ID);
+} else if(typeof SET_ID !== "undefined"){
+  const set = manifest().find(s => s && s.id === SET_ID);
   LINES = (set && Array.isArray(set.lines) ? set.lines : []).map(lineToArr).filter(a => a[0]);
 }
-
-// build a corpus (thai -> [rom, en]) across every page visited, so the Saved page
-// can reconstruct starred lines gathered from any set
-const CORPUS_KEY = "thai-practice-corpus";
-(function mergeCorpus(){
-  if(!LINES.length) return;
-  let corpus = {};
-  try { corpus = JSON.parse(localStorage.getItem(CORPUS_KEY) || "{}"); } catch(e){}
-  let changed = false;
-  LINES.forEach(([thai, rom, en]) => {
-    const cur = corpus[thai];
-    if(!cur || cur[0] !== rom || cur[1] !== en){ corpus[thai] = [rom, en]; changed = true; }
-  });
-  if(changed){ try { localStorage.setItem(CORPUS_KEY, JSON.stringify(corpus)); } catch(e){} }
-})();
 
 const SPEED_KEY = "thai-practice-speed";
 let speed = 0.5;
@@ -105,10 +103,10 @@ LINES.forEach(([thai, rom, en], i) => {
   const card = document.createElement("div");
   card.className = "card masked";
   card.style.animationDelay = (i * 35) + "ms";
-  if(starred.has(thai)) card.classList.add("starred");
+  if(isStarred(thai)) card.classList.add("starred");
   card.innerHTML = `
     <span class="num">${String(i+1).padStart(2,"0")}</span>
-    <button class="star" aria-label="Save sentence ${i+1}" aria-pressed="${starred.has(thai)}">${STAR_ICON}</button>
+    <button class="star" aria-label="Save sentence ${i+1}" aria-pressed="${isStarred(thai)}">${STAR_ICON}</button>
     <button class="play" aria-label="Play sentence ${i+1}">
       <span class="ring"></span>${PLAY_ICON}
     </button>
@@ -130,9 +128,8 @@ LINES.forEach(([thai, rom, en], i) => {
   star.addEventListener("click", e => {
     e.stopPropagation();
     const on = card.classList.toggle("starred");
-    if(on) starred.add(thai); else starred.delete(thai);
+    setStar(thai, on);
     star.setAttribute("aria-pressed", on);
-    saveStars();
   });
 
   // copy the Thai text to the clipboard

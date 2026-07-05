@@ -781,6 +781,16 @@ function loadManifest(){
   for(const def of DEFAULT_SETS){
     if(!m.find(s => s && s.id === def.id)){ m.push(cloneSets([def])[0]); changed = true; }
   }
+  // one-time migration: fold the old separate star list into the manifest, then retire it
+  try {
+    const legacy = JSON.parse(localStorage.getItem("thai-practice-starred") || "null");
+    if(Array.isArray(legacy) && legacy.length){
+      const set = new Set(legacy);
+      for(const s of m){ for(const l of (s.lines || [])){ if(set.has(l.th)) l.star = true; } }
+      localStorage.removeItem("thai-practice-starred");
+      changed = true;
+    }
+  } catch(e){}
   if(changed){ try { localStorage.setItem(MANIFEST_KEY, JSON.stringify(m)); } catch(e){} }
   return m;
 }
