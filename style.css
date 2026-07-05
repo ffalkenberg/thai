@@ -245,6 +245,18 @@ footer{
 .status.ok{color:#8fbf8a}
 .status.bad{color:#d98a63}
 
+/* subtle shuffle button (matches the muted grey nav/star aesthetic) */
+.shuffle-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:"IBM Plex Sans",sans-serif;font-size:13.5px;color:#9fb0a6;
+  background:none;border:1px solid var(--line);border-radius:20px;
+  padding:8px 15px;cursor:pointer;
+  transition:color .15s,border-color .15s,background .15s,transform .1s;
+}
+.shuffle-btn svg{width:15px;height:15px}
+.shuffle-btn:hover{color:var(--gold-soft);border-color:var(--jade-line);background:#0d2925}
+.shuffle-btn:active{transform:scale(.96)}
+
 @media (max-width:520px){
   body{padding:0 14px 100px}
   .controls{margin:0 -14px 24px}

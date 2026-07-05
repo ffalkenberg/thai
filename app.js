@@ -364,7 +364,7 @@ const NAV = [
   ["set4.html","Set 4 · Mix"],
   ["set5.html","Set 5 · Mix"],
   ["set6.html","Set 6 · Mix"],
-  ["random.html","🔀 Shuffle"],
+  ["random.html","Shuffle"],
   ["liked.html","★ Saved"],
   ["data.html","Data · edit"],
 ];

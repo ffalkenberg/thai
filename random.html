@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=8">
+<link rel="stylesheet" href="style.css?v=9">
 </head>
 <body>
 <div class="wrap">
@@ -18,7 +18,7 @@
     <div class="eyebrow">Shuffle</div>
     <h1>Random <span class="th">สุ่ม</span> thirty</h1>
     <p>Thirty sentences drawn at random from every set — a fresh mix each time you open this page. Hit Shuffle for another draw. Tap to listen, slow the dial down, spacebar to pause, Listening mode to hide the reading.</p>
-    <button class="btn primary" id="shuffle" style="margin:2px 0 4px">🔀 Shuffle again</button>
+    <button class="shuffle-btn" id="shuffle" style="margin:2px 0 4px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>Shuffle again</button>
     <div class="rule"></div>
   </header>
 
@@ -45,7 +45,7 @@
   <footer>30 random sentences · reshuffles each visit · space to pause</footer>
 </div>
 
-<script src="data.js?v=8"></script>
+<script src="data.js?v=9"></script>
 <script>
 // Collect every unique line across all sets, shuffle, take 30.
 const _m = (typeof loadManifest === "function") ? loadManifest() : [];
@@ -59,6 +59,6 @@ const EMPTY_MSG = "No sentences yet — add some on the Data page.";
 const _sb = document.getElementById("shuffle");
 if(_sb) _sb.addEventListener("click", () => location.reload());
 </script>
-<script src="app.js?v=8"></script>
+<script src="app.js?v=9"></script>
 </body>
 </html>
