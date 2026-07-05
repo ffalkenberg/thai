@@ -24,11 +24,7 @@ function populateVoicePicker(){
   const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
   sel.innerHTML = '<option value="google">Google Translate (best quality)</option>' +
     thaiVoices.map((v,i) => `<option value="voice:${i}">${esc(v.name)} · device</option>`).join("");
-  // default to the device voice (prefer Kanya) once it's available, unless the user picked
-  if(!userPicked && thaiVoices.length){
-    const k = thaiVoices.findIndex(v => /kanya/i.test(v.name));
-    choice = "voice:" + (k >= 0 ? k : 0);
-  }
+  // default stays Google (reliable end-of-audio event); the user can switch to a device voice
   if([...sel.options].some(o => o.value === choice)) sel.value = choice;
   else { choice = "google"; sel.value = "google"; }
   wrap.hidden = thaiVoices.length < 1;   // only worth showing once the device adds its own voice(s)
@@ -148,7 +144,7 @@ if(list && !SENTENCES.length){
 // the play highlight follows the last line you played and stays until another line plays
 function moveHighlight(card){
   if(highlightCard && highlightCard !== card){
-    highlightCard.classList.remove("playing","paused","ended");
+    highlightCard.classList.remove("playing","paused","live","ended");
     highlightCard.querySelector(".play").innerHTML = '<span class="ring"></span>' + PLAY_ICON;
   }
   highlightCard = card;
@@ -157,7 +153,7 @@ function moveHighlight(card){
 function clearAudio(){   // stop audio/speech only — the highlight is left in place
   if(audio){ audio.pause(); audio = null; }
   if(synth) synth.cancel();
-  if(currentCard) currentCard.classList.add("ended");   // freeze the ring pulse, keep the colours
+  if(currentCard) currentCard.classList.remove("live");   // stop the ring pulse, keep the colours
   currentCard = null;
   currentThai = null;
 }
@@ -173,8 +169,7 @@ function toggle(card, thai, btn){
 
   currentCard = card;
   currentThai = thai;
-  card.classList.add("playing");
-  card.classList.remove("ended");        // resume the pulse when replayed
+  card.classList.add("playing", "live");   // highlight + ring pulse
   btn.innerHTML = '<span class="ring"></span>' + STOP_ICON;
 
   if(choice === "google") playGoogle(card, thai);
@@ -304,13 +299,13 @@ function pauseResume(){
   const playIcon = '<span class="ring"></span>' + PLAY_ICON;
   const stopIcon = '<span class="ring"></span>' + STOP_ICON;
   if(audio){                                   // Google clip: reliable pause/resume
-    if(audio.paused){ audio.play(); currentCard.classList.remove("paused"); btn.innerHTML = stopIcon; }
-    else { audio.pause(); currentCard.classList.add("paused"); btn.innerHTML = playIcon; }
+    if(audio.paused){ audio.play(); currentCard.classList.add("live"); btn.innerHTML = stopIcon; }
+    else { audio.pause(); currentCard.classList.remove("live"); btn.innerHTML = playIcon; }
     return;
   }
   if(synth){                                   // device voice: best-effort (iOS support varies)
-    if(synth.paused){ synth.resume(); currentCard.classList.remove("paused"); btn.innerHTML = stopIcon; }
-    else { synth.pause(); currentCard.classList.add("paused"); btn.innerHTML = playIcon; }
+    if(synth.paused){ synth.resume(); currentCard.classList.add("live"); btn.innerHTML = stopIcon; }
+    else { synth.pause(); currentCard.classList.remove("live"); btn.innerHTML = playIcon; }
   }
 }
 document.addEventListener("keydown", e => {

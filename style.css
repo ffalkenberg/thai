@@ -165,9 +165,7 @@ input[type=range]::-moz-range-thumb{
   position:absolute;inset:-5px;border-radius:50%;border:2px solid var(--gold);
   opacity:0;
 }
-.card.playing .play .ring{animation:pulse 1.4s ease-out infinite}
-.card.paused .play .ring,
-.card.ended .play .ring{animation:none}   /* freeze the pulse while paused or after it finishes */
+.card.live .play .ring{animation:pulse 1.4s ease-out infinite}   /* only pulses while actually playing */
 @keyframes pulse{0%{opacity:.6;transform:scale(.85)}100%{opacity:0;transform:scale(1.25)}}
 
 /* text block */
