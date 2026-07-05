@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=5">
+<link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
 <div class="wrap">
@@ -44,7 +44,7 @@
   <footer>your starred lines · space to pause</footer>
 </div>
 
-<script src="data.js?v=5"></script>
+<script src="data.js?v=6"></script>
 <script>
 // Gather every starred line from the manifest (stars live on the lines themselves).
 const _m = (typeof loadManifest === "function") ? loadManifest() : [];
@@ -55,6 +55,6 @@ for(const set of _m){ for(const l of (set.lines || [])){
 }}
 const EMPTY_MSG = "No saved lines yet — tap the ☆ on any card to save it here.";
 </script>
-<script src="app.js?v=5"></script>
+<script src="app.js?v=6"></script>
 </body>
 </html>

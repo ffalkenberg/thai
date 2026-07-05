@@ -19,31 +19,6 @@ const DEFAULT_SETS = [
         "en": "Don't believe the seller."
       },
       {
-        "th": "กุญแจอยู่ข้างในโรงแรม",
-        "rom": "gun-jae yòo kâang nai rohng raem",
-        "en": "The keys are inside the hotel."
-      },
-      {
-        "th": "นกกินส้มตำของฉัน",
-        "rom": "nók gin sôm dtam kŏng chăn",
-        "en": "The bird ate my papaya salad."
-      },
-      {
-        "th": "ฉันกำลังหาแมวใต้เตียง",
-        "rom": "chăn gam-lang hăa maew dtâi dtiiang",
-        "en": "I'm looking for the cat under the bed."
-      },
-      {
-        "th": "ร้านยาอยู่ด้านหลังธนาคาร",
-        "rom": "ráan yaa yòo dâan lăng tá-naa-kaan",
-        "en": "The pharmacy is behind the bank."
-      },
-      {
-        "th": "หมอขับรถไปวัดทุกวันอาทิตย์",
-        "rom": "mŏr khàp rót bpai wát túk wan aa-tít",
-        "en": "The doctor drives to the temple every Sunday."
-      },
-      {
         "th": "คนสูงข้ามถนน",
         "rom": "kon sŏong kâam tà-nŏn",
         "en": "The tall person crosses the street."
@@ -59,34 +34,9 @@ const DEFAULT_SETS = [
         "en": "Nephew has short blonde hair and a small nose."
       },
       {
-        "th": "เลี้ยวซ้ายที่วัด โรงพยาบาลอยู่ไกล",
-        "rom": "líieow sáai têe wát, rohng pá-yaa-baan yòo glai",
-        "en": "Turn left at the temple; the hospital is far."
-      },
-      {
-        "th": "ทำไมแมวง่วง เพราะกินเยอะ",
-        "rom": "tham-mai maew ngûang, phrɔ́ gin yúh",
-        "en": "Why is the cat sleepy? Because it ate a lot."
-      },
-      {
         "th": "ลูกค้าเอาส้อมสองอันและช้อนหนึ่งอัน",
         "rom": "lôok káa ao sôm sŏng an láe chón nèung an",
         "en": "The customer wants two forks and one spoon."
-      },
-      {
-        "th": "ภรรยาทำข้าวผัดทุกคืน",
-        "rom": "pan-rá-yaa tham kâao pàt túk keun",
-        "en": "(My) wife makes fried rice every night."
-      },
-      {
-        "th": "หมาอยู่บนโต๊ะอีก อุบาทว์",
-        "rom": "măa yòo bon dtó èek, ù-bàat",
-        "en": "The dog is on the table again — disgusting."
-      },
-      {
-        "th": "ฉันจำนามสกุลของคุณได้",
-        "rom": "chăn jam naam sà-gun kŏng kun dâai",
-        "en": "I remember your family name."
       },
       {
         "th": "ซีอิ๊วอยู่ข้างน้ำปลาไหม",
@@ -119,16 +69,6 @@ const DEFAULT_SETS = [
         "en": "He drank three glasses of water because he was thirsty."
       },
       {
-        "th": "ตลาดปิดแล้ว ไปห้างกัน",
-        "rom": "dtà-làat bpìt láew, bpai hâang gan",
-        "en": "The market's closed — let's go to the mall."
-      },
-      {
-        "th": "พี่ชายบินไปญี่ปุ่น น้องสาวขับรถไปบุรีรัมย์",
-        "rom": "pêe chaai bin bpai yêe-bpùn, nóng săao khàp rót bpai bù-ree-ram",
-        "en": "Older brother flew to Japan; younger sister drove to Buriram."
-      },
-      {
         "th": "ธนาคารอยู่ชั้นบน สำนักงานอยู่ชั้นล่าง",
         "rom": "tá-naa-kaan yòo chán bon, săm-nák ngaan yòo chán lâang",
         "en": "The bank is upstairs; the office is downstairs."
@@ -145,21 +85,6 @@ const DEFAULT_SETS = [
         "en": "My cat is thirsty."
       },
       {
-        "th": "พรุ่งนี้ฉันจะไปตลาดกับเพื่อน",
-        "rom": "prûng-née chăn jà bpai dtà-làat gàp pêuuan",
-        "en": "Tomorrow I'll go to the market with a friend."
-      },
-      {
-        "th": "หมออยู่ที่โรงพยาบาลทุกวัน",
-        "rom": "mŏr yòo têe rohng pá-yaa-baan túk wan",
-        "en": "The doctor is at the hospital every day."
-      },
-      {
-        "th": "เขาชอบดื่มกาแฟตอนเช้า",
-        "rom": "kăo chôp dèum gaa-fae dton-cháo",
-        "en": "He likes to drink coffee in the morning."
-      },
-      {
         "th": "นกตัวนี้สวยมาก",
         "rom": "nók dtuua née sŭuay mâak",
         "en": "This bird is very beautiful."
@@ -168,21 +93,6 @@ const DEFAULT_SETS = [
         "th": "ทำไมคุณเหนื่อย",
         "rom": "tham-mai kun nʉ̀ai",
         "en": "Why are you tired?"
-      },
-      {
-        "th": "ร้านกาแฟอยู่ใกล้ธนาคาร",
-        "rom": "ráan gaa-fae yòo glâi tá-naa-kaan",
-        "en": "The coffee shop is near the bank."
-      },
-      {
-        "th": "พี่ชายของฉันขับรถไปโรงเรียน",
-        "rom": "pêe chaai kŏng chăn khàp rót bpai rohng riian",
-        "en": "My older brother drives to school."
-      },
-      {
-        "th": "เมื่อคืนเรากินข้าวที่ร้าน",
-        "rom": "mêuua keun rao gin kâao têe ráan",
-        "en": "Last night we ate at the restaurant."
       },
       {
         "th": "หมาของเขานอนบนเตียง",
@@ -203,16 +113,6 @@ const DEFAULT_SETS = [
         "th": "ช้างใหญ่กว่าหมา",
         "rom": "cháang yài gwàa măa",
         "en": "The elephant is bigger than the dog."
-      },
-      {
-        "th": "คุณจะไปโรงเรียนเมื่อไหร่",
-        "rom": "kun jà bpai rohng riian mêuua-rài",
-        "en": "When will you go to school?"
-      },
-      {
-        "th": "เพื่อนของฉันเป็นคนใจดี",
-        "rom": "pêuuan kŏng chăn bpen kon jai-dii",
-        "en": "My friend is a kind person."
       },
       {
         "th": "ผมกำลังหาแมวอยู่",
@@ -240,24 +140,9 @@ const DEFAULT_SETS = [
         "en": "I don't like beer."
       },
       {
-        "th": "รถเมล์อยู่ด้านหน้าโรงแรม",
-        "rom": "rót may yòo dâan nâa rohng raem",
-        "en": "The bus is in front of the hotel."
-      },
-      {
         "th": "คุณอยากดื่มอะไร",
         "rom": "kun yàak dèum à-rai",
         "en": "What do you want to drink?"
-      },
-      {
-        "th": "เขาดูหนังทุกคืน",
-        "rom": "kăo doo năng túk keun",
-        "en": "He watches a movie every night."
-      },
-      {
-        "th": "ส้มตำร้านนี้อร่อยมาก",
-        "rom": "sôm dtam ráan née à-ròi mâak",
-        "en": "The papaya salad here is very delicious."
       },
       {
         "th": "คุณจะกินข้าวที่ไหน",
@@ -306,11 +191,6 @@ const DEFAULT_SETS = [
         "en": "Where is the hotel?"
       },
       {
-        "th": "ผมตื่นเช้าทุกวัน",
-        "rom": "pŏm dtèun cháo túk wan",
-        "en": "I wake up early every day."
-      },
-      {
         "th": "ส้มตำเผ็ดมาก",
         "rom": "sôm dtam phèt mâak",
         "en": "The papaya salad is very spicy."
@@ -329,16 +209,6 @@ const DEFAULT_SETS = [
         "th": "ขอน้ำส้มหนึ่งแก้ว",
         "rom": "kŏr náam sôm nèung gâew",
         "en": "One glass of orange juice, please."
-      },
-      {
-        "th": "สถานีรถไฟอยู่ไกลไหม",
-        "rom": "sà-tăa-nee rót fai yòo glai măi",
-        "en": "Is the train station far?"
-      },
-      {
-        "th": "แม่ทำอาหารเย็นทุกวัน",
-        "rom": "mâe tam aa-hăan yen túk wan",
-        "en": "Mom makes dinner every day."
       },
       {
         "th": "ร้านอาหารนี้แพง",
@@ -366,11 +236,6 @@ const DEFAULT_SETS = [
         "en": "Go straight then turn left."
       },
       {
-        "th": "พี่สาวของฉันเรียนที่โรงเรียน",
-        "rom": "pêe săao kŏng chăn riian têe rohng riian",
-        "en": "My older sister studies at school."
-      },
-      {
         "th": "ผมชอบกินไก่มากกว่าหมู",
         "rom": "pŏm chôp gin gài mâak gwàa mŏo",
         "en": "I like eating chicken more than pork."
@@ -379,11 +244,6 @@ const DEFAULT_SETS = [
         "th": "โรงพยาบาลอยู่ใกล้ตลาด",
         "rom": "rohng pá-yaa-baan yòo glâi dtà-làat",
         "en": "The hospital is near the market."
-      },
-      {
-        "th": "คุณตื่นกี่โมงทุกวัน",
-        "rom": "kun dtèun gèe mohng túk wan",
-        "en": "What time do you wake up every day?"
       },
       {
         "th": "อาหารร้อนแล้ว",
@@ -406,19 +266,9 @@ const DEFAULT_SETS = [
         "en": "May I have the menu?"
       },
       {
-        "th": "ขึ้นรถเมล์ที่นี่",
-        "rom": "kʉ̂n rót may têe nêe",
-        "en": "Take the bus here."
-      },
-      {
         "th": "น้องชายของผมอายุสิบปี",
         "rom": "nóng chaai kŏng pŏm aa-yú sìp bpii",
         "en": "My younger brother is ten years old."
-      },
-      {
-        "th": "ข้าวผัดจานนี้อร่อยมาก",
-        "rom": "kâao pàt jaan née à-ròi mâak",
-        "en": "This plate of fried rice is delicious."
       },
       {
         "th": "บ้านผมอยู่ข้างวัด",
@@ -439,11 +289,6 @@ const DEFAULT_SETS = [
         "th": "เรานั่งเรือไปเที่ยว",
         "rom": "rao nâng reuua bpai tîieow",
         "en": "We take a boat to go traveling."
-      },
-      {
-        "th": "พ่อดูหนังทุกคืน",
-        "rom": "pôr doo năng túk keun",
-        "en": "Dad watches a movie every night."
       }
     ]
   },
@@ -462,11 +307,6 @@ const DEFAULT_SETS = [
         "en": "The taxi is more expensive than the bus."
       },
       {
-        "th": "ผมคิดถึงเพื่อน",
-        "rom": "pŏm kít tʉ̌ng pêuuan",
-        "en": "I miss my friend."
-      },
-      {
         "th": "เอากาแฟเย็นหนึ่งที่",
         "rom": "ao gaa-fae yen nèung têe",
         "en": "One iced coffee, please."
@@ -482,16 +322,6 @@ const DEFAULT_SETS = [
         "en": "She is beautiful and kind."
       },
       {
-        "th": "ร้านนี้ขายผลไม้",
-        "rom": "ráan née kăai pŏn-lá-mái",
-        "en": "This shop sells fruit."
-      },
-      {
-        "th": "ผมเดินไปตลาดทุกเช้า",
-        "rom": "pŏm dəən bpai dtà-làat túk cháo",
-        "en": "I walk to the market every morning."
-      },
-      {
         "th": "ผมอาบน้ำตอนเช้า",
         "rom": "pŏm àap náam dton cháo",
         "en": "I shower in the morning."
@@ -500,11 +330,6 @@ const DEFAULT_SETS = [
         "th": "กล้วยหวานมาก",
         "rom": "glûuay wăan mâak",
         "en": "The banana is very sweet."
-      },
-      {
-        "th": "รถไฟมากี่โมง",
-        "rom": "rót fai maa gèe mohng",
-        "en": "What time does the train come?"
       },
       {
         "th": "พรุ่งนี้เพื่อนจะมาบ้าน",
@@ -542,19 +367,9 @@ const DEFAULT_SETS = [
         "en": "I sleep late every night."
       },
       {
-        "th": "ผมไม่กินเผ็ด",
-        "rom": "pŏm mâi gin phèt",
-        "en": "I don't eat spicy food."
-      },
-      {
         "th": "คุณมาที่นี่ยังไง",
         "rom": "kun maa têe nêe yang ngai",
         "en": "How did you get here?"
-      },
-      {
-        "th": "แม่ของฉันทำงานที่ธนาคาร",
-        "rom": "mâe kŏng chăn tam ngaan têe tá-naa-kaan",
-        "en": "My mom works at the bank."
       },
       {
         "th": "ขอข้าวสองจาน",
@@ -562,19 +377,9 @@ const DEFAULT_SETS = [
         "en": "Two plates of rice, please."
       },
       {
-        "th": "ธนาคารอยู่ตรงข้ามโรงแรม",
-        "rom": "tá-naa-kaan yòo dtrong kâam rohng raem",
-        "en": "The bank is across from the hotel."
-      },
-      {
         "th": "คุณมีพี่น้องกี่คน",
         "rom": "kun mii pêe nóng gèe kon",
         "en": "How many siblings do you have?"
-      },
-      {
-        "th": "อาหารไทยอร่อยกว่าอาหารญี่ปุ่น",
-        "rom": "aa-hăan tai à-ròi gwàa aa-hăan yêe-bpùn",
-        "en": "Thai food is more delicious than Japanese food."
       },
       {
         "th": "ผมขับรถไปทะเล",
@@ -626,11 +431,6 @@ const DEFAULT_SETS = [
         "th": "เอาส้มตำไม่เผ็ด",
         "rom": "ao sôm dtam mâi phèt",
         "en": "I'll have papaya salad, not spicy."
-      },
-      {
-        "th": "วัดอยู่หลังตลาด",
-        "rom": "wát yòo lăng dtà-làat",
-        "en": "The temple is behind the market."
       },
       {
         "th": "เพื่อนของผมใจดีมาก",
@@ -762,36 +562,52 @@ const DEFAULT_SETS = [
 ];
 
 const MANIFEST_KEY = "thai-practice-manifest";
+const MANIFEST_VERSION = 2;   // bump when DEFAULT_SETS content changes -> reseed (stars preserved)
 
-// deep copy of the built-in sets (used to seed the manifest and to "Reset to built-in")
 function cloneSets(sets){
   return sets.map(s => ({
     id: s.id, title: s.title,
-    lines: (s.lines || []).map(l => ({ th: l.th, rom: l.rom || "", en: l.en || "" })),
+    lines: (s.lines || []).map(l => { const o = { th: l.th, rom: l.rom || "", en: l.en || "" }; if(l.star) o.star = true; return o; }),
   }));
 }
+function starMap(sets){
+  const m = {};
+  for(const s of (sets || [])){ for(const l of (s.lines || [])){ if(l && l.star) m[l.th] = true; } }
+  return m;
+}
+function applyStars(sets, stars){
+  for(const s of sets){ for(const l of s.lines){ if(stars[l.th]) l.star = true; } }
+  return sets;
+}
+function saveManifest(sets){
+  try { localStorage.setItem(MANIFEST_KEY, JSON.stringify({ version: MANIFEST_VERSION, sets })); return true; } catch(e){ return false; }
+}
 
-// the live, user-editable manifest — stored in localStorage, seeded from the defaults.
-// Missing built-in sets are seeded in so newly-added sets appear without wiping edits.
+// Live editable manifest, stored as { version, sets }. When built-in content changes
+// (MANIFEST_VERSION bumps), sets reseed from DEFAULT_SETS but existing stars carry over.
 function loadManifest(){
-  let m = null;
-  try { m = JSON.parse(localStorage.getItem(MANIFEST_KEY) || "null"); } catch(e){}
-  if(!Array.isArray(m)) m = [];
-  let changed = false;
-  for(const def of DEFAULT_SETS){
-    if(!m.find(s => s && s.id === def.id)){ m.push(cloneSets([def])[0]); changed = true; }
+  let raw = null;
+  try { raw = JSON.parse(localStorage.getItem(MANIFEST_KEY) || "null"); } catch(e){}
+  let storedSets = null, ver = 0;
+  if(raw && Array.isArray(raw.sets)){ storedSets = raw.sets; ver = raw.version || 1; }
+  else if(Array.isArray(raw)){ storedSets = raw; ver = 1; }
+
+  let sets, changed = false;
+  if(!storedSets){ sets = cloneSets(DEFAULT_SETS); changed = true; }
+  else if(ver < MANIFEST_VERSION){ sets = applyStars(cloneSets(DEFAULT_SETS), starMap(storedSets)); changed = true; }
+  else {
+    sets = storedSets;
+    for(const def of DEFAULT_SETS){ if(!sets.find(s => s && s.id === def.id)){ sets.push(cloneSets([def])[0]); changed = true; } }
   }
-  // one-time migration: fold the old separate star list into the manifest, then retire it
   try {
     const legacy = JSON.parse(localStorage.getItem("thai-practice-starred") || "null");
     if(Array.isArray(legacy) && legacy.length){
-      const set = new Set(legacy);
-      for(const s of m){ for(const l of (s.lines || [])){ if(set.has(l.th)) l.star = true; } }
+      const ls = new Set(legacy);
+      for(const s of sets){ for(const l of (s.lines || [])){ if(ls.has(l.th)) l.star = true; } }
       localStorage.removeItem("thai-practice-starred");
       changed = true;
     }
   } catch(e){}
-  if(changed){ try { localStorage.setItem(MANIFEST_KEY, JSON.stringify(m)); } catch(e){} }
-  return m;
+  if(changed) saveManifest(sets);
+  return sets;
 }
-function saveManifest(m){ try { localStorage.setItem(MANIFEST_KEY, JSON.stringify(m)); return true; } catch(e){ return false; } }
