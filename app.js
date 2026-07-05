@@ -148,7 +148,7 @@ if(list && !SENTENCES.length){
 // the play highlight follows the last line you played and stays until another line plays
 function moveHighlight(card){
   if(highlightCard && highlightCard !== card){
-    highlightCard.classList.remove("playing","paused");
+    highlightCard.classList.remove("playing","paused","ended");
     highlightCard.querySelector(".play").innerHTML = '<span class="ring"></span>' + PLAY_ICON;
   }
   highlightCard = card;
@@ -157,6 +157,7 @@ function moveHighlight(card){
 function clearAudio(){   // stop audio/speech only — the highlight is left in place
   if(audio){ audio.pause(); audio = null; }
   if(synth) synth.cancel();
+  if(currentCard) currentCard.classList.add("ended");   // freeze the ring pulse, keep the colours
   currentCard = null;
   currentThai = null;
 }
@@ -173,6 +174,7 @@ function toggle(card, thai, btn){
   currentCard = card;
   currentThai = thai;
   card.classList.add("playing");
+  card.classList.remove("ended");        // resume the pulse when replayed
   btn.innerHTML = '<span class="ring"></span>' + STOP_ICON;
 
   if(choice === "google") playGoogle(card, thai);
