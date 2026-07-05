@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=7">
+<link rel="stylesheet" href="style.css?v=8">
 </head>
 <body>
 <div class="wrap">
@@ -20,6 +20,7 @@
       <a href="set4.html">Set 4 · Mix</a>
       <a href="set5.html">Set 5 · Mix</a>
       <a href="set6.html">Set 6 · Mix</a>
+      <a href="random.html">🔀 Shuffle</a>
       <a href="liked.html">★ Saved</a>
       <a href="data.html" class="active">Data · edit</a>
     </nav>
@@ -42,7 +43,7 @@
   <footer style="margin-top:26px">edits are stored in this browser only · nothing leaves your device</footer>
 </div>
 
-<script src="data.js?v=7"></script>
+<script src="data.js?v=8"></script>
 <script>
 const ta = document.getElementById("json");
 const statusEl = document.getElementById("status");
@@ -62,8 +63,8 @@ function normalise(data){
     for(const l of lines){
       let th, rom, en, star = false;
       if(Array.isArray(l)){ th = l[0]; rom = l[1]; en = l[2]; }
-      else if(l && typeof l === "object"){ th = l.th || l.thai; rom = l.rom || l.romanization; en = l.en || l.english; star = l.star === true; }
-      if(th){ const o = { th: String(th), rom: String(rom || ""), en: String(en || "") }; if(star) o.star = true; norm.push(o); }
+      else if(l && typeof l === "object"){ th = l.th || l.thai; rom = l.rom || l.romanization; en = l.en || l.english; star = l.star; }
+      if(th){ const o = { th: String(th), rom: String(rom || ""), en: String(en || "") }; if(star) o.star = star; norm.push(o); }
     }
     out.push({ id, title: String(set.title || id), lines: norm });
   }

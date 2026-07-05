@@ -713,16 +713,16 @@ const MANIFEST_VERSION = 2;   // bump when DEFAULT_SETS content changes -> resee
 function cloneSets(sets){
   return sets.map(s => ({
     id: s.id, title: s.title,
-    lines: (s.lines || []).map(l => { const o = { th: l.th, rom: l.rom || "", en: l.en || "" }; if(l.star) o.star = true; return o; }),
+    lines: (s.lines || []).map(l => { const o = { th: l.th, rom: l.rom || "", en: l.en || "" }; if(l.star) o.star = l.star; return o; }),
   }));
 }
 function starMap(sets){
   const m = {};
-  for(const s of (sets || [])){ for(const l of (s.lines || [])){ if(l && l.star) m[l.th] = true; } }
+  for(const s of (sets || [])){ for(const l of (s.lines || [])){ if(l && l.star) m[l.th] = l.star; } }   // keep the timestamp
   return m;
 }
 function applyStars(sets, stars){
-  for(const s of sets){ for(const l of s.lines){ if(stars[l.th]) l.star = true; } }
+  for(const s of sets){ for(const l of s.lines){ if(stars[l.th]) l.star = stars[l.th]; } }
   return sets;
 }
 function saveManifest(sets){

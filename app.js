@@ -70,7 +70,7 @@ function isStarred(thai){
 function setStar(thai, on){
   if(typeof saveManifest !== "function") return;
   const m = manifest(); let changed = false;
-  for(const s of m){ for(const l of (s.lines || [])){ if(l.th === thai && !!l.star !== on){ l.star = on; changed = true; } } }
+  for(const s of m){ for(const l of (s.lines || [])){ if(l.th === thai && !!l.star !== on){ l.star = on ? Date.now() : false; changed = true; } } }
   if(changed) saveManifest(m);
 }
 
@@ -364,6 +364,7 @@ const NAV = [
   ["set4.html","Set 4 · Mix"],
   ["set5.html","Set 5 · Mix"],
   ["set6.html","Set 6 · Mix"],
+  ["random.html","🔀 Shuffle"],
   ["liked.html","★ Saved"],
   ["data.html","Data · edit"],
 ];

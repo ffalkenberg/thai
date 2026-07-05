@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Google Translate's TTS endpoint 404s when a Referer is present; send none so hosted behaves like a local file -->
 <meta name="referrer" content="no-referrer">
-<title>Thai Listening Practice — Set 1</title>
+<title>Thai Listening Practice — Shuffle</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
@@ -15,9 +15,10 @@
 <div class="wrap">
   <header>
     <nav class="nav"></nav>
-    <div class="eyebrow">Listening practice</div>
-    <h1>Slow it down<br>until you catch <span class="th">ทุกคำ</span></h1>
-    <p>Tap a line to hear it. Drag the dial to slow the audio down so you can pick apart each syllable and tone. Turn on Listening mode to hide the reading until you've had a guess — and while a line plays, press the spacebar to pause and resume it.</p>
+    <div class="eyebrow">Shuffle</div>
+    <h1>Random <span class="th">สุ่ม</span> thirty</h1>
+    <p>Thirty sentences drawn at random from every set — a fresh mix each time you open this page. Hit Shuffle for another draw. Tap to listen, slow the dial down, spacebar to pause, Listening mode to hide the reading.</p>
+    <button class="btn primary" id="shuffle" style="margin:2px 0 4px">🔀 Shuffle again</button>
     <div class="rule"></div>
   </header>
 
@@ -41,11 +42,23 @@
 
   <div class="list" id="list"></div>
 
-  <footer>14 sentences · audio via Google Translate, device Thai voice as backup · space to pause</footer>
+  <footer>30 random sentences · reshuffles each visit · space to pause</footer>
 </div>
 
 <script src="data.js?v=8"></script>
-<script>const SET_ID = "set1";</script>
+<script>
+// Collect every unique line across all sets, shuffle, take 30.
+const _m = (typeof loadManifest === "function") ? loadManifest() : [];
+const _seen = new Set(), _all = [];
+for(const set of _m){ for(const l of (set.lines || [])){
+  if(l && l.th && !_seen.has(l.th)){ _seen.add(l.th); _all.push([l.th, l.rom || "", l.en || ""]); }
+}}
+for(let i = _all.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); const t = _all[i]; _all[i] = _all[j]; _all[j] = t; }
+const SENTENCES = _all.slice(0, 30);
+const EMPTY_MSG = "No sentences yet — add some on the Data page.";
+const _sb = document.getElementById("shuffle");
+if(_sb) _sb.addEventListener("click", () => location.reload());
+</script>
 <script src="app.js?v=8"></script>
 </body>
 </html>
