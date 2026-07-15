@@ -1216,8 +1216,8 @@ const DEFAULT_SETS = [
         "en": "Taking a taxi is more expensive than the bus."
       },
       {
-        "th": "วันนี้เขาดูเศร้า",
-        "rom": "wan-née kăo doo sâo",
+        "th": "วันนี้พวกเขาดูเศร้า",
+        "rom": "wan-née pûuak kăo doo sâo",
         "en": "Today they look sad."
       },
       {
@@ -1236,8 +1236,8 @@ const DEFAULT_SETS = [
         "en": "Love makes life fun."
       },
       {
-        "th": "สิ่งที่เขาพูดไม่จริง",
-        "rom": "sìng têe kăo pôot mâi jing",
+        "th": "สิ่งที่พวกเขาพูดไม่จริง",
+        "rom": "sìng têe pûuak kăo pôot mâi jing",
         "en": "What they said is not true."
       },
       {
@@ -1296,8 +1296,8 @@ const DEFAULT_SETS = [
         "en": "This orange is very sweet."
       },
       {
-        "th": "เขาพูดความจริงเสมอ",
-        "rom": "kăo pôot kwaam-jing sà-mĕr",
+        "th": "พวกเขาพูดความจริงเสมอ",
+        "rom": "pûuak kăo pôot kwaam-jing sà-mĕr",
         "en": "They always tell the truth."
       },
       {
@@ -1310,7 +1310,7 @@ const DEFAULT_SETS = [
 ];
 
 const MANIFEST_KEY = "thai-practice-manifest";
-const MANIFEST_VERSION = 4;   // bump when DEFAULT_SETS content changes -> reseed (stars preserved)
+const MANIFEST_VERSION = 5;   // bump when DEFAULT_SETS content changes -> reseed (stars preserved)
 
 function cloneSets(sets){
   return sets.map(s => ({
