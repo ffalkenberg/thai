@@ -1097,212 +1097,212 @@ const DEFAULT_SETS = [
     "lines": [
       {
         "th": "อากาศวันนี้ดีมาก",
-        "rom": "aakàat wan-níi dii mâak",
+        "rom": "aa-gàat wan-née dee mâak",
         "en": "The weather today is very good."
       },
       {
         "th": "ฝนตกแล้วอย่าลืมร่ม",
-        "rom": "fŏn dtòk láew yàa leuum rôm",
+        "rom": "fŏn dtòk láew yàa leum rôm",
         "en": "It's raining, don't forget the umbrella."
       },
       {
         "th": "ผมตื่นตอนเช้าทุกวัน",
-        "rom": "pŏm dtèun dtaawn cháo túk wan",
+        "rom": "pŏm dtèun dton cháo túk wan",
         "en": "I wake up in the morning every day."
       },
       {
         "th": "แดดแรงมากวันนี้",
-        "rom": "dàet raeng mâak wan-níi",
+        "rom": "dàet raeng mâak wan-née",
         "en": "The sunlight is very strong today."
       },
       {
         "th": "เราเดินทางด้วยรถไฟ",
-        "rom": "rao deun-taang dûai rót-fai",
+        "rom": "rao deun taang dûuay rót fai",
         "en": "We travel by train."
       },
       {
         "th": "ขอทิชชู่หน่อยได้ไหม",
-        "rom": "kăaw tít-chûu nàawy dâai măi",
+        "rom": "kŏr tít-chôo nòi dâai măi",
         "en": "Can I have a tissue, please?"
       },
       {
         "th": "ถนนนี้รถเยอะมาก",
-        "rom": "tà-nŏn níi rót yúh mâak",
+        "rom": "tà-nŏn née rót yúh mâak",
         "en": "This road has a lot of cars."
       },
       {
         "th": "ช้างชอบเล่นน้ำในแม่น้ำ",
-        "rom": "cháang châawp lên náam nai mâe-náam",
+        "rom": "cháang chôp lên náam nai mâe-náam",
         "en": "Elephants like to play in the river."
       },
       {
         "th": "ขอใบเสร็จด้วยครับ",
-        "rom": "kăaw bai-sèt dûai kráp",
+        "rom": "kŏr bai-sèt dûuay kráp",
         "en": "May I have the receipt, please."
       },
       {
         "th": "ราคานี้แพงเกินไป",
-        "rom": "raa-kaa níi paeng geun bpai",
+        "rom": "raa-kaa née paeng geun bpai",
         "en": "This price is too expensive."
       },
       {
         "th": "ผมไม่กินหมู",
-        "rom": "pŏm mâi gin mŭu",
+        "rom": "pŏm mâi gin mŏo",
         "en": "I don't eat pork."
       },
       {
         "th": "ขอเบอร์โทรศัพท์ได้ไหม",
-        "rom": "kăaw beu toh-rá-sàp dâai măi",
+        "rom": "kŏr ber toh-rá-sàp dâai măi",
         "en": "Can I have your phone number?"
       },
       {
         "th": "เด็กชอบดื่มนม",
-        "rom": "dèk châawp dèum nom",
+        "rom": "dèk chôp dèum nom",
         "en": "Children like to drink milk."
       },
       {
         "th": "ผมกินไข่สองฟองตอนเช้า",
-        "rom": "pŏm gin kài săawng faawng dtaawn cháo",
+        "rom": "pŏm gin kài sŏng fong dton cháo",
         "en": "I eat two eggs in the morning."
       },
       {
         "th": "เรือลำนี้เล็กมาก",
-        "rom": "reuua lam níi lék mâak",
+        "rom": "reuua lam née lék mâak",
         "en": "This boat is very small."
       },
       {
         "th": "ห้องน้ำอยู่ที่ไหน",
-        "rom": "hâawng-náam yùu tîi năi",
+        "rom": "hông náam yòo têe năi",
         "en": "Where is the bathroom?"
       },
       {
         "th": "ห้องนอนของผมเล็ก",
-        "rom": "hâawng-naawn kăawng pŏm lék",
+        "rom": "hông non kŏng pŏm lék",
         "en": "My bedroom is small."
       },
       {
         "th": "กระเป๋าใบนี้หนักมาก",
-        "rom": "grà-bpăo bai níi nàk mâak",
+        "rom": "grà-bpăo bai née nàk mâak",
         "en": "This bag is very heavy."
       },
       {
         "th": "เครื่องบินจะออกอีกกี่นาที",
-        "rom": "krêuuang-bin jà àawk ìik gìi naa-tii",
+        "rom": "krêuuang-bin jà òk èek gèe naa-tee",
         "en": "In how many more minutes does the airplane leave?"
       },
       {
         "th": "ขอที่อยู่ของคุณหน่อย",
-        "rom": "kăaw tîi-yùu kăawng kun nàawy",
+        "rom": "kŏr têe yòo kŏng kun nòi",
         "en": "Can I have your address, please."
       },
       {
         "th": "สุขภาพสำคัญกว่าเงิน",
-        "rom": "sùk-kà-pâap săm-kan gwàa ngeun",
+        "rom": "sùk-kà-pâap săm-kan gwàa ngern",
         "en": "Health is more important than money."
       },
       {
         "th": "เรานั่งรถบัสไปทำงาน",
-        "rom": "rao nâng rót-bát bpai tam-ngaan",
+        "rom": "rao nâng rót-bàt bpai tam ngaan",
         "en": "We take the bus to work."
       },
       {
         "th": "ผมต้องรอรถไฟ",
-        "rom": "pŏm dtâwng raaw rót-fai",
+        "rom": "pŏm dtông ror rót fai",
         "en": "I have to wait for the train."
       },
       {
         "th": "นั่งแท็กซี่แพงกว่ารถบัส",
-        "rom": "nâng táek-sîi paeng gwàa rót-bát",
+        "rom": "nâng táek-sêe paeng gwàa rót-bàt",
         "en": "Taking a taxi is more expensive than the bus."
       },
       {
         "th": "วันนี้เขาดูเศร้า",
-        "rom": "wan-níi kăo duu sâo",
+        "rom": "wan-née kăo doo sâo",
         "en": "Today they look sad."
       },
       {
         "th": "คุณน่าจะพักผ่อน",
-        "rom": "kun nâa-jà pák-pàawn",
+        "rom": "kun nâa jà pák pòn",
         "en": "You should probably rest."
       },
       {
         "th": "เราควรล้างมือก่อนกินข้าว",
-        "rom": "rao kuuan láang-meu gàawn gin kâao",
+        "rom": "rao kuuan láang meu gòn gin kâao",
         "en": "We should wash our hands before eating."
       },
       {
         "th": "ความรักทำให้ชีวิตสนุก",
-        "rom": "kwaam-rák tam-hâi chii-wít sà-nùk",
+        "rom": "kwaam-rák tam-hâi chee-wít sà-nùk",
         "en": "Love makes life fun."
       },
       {
         "th": "สิ่งที่เขาพูดไม่จริง",
-        "rom": "sìng tîi kăo pûut mâi jing",
+        "rom": "sìng têe kăo pôot mâi jing",
         "en": "What they said is not true."
       },
       {
         "th": "ภาษาไทยพูดง่ายแต่เขียนยาก",
-        "rom": "paa-săa tai pûut ngâai dtàe kĭan yâak",
+        "rom": "paa-săa tai pôot ngâai dtàe kĭian yâak",
         "en": "Thai is easy to speak but hard to write."
       },
       {
         "th": "ขอบคุณสำหรับความช่วยเหลือ",
-        "rom": "kàawp-kun săm-ràp kwaam chûai-lĕuua",
+        "rom": "kòp-kun săm-ràp kwaam chûuay-lĕuua",
         "en": "Thank you for the help."
       },
       {
         "th": "คำตอบนี้ถูกต้อง",
-        "rom": "kam-dtàawp níi tùuk-dtâawng",
+        "rom": "kam-dtòp née tòok-dtông",
         "en": "This answer is correct."
       },
       {
         "th": "บางครั้งผมลืมกุญแจ",
-        "rom": "baang-kráng pŏm leuum gun-jae",
+        "rom": "baang kráng pŏm leum gun-jae",
         "en": "Sometimes I forget my keys."
       },
       {
         "th": "ช่วยพูดอีกครั้งได้ไหม",
-        "rom": "chûai pûut ìik kráng dâai măi",
+        "rom": "chûuay pôot èek kráng dâai măi",
         "en": "Can you say it one more time?"
       },
       {
         "th": "ขอถุงหนึ่งใบ",
-        "rom": "kăaw tŭng nèung bai",
+        "rom": "kŏr tŭng nèung bai",
         "en": "Can I have one plastic bag."
       },
       {
         "th": "ไม่เอาหลอดครับ",
-        "rom": "mâi ao làawt kráp",
+        "rom": "mâi ao lòt kráp",
         "en": "No straw, please."
       },
       {
         "th": "การพูดภาษาไทยไม่ยาก",
-        "rom": "gaan pûut paa-săa tai mâi yâak",
+        "rom": "gaan pôot paa-săa tai mâi yâak",
         "en": "Speaking Thai isn't difficult."
       },
       {
         "th": "ความคิดของคุณดีมาก",
-        "rom": "kwaam-kít kăawng kun dii mâak",
+        "rom": "kwaam-kít kŏng kun dee mâak",
         "en": "Your idea is very good."
       },
       {
         "th": "รถคันนี้ราคาแพง",
-        "rom": "rót kan níi raa-kaa paeng",
+        "rom": "rót kan née raa-kaa paeng",
         "en": "This car is expensive."
       },
       {
         "th": "ส้มลูกนี้หวานมาก",
-        "rom": "sôm lûuk níi wăan mâak",
+        "rom": "sôm lôok née wăan mâak",
         "en": "This orange is very sweet."
       },
       {
         "th": "เขาพูดความจริงเสมอ",
-        "rom": "kăo pûut kwaam-jing sà-mĕu",
+        "rom": "kăo pôot kwaam-jing sà-mĕr",
         "en": "They always tell the truth."
       },
       {
         "th": "ผมไปวัดนี้สองครั้งแล้ว",
-        "rom": "pŏm bpai wát níi săawng kráng láew",
+        "rom": "pŏm bpai wát née sŏng kráng láew",
         "en": "I've been to this temple twice already."
       }
     ]
@@ -1310,7 +1310,7 @@ const DEFAULT_SETS = [
 ];
 
 const MANIFEST_KEY = "thai-practice-manifest";
-const MANIFEST_VERSION = 3;   // bump when DEFAULT_SETS content changes -> reseed (stars preserved)
+const MANIFEST_VERSION = 4;   // bump when DEFAULT_SETS content changes -> reseed (stars preserved)
 
 function cloneSets(sets){
   return sets.map(s => ({
