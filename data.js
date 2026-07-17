@@ -1206,9 +1206,9 @@ const DEFAULT_SETS = [
         "en": "We take the bus to work."
       },
       {
-        "th": "ผมต้องรอรถไฟ",
-        "rom": "pŏm dtông ror rót fai",
-        "en": "I have to wait for the train."
+        "th": "ผมต้องรอพวกเขา",
+        "rom": "pŏm dtông ror pûuak kăo",
+        "en": "I have to wait for them."
       },
       {
         "th": "นั่งแท็กซี่แพงกว่ารถบัส",
@@ -1281,9 +1281,9 @@ const DEFAULT_SETS = [
         "en": "Speaking Thai isn't difficult."
       },
       {
-        "th": "ความคิดของคุณดีมาก",
-        "rom": "kwaam-kít kŏng kun dee mâak",
-        "en": "Your idea is very good."
+        "th": "ความคิดนี้ดีสำหรับพวกเรา",
+        "rom": "kwaam-kít née dee săm-ràp pûuak rao",
+        "en": "This idea is good for us."
       },
       {
         "th": "รถคันนี้ราคาแพง",
@@ -1310,7 +1310,7 @@ const DEFAULT_SETS = [
 ];
 
 const MANIFEST_KEY = "thai-practice-manifest";
-const MANIFEST_VERSION = 5;   // bump when DEFAULT_SETS content changes -> reseed (stars preserved)
+const MANIFEST_VERSION = 6;   // bump when DEFAULT_SETS content changes -> reseed (stars preserved)
 
 function cloneSets(sets){
   return sets.map(s => ({
