@@ -5,9 +5,9 @@
 //   1) Google Translate TTS — best quality, but an unofficial endpoint that can 404
 //   2) the device's own Thai voice via the Web Speech API — offline fallback / alternative
 const TTS_LANG = (t, lang) => "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=" + lang + "&q=" + encodeURIComponent(t);
-const TTS = t => TTS_LANG(t, "th");
+const TTS = t => TTS_LANG(t, "it");
 // Manual fallback: open the phrase in the Google Translate UI (tap the speaker there)
-const TRANSLATE = t => "https://translate.google.com/?sl=th&tl=en&op=translate&text=" + encodeURIComponent(t);
+const TRANSLATE = t => "https://translate.google.com/?sl=it&tl=de&op=translate&text=" + encodeURIComponent(t);
 
 const synth = window.speechSynthesis;
 let thaiVoices = [];
@@ -15,7 +15,7 @@ let choice = "google";               // "google", or "voice:<index>" of a device
 let userPicked = false;              // once the user chooses, stop auto-defaulting
 function loadVoices(){
   const vs = synth ? synth.getVoices() : [];
-  thaiVoices = vs.filter(v => (v.lang || "").toLowerCase().replace("_","-").startsWith("th"));
+  thaiVoices = vs.filter(v => (v.lang || "").toLowerCase().replace("_","-").startsWith("it"));
   populateVoicePicker();
 }
 function populateVoicePicker(){
@@ -90,7 +90,7 @@ if(typeof SENTENCES !== "undefined" && Array.isArray(SENTENCES)){
   LINES = (set && Array.isArray(set.lines) ? set.lines : []).map(lineToArr).filter(a => a[0]);
 }
 
-const SPEED_KEY = "thai-practice-speed";
+const SPEED_KEY = "italian-practice-speed";
 let speed = 0.5;
 try { const s = parseFloat(localStorage.getItem(SPEED_KEY) || ""); if(s >= 0.1 && s <= 1) speed = s; } catch(e){}  // remembered speed
 let audio = null;
@@ -114,12 +114,12 @@ LINES.forEach(([thai, rom, en], i) => {
       <span class="ring"></span>${PLAY_ICON}
     </button>
     <div class="body">
-      <div class="thai" title="Open in Google Translate">${thai}<button class="copy" aria-label="Copy the Thai text">${COPY_ICON}</button></div>
+      <div class="thai" title="In Google Übersetzer öffnen">${thai}<button class="copy" aria-label="Italienischen Text kopieren">${COPY_ICON}</button></div>
       <div class="reading">
         <div class="rom">${rom}</div>
         <div class="en">${en}</div>
       </div>
-      <div class="err">Couldn't play the audio here. Tap the Thai to open it in Google Translate.</div>
+      <div class="err">Audio hier nicht abspielbar. Tippe auf den italienischen Text, um ihn im Google Übersetzer zu öffnen.</div>
     </div>`;
 
   const btn = card.querySelector(".play");
@@ -239,7 +239,7 @@ function playGoogle(card, thai){
 function segmentThai(text){
   if(typeof Intl !== "undefined" && Intl.Segmenter){
     try{
-      const seg = new Intl.Segmenter("th", { granularity: "word" });
+      const seg = new Intl.Segmenter("it", { granularity: "word" });
       const words = [...seg.segment(text)].map(s => s.segment).filter(w => w.trim());
       if(words.length) return words;
     }catch(e){}
@@ -286,7 +286,7 @@ function speakDevice(card, thai, voice){
   synth.cancel();                                    // clear any leftover queue
   chunks.forEach(text => {
     const u = new SpeechSynthesisUtterance(text);
-    u.lang = voice.lang || "th-TH";
+    u.lang = voice.lang || "it-IT";
     u.voice = voice;
     u.rate = rate;
     u.onerror = e => {
@@ -360,7 +360,7 @@ document.addEventListener("keydown", e => {
 });
 
 // "x" toggles grey/blank mode — greyscale the whole theme and hide the Thai text (audio only)
-const GREY_KEY = "thai-practice-grey";
+const GREY_KEY = "italian-practice-grey";
 try { if(localStorage.getItem(GREY_KEY) === "1") document.body.classList.add("greymode"); } catch(e){}
 document.addEventListener("keydown", e => {
   if(e.key !== "x" && e.key !== "X") return;
@@ -454,18 +454,18 @@ async function runPlayAll(){
   const cards = [...document.querySelectorAll(".card")];
   for(const card of cards){
     if(playAll.token !== token) break;
-    const th = card.dataset.th, en = card.dataset.en;
+    const it = card.dataset.th, de = card.dataset.en;
     activateCard(card);
-    await playClip(th, "th", googleRate(speed), token);       // Thai, first pass
+    await playClip(it, "it", googleRate(speed), token);       // Italian, first pass
     if(playAll.token !== token) break;
     await wait(PA_GAP_REPEAT, token);
     if(playAll.token !== token) break;
-    await playClip(th, "th", googleRate(speed), token);       // Thai, repeat
+    await playClip(it, "it", googleRate(speed), token);       // Italian, repeat
     if(playAll.token !== token) break;
     await wait(PA_GAP_EN, token);
     if(playAll.token !== token) break;
-    card.classList.remove("masked");                          // reveal the reading while the English plays
-    await playClip(en, "en", 1, token);                       // English, natural speed
+    card.classList.remove("masked");                          // reveal the reading while the German plays
+    await playClip(de, "de", 1, token);                       // German translation, natural speed
     if(playAll.token !== token) break;
     await wait(PA_GAP_CARD, token);
   }
@@ -495,18 +495,14 @@ async function runPlayAll(){
 
 // shared top nav — filled here so every page stays in sync (each page ships an empty .nav)
 const NAV = [
-  ["index.html","Set 1 · Sentences"],
-  ["vocab.html","Set 2 · Mix"],
-  ["set3.html","Set 3 · Mix"],
-  ["set4.html","Set 4 · Mix"],
-  ["set5.html","Set 5 · Mix"],
-  ["set6.html","Set 6 · Mix"],
-  ["set7.html","Set 7 · Numbers"],
-  ["set8.html","Set 8 · Everyday"],
-  ["random.html","Shuffle"],
-  ["liked.html","★ Saved"],
-  ["data.html","Data · edit"],
-  ["italian/index.html","🇮🇹 Italiano"],
+  ["index.html","Set 1 · Alltag"],
+  ["set2.html","Set 2 · Essen"],
+  ["set3.html","Set 3 · Reisen"],
+  ["set4.html","Set 4 · Zeit"],
+  ["random.html","Zufall"],
+  ["liked.html","★ Gemerkt"],
+  ["data.html","Daten · edit"],
+  ["../index.html","← ไทย Thai"],
 ];
 (function buildNav(){
   const navEl = document.querySelector ? document.querySelector(".nav") : null;
