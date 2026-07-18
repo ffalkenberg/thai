@@ -4,7 +4,8 @@
 // Two audio sources:
 //   1) Google Translate TTS — best quality, but an unofficial endpoint that can 404
 //   2) the device's own Thai voice via the Web Speech API — offline fallback / alternative
-const TTS = t => "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=th&q=" + encodeURIComponent(t);
+const TTS_LANG = (t, lang) => "https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=" + lang + "&q=" + encodeURIComponent(t);
+const TTS = t => TTS_LANG(t, "th");
 // Manual fallback: open the phrase in the Google Translate UI (tap the speaker there)
 const TRANSLATE = t => "https://translate.google.com/?sl=th&tl=en&op=translate&text=" + encodeURIComponent(t);
 
@@ -103,6 +104,8 @@ LINES.forEach(([thai, rom, en], i) => {
   const card = document.createElement("div");
   card.className = "card masked";
   card.style.animationDelay = (i * 35) + "ms";
+  card.dataset.th = thai;
+  card.dataset.en = en;
   if(isStarred(thai)) card.classList.add("starred");
   card.innerHTML = `
     <span class="num">${String(i+1).padStart(2,"0")}</span>
@@ -197,6 +200,7 @@ function startWatchdog(card){
 }
 
 function toggle(card, thai, btn){
+  if(playAll.on) stopPlayAll();                        // tapping a single line ends any Play-all run
   if(currentCard === card){ clearAudio(); return; }    // tapping the playing line stops audio; the box stays highlighted
   clearAudio();
   card.classList.remove("error");
@@ -370,6 +374,104 @@ document.addEventListener("keydown", e => {
 if("serviceWorker" in navigator){
   window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(()=>{}));
 }
+
+// ===== Play all — autoplay the whole page hands-free =====
+// For each card: Thai twice (current speed) with a gap, then the English, then the next card.
+// Uses Google TTS for both languages (device voices can't do English and stop in the background).
+const playAll = { on: false, token: 0 };
+const PA_GAP_REPEAT = 700;    // pause between the two Thai plays
+const PA_GAP_EN      = 650;   // pause before the English translation
+const PA_GAP_CARD    = 900;   // pause before moving to the next card
+const PLAYALL_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+const PA_STOP_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>';
+
+let playAllBtn = null;
+function updatePlayAllBtn(){
+  if(!playAllBtn) return;
+  playAllBtn.classList.toggle("on", playAll.on);
+  playAllBtn.innerHTML = (playAll.on ? PA_STOP_ICON : PLAYALL_ICON) +
+    '<span class="lbl">' + (playAll.on ? "Stop" : "Play all") + "</span>";
+}
+function stopPlayAll(){
+  playAll.on = false;
+  playAll.token++;             // invalidates any in-flight run
+  updatePlayAllBtn();
+}
+
+// resolves when the clip ends (or errors / is cancelled); polls in case 'ended' never fires (iOS)
+function playClip(text, lang, rate, token){
+  return new Promise(resolve => {
+    if(playAll.token !== token || !text){ resolve(); return; }
+    if(synth) synth.cancel();
+    const a = new Audio(TTS_LANG(text, lang));
+    audio = a;
+    a.playbackRate = rate;
+    let done = false, wd = null;
+    const finish = () => { if(done) return; done = true; if(wd) clearInterval(wd); if(audio === a) audio = null; resolve(); };
+    a.onended = finish;
+    a.onerror = finish;         // skip a failed clip rather than stall the run
+    const p = a.play();
+    if(p && p.catch) p.catch(finish);
+    wd = setInterval(() => {
+      if(playAll.token !== token || audio !== a){ finish(); return; }   // cancelled or replaced
+      if(a.ended) finish();
+    }, 250);
+  });
+}
+function wait(ms, token){
+  return new Promise(resolve => setTimeout(() => resolve(playAll.token === token), ms));
+}
+
+function activateCard(card){
+  moveHighlight(card);
+  document.querySelectorAll(".card").forEach(c => { if(c !== card) c.classList.add("masked"); });
+  currentCard = card;
+  currentThai = card.dataset.th;
+  card.classList.add("playing", "live");
+  card.querySelector(".play").innerHTML = '<span class="ring"></span>' + STOP_ICON;
+  try { card.scrollIntoView({ behavior: "smooth", block: "center" }); } catch(e){}
+}
+
+async function runPlayAll(){
+  const token = ++playAll.token;
+  playAll.on = true;
+  updatePlayAllBtn();
+  clearAudio();                                      // stop anything already playing
+  const cards = [...document.querySelectorAll(".card")];
+  for(const card of cards){
+    if(playAll.token !== token) break;
+    const th = card.dataset.th, en = card.dataset.en;
+    activateCard(card);
+    await playClip(th, "th", googleRate(speed), token);       // Thai, first pass
+    if(playAll.token !== token) break;
+    await wait(PA_GAP_REPEAT, token);
+    if(playAll.token !== token) break;
+    await playClip(th, "th", googleRate(speed), token);       // Thai, repeat
+    if(playAll.token !== token) break;
+    await wait(PA_GAP_EN, token);
+    if(playAll.token !== token) break;
+    await playClip(en, "en", 1, token);                       // English, natural speed
+    if(playAll.token !== token) break;
+    await wait(PA_GAP_CARD, token);
+  }
+  if(playAll.token === token){ playAll.on = false; clearAudio(); updatePlayAllBtn(); }   // reached the end
+}
+
+// inject the Play all button into the controls bar (so every page gets it, no per-page HTML)
+(function addPlayAll(){
+  const inner = document.querySelector(".controls-inner");
+  if(!inner || !LINES.length) return;
+  playAllBtn = document.createElement("button");
+  playAllBtn.className = "playall";
+  playAllBtn.id = "playAll";
+  playAllBtn.setAttribute("aria-label", "Play all sentences on this page");
+  inner.appendChild(playAllBtn);
+  updatePlayAllBtn();
+  playAllBtn.addEventListener("click", () => {
+    if(playAll.on){ stopPlayAll(); clearAudio(); }
+    else runPlayAll();
+  });
+})();
 
 // shared top nav — filled here so every page stays in sync (each page ships an empty .nav)
 const NAV = [

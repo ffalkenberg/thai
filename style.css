@@ -95,6 +95,19 @@ input[type=range]::-moz-range-thumb{
 .reveal-toggle.on .switch{background:var(--gold)}
 .reveal-toggle.on .switch::after{transform:translateX(18px)}
 
+/* Play all — autoplay the whole page */
+.playall{
+  display:inline-flex;align-items:center;gap:8px;margin-left:auto;
+  font-family:"IBM Plex Sans",sans-serif;font-size:13.5px;font-weight:500;
+  color:var(--gold-soft);background:#0d2925;border:1px solid var(--jade-line);
+  border-radius:20px;padding:8px 16px;cursor:pointer;white-space:nowrap;
+  transition:color .15s,border-color .15s,background .15s,transform .1s;
+}
+.playall svg{width:15px;height:15px}
+.playall:hover{border-color:var(--gold);background:#103029}
+.playall:active{transform:scale(.96)}
+.playall.on{background:var(--gold);color:var(--ground);border-color:var(--gold)}
+
 /* voice picker */
 .voice-pick{display:flex;align-items:center;gap:10px}
 .voice-pick[hidden]{display:none}
