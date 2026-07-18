@@ -50,13 +50,14 @@ header p{color:#b9c4bb;max-width:46ch;margin-top:14px;font-size:15.5px}
 /* ---- control bar ---- */
 .controls{
   position:sticky;top:0;z-index:20;
-  margin:0 -20px 30px;padding:16px 20px;
+  width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);
+  margin-bottom:30px;padding:16px 22px;
   background:rgba(10,34,30,.82);
   backdrop-filter:blur(10px);
   border-bottom:1px solid var(--jade-line);
 }
-.controls-inner{max-width:760px;margin:0 auto;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
-.speed{display:flex;align-items:center;gap:14px;flex:1;min-width:240px}
+.controls-inner{max-width:1000px;margin:0 auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.speed{display:flex;align-items:center;gap:14px;flex:1;min-width:220px}
 .speed label{
   font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;
   text-transform:uppercase;color:#9fb0a6;white-space:nowrap;

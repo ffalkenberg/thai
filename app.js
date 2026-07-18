@@ -23,7 +23,7 @@ function populateVoicePicker(){
   const sel = document.getElementById("voice");
   if(!wrap || !sel) return;
   const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
-  sel.innerHTML = '<option value="google">Google Translate (best quality)</option>' +
+  sel.innerHTML = '<option value="google">Google Translate</option>' +
     thaiVoices.map((v,i) => `<option value="voice:${i}">${esc(v.name)} · device</option>`).join("");
   // default stays Google (reliable end-of-audio event); the user can switch to a device voice
   if([...sel.options].some(o => o.value === choice)) sel.value = choice;
@@ -379,6 +379,9 @@ if("serviceWorker" in navigator){
 // For each card: Thai twice (current speed) with a gap, then the English, then the next card.
 // Uses Google TTS for both languages (device voices can't do English and stop in the background).
 const playAll = { on: false, token: 0 };
+let paAudio = null;           // ONE audio element, unlocked by the tap and reused for every clip
+                              // (iOS only allows audio started from a user gesture; a fresh element
+                              //  per clip gets blocked after the first — reusing the unlocked one works)
 const PA_GAP_REPEAT = 700;    // pause between the two Thai plays
 const PA_GAP_EN      = 650;   // pause before the English translation
 const PA_GAP_CARD    = 1900;  // longer pause before moving to the next sentence
@@ -395,25 +398,35 @@ function updatePlayAllBtn(){
 function stopPlayAll(){
   playAll.on = false;
   playAll.token++;             // invalidates any in-flight run
+  if(paAudio){ try { paAudio.pause(); } catch(e){} paAudio = null; }
   updatePlayAllBtn();
 }
 
-// resolves when the clip ends (or errors / is cancelled); polls in case 'ended' never fires (iOS)
+// Play one clip on the shared (already-unlocked) element; resolves when it ends,
+// errors, or the run is cancelled. Polls in case 'ended' never fires (iOS).
 function playClip(text, lang, rate, token){
   return new Promise(resolve => {
-    if(playAll.token !== token || !text){ resolve(); return; }
+    const a = paAudio;
+    if(playAll.token !== token || !text || !a){ resolve(); return; }
     if(synth) synth.cancel();
-    const a = new Audio(TTS_LANG(text, lang));
-    audio = a;
-    a.playbackRate = rate;
+    audio = a;                                  // mirror to the global so pause/stop reach it
     let done = false, wd = null;
-    const finish = () => { if(done) return; done = true; if(wd) clearInterval(wd); if(audio === a) audio = null; resolve(); };
+    const finish = () => {
+      if(done) return; done = true;
+      if(wd) clearInterval(wd);
+      a.onended = null; a.onerror = null;
+      if(audio === a) audio = null;             // nothing "current" during the gap that follows
+      resolve();
+    };
     a.onended = finish;
-    a.onerror = finish;         // skip a failed clip rather than stall the run
+    a.onerror = finish;                         // skip a failed clip rather than stall the run
+    try { a.pause(); } catch(e){}
+    a.src = TTS_LANG(text, lang);               // reuse the element — just swap the source
+    a.playbackRate = rate;
     const p = a.play();
     if(p && p.catch) p.catch(finish);
     wd = setInterval(() => {
-      if(playAll.token !== token || audio !== a){ finish(); return; }   // cancelled or replaced
+      if(playAll.token !== token || paAudio !== a){ finish(); return; }   // cancelled or replaced
       if(a.ended) finish();
     }, 250);
   });
@@ -437,6 +450,7 @@ async function runPlayAll(){
   playAll.on = true;
   updatePlayAllBtn();
   clearAudio();                                      // stop anything already playing
+  paAudio = new Audio();                             // create + play within this tap so iOS unlocks it
   const cards = [...document.querySelectorAll(".card")];
   for(const card of cards){
     if(playAll.token !== token) break;
@@ -450,11 +464,17 @@ async function runPlayAll(){
     if(playAll.token !== token) break;
     await wait(PA_GAP_EN, token);
     if(playAll.token !== token) break;
+    card.classList.remove("masked");                          // reveal the reading while the English plays
     await playClip(en, "en", 1, token);                       // English, natural speed
     if(playAll.token !== token) break;
     await wait(PA_GAP_CARD, token);
   }
-  if(playAll.token === token){ playAll.on = false; clearAudio(); updatePlayAllBtn(); }   // reached the end
+  if(playAll.token === token){                       // reached the end naturally
+    playAll.on = false;
+    if(paAudio){ try { paAudio.pause(); } catch(e){} paAudio = null; }
+    clearAudio();
+    updatePlayAllBtn();
+  }
 }
 
 // inject the Play all button into the controls bar (so every page gets it, no per-page HTML)
