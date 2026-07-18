@@ -381,7 +381,7 @@ if("serviceWorker" in navigator){
 const playAll = { on: false, token: 0 };
 const PA_GAP_REPEAT = 700;    // pause between the two Thai plays
 const PA_GAP_EN      = 650;   // pause before the English translation
-const PA_GAP_CARD    = 900;   // pause before moving to the next card
+const PA_GAP_CARD    = 1900;  // longer pause before moving to the next sentence
 const PLAYALL_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
 const PA_STOP_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>';
 
