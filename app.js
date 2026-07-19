@@ -108,7 +108,7 @@ LINES.forEach(([thai, rom, en], i) => {
   card.dataset.en = en;
   if(isStarred(thai)) card.classList.add("starred");
   card.innerHTML = `
-    <span class="num">${String(i+1).padStart(2,"0")}</span>
+    <span class="num" role="button" tabindex="0" title="Play all from here">${String(i+1).padStart(2,"0")}</span>
     <button class="star" aria-label="Save sentence ${i+1}" aria-pressed="${isStarred(thai)}">${STAR_ICON}</button>
     <button class="play" aria-label="Play sentence ${i+1}">
       <span class="ring"></span>${PLAY_ICON}
@@ -124,6 +124,13 @@ LINES.forEach(([thai, rom, en], i) => {
 
   const btn = card.querySelector(".play");
   btn.addEventListener("click", () => toggle(card, thai, btn));
+
+  // tapping the number starts Play all from this card
+  const num = card.querySelector(".num");
+  num.addEventListener("click", e => { e.stopPropagation(); runPlayAll(i); });
+  num.addEventListener("keydown", e => {
+    if(e.key === "Enter" || e.key === " "){ e.preventDefault(); runPlayAll(i); }
+  });
 
   // star / save — persists across reloads
   const star = card.querySelector(".star");
@@ -382,9 +389,9 @@ const playAll = { on: false, token: 0 };
 let paAudio = null;           // ONE audio element, unlocked by the tap and reused for every clip
                               // (iOS only allows audio started from a user gesture; a fresh element
                               //  per clip gets blocked after the first — reusing the unlocked one works)
-const PA_GAP_REPEAT = 700;    // pause between the two Thai plays
+const PA_GAP_REPEAT = 805;    // pause between the two Thai plays
 const PA_GAP_EN      = 650;   // pause before the English translation
-const PA_GAP_CARD    = 1900;  // longer pause before moving to the next sentence
+const PA_GAP_CARD    = 2185;  // longer pause before moving to the next sentence
 const PLAYALL_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
 const PA_STOP_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>';
 
@@ -445,13 +452,14 @@ function activateCard(card){
   try { card.scrollIntoView({ behavior: "smooth", block: "center" }); } catch(e){}
 }
 
-async function runPlayAll(){
+async function runPlayAll(startIndex){
   const token = ++playAll.token;
   playAll.on = true;
   updatePlayAllBtn();
   clearAudio();                                      // stop anything already playing
   paAudio = new Audio();                             // create + play within this tap so iOS unlocks it
-  const cards = [...document.querySelectorAll(".card")];
+  const all = [...document.querySelectorAll(".card")];
+  const cards = all.slice(Math.max(0, startIndex | 0));   // optionally start partway down the list
   for(const card of cards){
     if(playAll.token !== token) break;
     const th = card.dataset.th, en = card.dataset.en;

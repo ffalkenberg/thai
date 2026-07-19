@@ -146,8 +146,9 @@ input[type=range]::-moz-range-thumb{
 .num{
   position:absolute;top:16px;right:48px;
   font-family:"IBM Plex Mono",monospace;font-size:11px;color:#8b9b8f;
-  letter-spacing:.05em;
+  letter-spacing:.05em;cursor:pointer;transition:color .15s;
 }
+.num:hover{color:var(--gold-soft)}
 
 /* star / save button */
 .star{
