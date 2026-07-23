@@ -1306,6 +1306,202 @@ const DEFAULT_SETS = [
         "en": "I've been to this temple twice already."
       }
     ]
+  },
+  {
+    "id": "set9",
+    "title": "Set 9 · More",
+    "lines": [
+      {
+        "th": "ซุปเห็ดอร่อยมาก",
+        "rom": "súp hèt à-ròi mâak",
+        "en": "Mushroom soup is very delicious."
+      },
+      {
+        "th": "วางจานบนโต๊ะ",
+        "rom": "waang jaan bon dtó",
+        "en": "Put the plate on the table."
+      },
+      {
+        "th": "ขอมะนาวหนึ่งลูก",
+        "rom": "kŏr má-naao nèung lôok",
+        "en": "May I have one lime."
+      },
+      {
+        "th": "มะละกอสุกหวานมาก",
+        "rom": "má-lá-gor sùk wăan mâak",
+        "en": "Ripe papaya is very sweet."
+      },
+      {
+        "th": "ชาใบเตยหอมมาก",
+        "rom": "chaa bai-təəi hŏm mâak",
+        "en": "Pandan tea smells very fragrant."
+      },
+      {
+        "th": "ห้องนี้สะอาดมาก",
+        "rom": "hông née sà-àat mâak",
+        "en": "This room is very clean."
+      },
+      {
+        "th": "ผมทำความสะอาดบ้านทุกวันเสาร์",
+        "rom": "pŏm tam kwaam sà-àat bâan túk wan săo",
+        "en": "I clean the house every Saturday."
+      },
+      {
+        "th": "ผมมีคำถามหนึ่งข้อ",
+        "rom": "pŏm mee kam-tăam nèung kâaw",
+        "en": "I have one question."
+      },
+      {
+        "th": "เรื่องนี้ยาวมาก",
+        "rom": "rêuuang née yaao mâak",
+        "en": "This story is very long."
+      },
+      {
+        "th": "วันนี้รถติดมาก",
+        "rom": "wan-née rót-dtìt mâak",
+        "en": "There's a lot of traffic today."
+      },
+      {
+        "th": "ร้านยาอยู่ตรงข้ามตลาด",
+        "rom": "ráan-yaa yòo dtrong-kâam dtà-làat",
+        "en": "The pharmacy is across from the market."
+      },
+      {
+        "th": "ตกลง เจอกันพรุ่งนี้",
+        "rom": "dtòk-long, jəə gan prûng-née",
+        "en": "Okay, see you tomorrow."
+      },
+      {
+        "th": "พรุ่งนี้ฝนตกแน่นอน",
+        "rom": "prûng-née fŏn dtòk nâe-naawn",
+        "en": "It will definitely rain tomorrow."
+      },
+      {
+        "th": "อาหารนี้เผ็ดมากเลย",
+        "rom": "aa-hăan née pèt mâak looei",
+        "en": "This food is really spicy."
+      },
+      {
+        "th": "คุณอยากกินอะไรบ้าง",
+        "rom": "kun yàak gin à-rai bâang",
+        "en": "What would you like to eat?"
+      },
+      {
+        "th": "ผมจะออกไปข้างนอก",
+        "rom": "pŏm jà òk-bpai kâang-nâawk",
+        "en": "I'm going to go outside."
+      },
+      {
+        "th": "เชิญเข้าไปข้างในเลย",
+        "rom": "chəən kâo-bpai kâang-nai looei",
+        "en": "Please go inside."
+      },
+      {
+        "th": "ผมยังไม่หิว",
+        "rom": "pŏm yang-mâi hĕu",
+        "en": "I'm not hungry yet."
+      },
+      {
+        "th": "นั่งรถไฟดีกว่านั่งรถบัส",
+        "rom": "nâng rót-fai dee-gwàa nâng rót-bàt",
+        "en": "Taking the train is better than the bus."
+      },
+      {
+        "th": "อาทิตย์ที่แล้วผมไม่สบาย",
+        "rom": "aa-tít têe-láew pŏm mâi sà-baai",
+        "en": "Last week I was sick."
+      },
+      {
+        "th": "ช่วยเปิดไฟให้หน่อย",
+        "rom": "chûai bpèrt fai hâi nòi",
+        "en": "Please turn on the light for me."
+      },
+      {
+        "th": "ผมชอบกินไก่ทอด",
+        "rom": "pŏm chôp gin gài-tâawt",
+        "en": "I like to eat fried chicken."
+      },
+      {
+        "th": "ตลาดนัดเปิดวันเสาร์อาทิตย์",
+        "rom": "dtà-làat-nát bpèrt wan săo aa-tít",
+        "en": "The weekend market is open on the weekend."
+      },
+      {
+        "th": "ช่วงนี้อากาศร้อนมาก",
+        "rom": "chûang née aa-gàat ráawn mâak",
+        "en": "The weather is very hot these days."
+      },
+      {
+        "th": "เขาหันหลังแล้วเดินไป",
+        "rom": "kăo hăn-lăng láew deun bpai",
+        "en": "They turned around and walked away."
+      },
+      {
+        "th": "เพื่อนผมนิสัยดีมาก",
+        "rom": "pêuuan pŏm ní-săi dee mâak",
+        "en": "My friend has a very good personality."
+      },
+      {
+        "th": "ผู้หญิงคนนั้นผมสีทอง",
+        "rom": "pôo-yĭng kon nán pŏm sĕe taawng",
+        "en": "That woman has blonde hair."
+      },
+      {
+        "th": "ร้านปิดตอนสี่ทุ่ม",
+        "rom": "ráan bpìt dtaawn sèe tûm",
+        "en": "The shop closes at 10pm."
+      },
+      {
+        "th": "ผมง่วงทุกบ่าย",
+        "rom": "pŏm ngûuang túk bàai",
+        "en": "I feel sleepy every afternoon."
+      },
+      {
+        "th": "ทำไมถึงมาสายอีกแล้ว",
+        "rom": "tam-mai tĕung maa săai ìik láew",
+        "en": "Why are you late again?"
+      },
+      {
+        "th": "ผมชอบกินมันฝรั่งทอด",
+        "rom": "pŏm chôp gin man-fà-ràng tâawt",
+        "en": "I like to eat french fries."
+      },
+      {
+        "th": "เจอกันตอนเที่ยงนะ",
+        "rom": "jəə gan dtaawn-tîiang ná",
+        "en": "See you at noon."
+      },
+      {
+        "th": "วันอังคารผมไม่ว่าง",
+        "rom": "wan ang-kaan pŏm mâi wâang",
+        "en": "On Tuesday I'm not free."
+      },
+      {
+        "th": "รอครึ่งชั่วโมงได้ไหม",
+        "rom": "raaw krêung chûua-mohng dâai măi",
+        "en": "Can you wait half an hour?"
+      },
+      {
+        "th": "ไม่ต้องห่วง ผมสบายดี",
+        "rom": "mâi dtông hùuang, pŏm sà-baai dee",
+        "en": "Don't worry, I'm fine."
+      },
+      {
+        "th": "กรุงเทพฯรถติดทุกวัน",
+        "rom": "grung-têep rót-dtìt túk wan",
+        "en": "Bangkok has traffic every day."
+      },
+      {
+        "th": "ข้ามสะพานลอยปลอดภัยกว่า",
+        "rom": "kâam sà-paan-looi bplòot-pai gwàa",
+        "en": "Crossing the overpass is safer."
+      },
+      {
+        "th": "ผมไปซื้ออาหารที่ตลาด",
+        "rom": "pŏm bpai séu aa-hăan têe dtà-làat",
+        "en": "I go buy food at the market."
+      }
+    ]
   }
 ];
 

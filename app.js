@@ -511,10 +511,10 @@ const NAV = [
   ["set6.html","Set 6 · Mix"],
   ["set7.html","Set 7 · Numbers"],
   ["set8.html","Set 8 · Everyday"],
+  ["set9.html","Set 9 · More"],
   ["random.html","Shuffle"],
   ["liked.html","★ Saved"],
   ["data.html","Data · edit"],
-  ["italian/index.html","🇮🇹 Italiano"],
 ];
 (function buildNav(){
   const navEl = document.querySelector ? document.querySelector(".nav") : null;

@@ -1,51 +1,51 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Google Translate's TTS endpoint 404s when a Referer is present; send none so hosted behaves like a local file -->
 <meta name="referrer" content="no-referrer">
-<title>Italienisch Hörpraxis — Set 3</title>
+<title>Thai Listening Practice — Set 9</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=1">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=26">
 </head>
 <body>
 <div class="wrap">
   <header>
     <nav class="nav"></nav>
-    <div class="eyebrow">Reisen &amp; Wege</div>
-    <h1>Unterwegs <span class="th">in viaggio</span></h1>
-    <p>Tippe auf einen Satz, um ihn zu hören. Zieh den Regler, um das Audio zu verlangsamen. Schalte den Hörmodus ein, um die Übersetzung zu verbergen — mit der Leertaste pausierst du.</p>
+    <div class="eyebrow">More words</div>
+    <h1>Filling the <span class="th">ช่องว่าง</span></h1>
+    <p>A fresh set built from vocabulary that wasn't covered yet — food and the market, cleaning and the pharmacy, times and traffic. Tap to listen, slow the dial down, spacebar to pause, Listening mode to hide the reading.</p>
     <div class="rule"></div>
   </header>
 
   <div class="controls">
     <div class="controls-inner">
       <div class="speed">
-        <label for="rate">Tempo</label>
+        <label for="rate">Speed</label>
         <input type="range" id="rate" min="0.1" max="1" step="0.05" value="0.5">
         <div class="readout" id="readout">0.50×</div>
       </div>
       <div class="voice-pick" id="voiceWrap" hidden>
-        <label for="voice">Stimme</label>
+        <label for="voice">Voice</label>
         <select id="voice"></select>
       </div>
       <div class="reveal-toggle" id="maskToggle" role="switch" aria-checked="false" tabindex="0">
         <span class="switch"></span>
-        <span>Hörmodus</span>
+        <span>Listening mode</span>
       </div>
     </div>
   </div>
 
   <div class="list" id="list"></div>
 
-  <footer>20 Sätze · Reisen &amp; Wegbeschreibung · Leertaste pausiert</footer>
+  <footer>38 sentences · previously-missing words · space to pause</footer>
 </div>
 
-<script src="data.js?v=1"></script>
-<script>const SET_ID = "set3";</script>
-<script src="app.js?v=1"></script>
+<script src="data.js?v=26"></script>
+<script>const SET_ID = "set9";</script>
+<script src="app.js?v=26"></script>
 </body>
 </html>
