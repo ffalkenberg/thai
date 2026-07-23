@@ -1312,9 +1312,9 @@ const DEFAULT_SETS = [
     "title": "Set 9 · More",
     "lines": [
       {
-        "th": "ซุปเห็ดอร่อยมาก",
-        "rom": "súp hèt à-ròi mâak",
-        "en": "Mushroom soup is very delicious."
+        "th": "ซุปเห็ดอร่อยจัง",
+        "rom": "súp hèt à-ròi jang",
+        "en": "Mushroom soup is so tasty!"
       },
       {
         "th": "วางจานบนโต๊ะ",
@@ -1327,19 +1327,19 @@ const DEFAULT_SETS = [
         "en": "May I have one lime."
       },
       {
-        "th": "มะละกอสุกหวานมาก",
-        "rom": "má-lá-gor sùk wăan mâak",
-        "en": "Ripe papaya is very sweet."
+        "th": "มะละกอสุกกำลังดี",
+        "rom": "má-lá-gor sùk gam-lang dee",
+        "en": "The papaya is perfectly ripe."
       },
       {
-        "th": "ชาใบเตยหอมมาก",
-        "rom": "chaa bai-təəi hŏm mâak",
-        "en": "Pandan tea smells very fragrant."
+        "th": "ชาใบเตยกลิ่นหอม",
+        "rom": "chaa bai-təəi glìn hŏm",
+        "en": "Pandan tea has a fragrant smell."
       },
       {
-        "th": "ห้องนี้สะอาดมาก",
-        "rom": "hông née sà-àat mâak",
-        "en": "This room is very clean."
+        "th": "ห้องนี้ดูสะอาด",
+        "rom": "hông née doo sà-àat",
+        "en": "This room looks clean."
       },
       {
         "th": "ผมทำความสะอาดบ้านทุกวันเสาร์",
@@ -1352,14 +1352,14 @@ const DEFAULT_SETS = [
         "en": "I have one question."
       },
       {
-        "th": "เรื่องนี้ยาวมาก",
-        "rom": "rêuuang née yaao mâak",
-        "en": "This story is very long."
+        "th": "เรื่องนี้ยาวเกินไป",
+        "rom": "rêuuang née yaao geun bpai",
+        "en": "This story is too long."
       },
       {
-        "th": "วันนี้รถติดมาก",
-        "rom": "wan-née rót-dtìt mâak",
-        "en": "There's a lot of traffic today."
+        "th": "วันนี้รถติดหนัก",
+        "rom": "wan-née rót-dtìt nàk",
+        "en": "The traffic is heavy today."
       },
       {
         "th": "ร้านยาอยู่ตรงข้ามตลาด",
@@ -1377,9 +1377,9 @@ const DEFAULT_SETS = [
         "en": "It will definitely rain tomorrow."
       },
       {
-        "th": "อาหารนี้เผ็ดมากเลย",
-        "rom": "aa-hăan née pèt mâak looei",
-        "en": "This food is really spicy."
+        "th": "อาหารนี้เผ็ดจัง",
+        "rom": "aa-hăan née pèt jang",
+        "en": "This food is so spicy!"
       },
       {
         "th": "คุณอยากกินอะไรบ้าง",
@@ -1427,9 +1427,9 @@ const DEFAULT_SETS = [
         "en": "The weekend market is open on the weekend."
       },
       {
-        "th": "ช่วงนี้อากาศร้อนมาก",
-        "rom": "chûang née aa-gàat ráawn mâak",
-        "en": "The weather is very hot these days."
+        "th": "ช่วงนี้อากาศร้อน",
+        "rom": "chûang née aa-gàat ráawn",
+        "en": "The weather is hot these days."
       },
       {
         "th": "เขาหันหลังแล้วเดินไป",
@@ -1437,9 +1437,9 @@ const DEFAULT_SETS = [
         "en": "They turned around and walked away."
       },
       {
-        "th": "เพื่อนผมนิสัยดีมาก",
-        "rom": "pêuuan pŏm ní-săi dee mâak",
-        "en": "My friend has a very good personality."
+        "th": "เพื่อนผมนิสัยดี",
+        "rom": "pêuuan pŏm ní-săi dee",
+        "en": "My friend has a good personality."
       },
       {
         "th": "ผู้หญิงคนนั้นผมสีทอง",
@@ -1506,7 +1506,7 @@ const DEFAULT_SETS = [
 ];
 
 const MANIFEST_KEY = "thai-practice-manifest";
-const MANIFEST_VERSION = 6;   // bump when DEFAULT_SETS content changes -> reseed (stars preserved)
+const MANIFEST_VERSION = 7;   // bump when DEFAULT_SETS content changes -> reseed (stars preserved)
 
 function cloneSets(sets){
   return sets.map(s => ({
