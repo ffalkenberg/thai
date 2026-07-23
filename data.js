@@ -210,9 +210,9 @@ const DEFAULT_SETS = [
         "en": "There are lots of trees at the temple."
       },
       {
-        "th": "เขาพูดภาษาไทยได้",
-        "rom": "kăo pôot paa-săa tai dâai",
-        "en": "He can speak Thai."
+        "th": "พวกเขาพูดภาษาไทยได้",
+        "rom": "pûuak kăo pôot paa-săa tai dâai",
+        "en": "They can speak Thai."
       },
       {
         "th": "ฉันไม่ชอบเบียร์",
@@ -562,9 +562,9 @@ const DEFAULT_SETS = [
         "en": "I drive to the sea."
       },
       {
-        "th": "เขาเหนื่อยเพราะทำงานเยอะ",
-        "rom": "kăo nʉ̀ai phrɔ́ tam ngaan yúh",
-        "en": "He's tired because he works a lot."
+        "th": "พวกเขาเหนื่อยเพราะทำงานเยอะ",
+        "rom": "pûuak kăo nʉ̀ai phrɔ́ tam ngaan yúh",
+        "en": "They are tired because they work a lot."
       },
       {
         "th": "คุณดื่มเบียร์ไหม",
@@ -869,9 +869,9 @@ const DEFAULT_SETS = [
         "en": "What do you want to get?"
       },
       {
-        "th": "เขาโทรหาผมเมื่อคืน",
-        "rom": "kăo toh hăa pŏm mêuua keun",
-        "en": "He called me last night."
+        "th": "พวกเขาโทรหาผมเมื่อคืน",
+        "rom": "pûuak kăo toh hăa pŏm mêuua keun",
+        "en": "They called me last night."
       },
       {
         "th": "คุณเคยไปญี่ปุ่นไหม",
@@ -1432,9 +1432,9 @@ const DEFAULT_SETS = [
         "en": "The weather is hot these days."
       },
       {
-        "th": "เขาหันหลังแล้วเดินไป",
-        "rom": "kăo hăn-lăng láew deun bpai",
-        "en": "He turned around and walked away."
+        "th": "พวกเขาหันหลังแล้วเดินไป",
+        "rom": "pûuak kăo hăn-lăng láew deun bpai",
+        "en": "They turned around and walked away."
       },
       {
         "th": "เพื่อนผมนิสัยดี",
@@ -1506,7 +1506,7 @@ const DEFAULT_SETS = [
 ];
 
 const MANIFEST_KEY = "thai-practice-manifest";
-const MANIFEST_VERSION = 9;   // bump when DEFAULT_SETS content changes -> reseed (stars preserved)
+const MANIFEST_VERSION = 10;   // bump when DEFAULT_SETS content changes -> reseed (stars preserved)
 
 function cloneSets(sets){
   return sets.map(s => ({
