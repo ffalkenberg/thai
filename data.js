@@ -1434,7 +1434,7 @@ const DEFAULT_SETS = [
       {
         "th": "เขาหันหลังแล้วเดินไป",
         "rom": "kăo hăn-lăng láew deun bpai",
-        "en": "They turned around and walked away."
+        "en": "He turned around and walked away."
       },
       {
         "th": "เพื่อนผมนิสัยดี",
@@ -1506,7 +1506,7 @@ const DEFAULT_SETS = [
 ];
 
 const MANIFEST_KEY = "thai-practice-manifest";
-const MANIFEST_VERSION = 8;   // bump when DEFAULT_SETS content changes -> reseed (stars preserved)
+const MANIFEST_VERSION = 9;   // bump when DEFAULT_SETS content changes -> reseed (stars preserved)
 
 function cloneSets(sets){
   return sets.map(s => ({
