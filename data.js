@@ -1348,7 +1348,7 @@ const DEFAULT_SETS = [
       },
       {
         "th": "ผมมีคำถามหนึ่งข้อ",
-        "rom": "pŏm mee kam-tăam nèung kâaw",
+        "rom": "pŏm mee kam-tăam nèung kôr",
         "en": "I have one question."
       },
       {
@@ -1373,7 +1373,7 @@ const DEFAULT_SETS = [
       },
       {
         "th": "พรุ่งนี้ฝนตกแน่นอน",
-        "rom": "prûng-née fŏn dtòk nâe-naawn",
+        "rom": "prûng-née fŏn dtòk nâe-non",
         "en": "It will definitely rain tomorrow."
       },
       {
@@ -1388,7 +1388,7 @@ const DEFAULT_SETS = [
       },
       {
         "th": "ผมจะออกไปข้างนอก",
-        "rom": "pŏm jà òk-bpai kâang-nâawk",
+        "rom": "pŏm jà òk-bpai kâang-nôk",
         "en": "I'm going to go outside."
       },
       {
@@ -1398,7 +1398,7 @@ const DEFAULT_SETS = [
       },
       {
         "th": "ผมยังไม่หิว",
-        "rom": "pŏm yang-mâi hĕu",
+        "rom": "pŏm yang-mâi hĭw",
         "en": "I'm not hungry yet."
       },
       {
@@ -1418,7 +1418,7 @@ const DEFAULT_SETS = [
       },
       {
         "th": "ผมชอบกินไก่ทอด",
-        "rom": "pŏm chôp gin gài-tâawt",
+        "rom": "pŏm chôp gin gài-tôt",
         "en": "I like to eat fried chicken."
       },
       {
@@ -1428,7 +1428,7 @@ const DEFAULT_SETS = [
       },
       {
         "th": "ช่วงนี้อากาศร้อน",
-        "rom": "chûang née aa-gàat ráawn",
+        "rom": "chûang née aa-gàat rón",
         "en": "The weather is hot these days."
       },
       {
@@ -1443,12 +1443,12 @@ const DEFAULT_SETS = [
       },
       {
         "th": "ผู้หญิงคนนั้นผมสีทอง",
-        "rom": "pôo-yĭng kon nán pŏm sĕe taawng",
+        "rom": "pôo-yĭng kon nán pŏm sĕe tong",
         "en": "That woman has blonde hair."
       },
       {
         "th": "ร้านปิดตอนสี่ทุ่ม",
-        "rom": "ráan bpìt dtaawn sèe tûm",
+        "rom": "ráan bpìt dton sèe tûm",
         "en": "The shop closes at 10pm."
       },
       {
@@ -1463,12 +1463,12 @@ const DEFAULT_SETS = [
       },
       {
         "th": "ผมชอบกินมันฝรั่งทอด",
-        "rom": "pŏm chôp gin man-fà-ràng tâawt",
+        "rom": "pŏm chôp gin man-fà-ràng tôt",
         "en": "I like to eat french fries."
       },
       {
         "th": "เจอกันตอนเที่ยงนะ",
-        "rom": "jəə gan dtaawn-tîiang ná",
+        "rom": "jəə gan dton-tîiang ná",
         "en": "See you at noon."
       },
       {
@@ -1478,7 +1478,7 @@ const DEFAULT_SETS = [
       },
       {
         "th": "รอครึ่งชั่วโมงได้ไหม",
-        "rom": "raaw krêung chûua-mohng dâai măi",
+        "rom": "ror krêung chûua-mohng dâai măi",
         "en": "Can you wait half an hour?"
       },
       {
@@ -1493,7 +1493,7 @@ const DEFAULT_SETS = [
       },
       {
         "th": "ข้ามสะพานลอยปลอดภัยกว่า",
-        "rom": "kâam sà-paan-looi bplòot-pai gwàa",
+        "rom": "kâam sà-paan-looi bplòt-pai gwàa",
         "en": "Crossing the overpass is safer."
       },
       {
@@ -1506,7 +1506,7 @@ const DEFAULT_SETS = [
 ];
 
 const MANIFEST_KEY = "thai-practice-manifest";
-const MANIFEST_VERSION = 7;   // bump when DEFAULT_SETS content changes -> reseed (stars preserved)
+const MANIFEST_VERSION = 8;   // bump when DEFAULT_SETS content changes -> reseed (stars preserved)
 
 function cloneSets(sets){
   return sets.map(s => ({
